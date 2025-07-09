@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"arvinhwo.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Git绑定GitHub，github.io域名解析，Hexo框架搭建博客">
+  <meta name="description" content="Git绑定GitHub，Hexo框架部署，CDN解析，NEXT配置，Typora联动">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hello Blog">
 <meta property="og:url" content="http://arvinhwo.com/2025/07/08/HelloBlog/index.html">
 <meta property="og:site_name" content="TeckArk by Arvin">
-<meta property="og:description" content="Git绑定GitHub，github.io域名解析，Hexo框架搭建博客">
+<meta property="og:description" content="Git绑定GitHub，Hexo框架部署，CDN解析，NEXT配置，Typora联动">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://arvinhwo.com/images/image-20250709141710382.png">
 <meta property="og:image" content="http://arvinhwo.com/images/image-20250709141654216.png">
@@ -39,8 +39,9 @@
 <meta property="og:image" content="http://arvinhwo.com/images/image-20250709143245133.png">
 <meta property="og:image" content="http://arvinhwo.com/images/image-20250709143406082.png">
 <meta property="og:image" content="http://arvinhwo.com/images/image-20250709143416072.png">
+<meta property="og:image" content="http://arvinhwo.com/images/image-20250709150435441.png">
 <meta property="article:published_time" content="2025-07-08T08:37:25.078Z">
-<meta property="article:modified_time" content="2025-07-09T06:37:45.582Z">
+<meta property="article:modified_time" content="2025-07-09T07:10:43.094Z">
 <meta property="article:author" content="arvin">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://arvinhwo.com/images/image-20250709141710382.png">
@@ -203,11 +204,11 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-07-09 14:37:45" itemprop="dateModified" datetime="2025-07-09T14:37:45+08:00">2025-07-09</time>
+                <time title="修改时间：2025-07-09 15:10:43" itemprop="dateModified" datetime="2025-07-09T15:10:43+08:00">2025-07-09</time>
               </span>
 
           
-            <div class="post-description">Git绑定GitHub，github.io域名解析，Hexo框架搭建博客</div>
+            <div class="post-description">Git绑定GitHub，Hexo框架部署，CDN解析，NEXT配置，Typora联动</div>
 
         </div>
       </header>
@@ -294,9 +295,7 @@
 </ul>
 <img src="/images/image-20250709142821701.png" alt="image-20250709142821701" style="zoom:50%;" />
 <blockquote>
-<ul>
-<li>使用<code>git rm -cached &lt;file&gt;</code>移除追踪但保留文件</li>
-</ul>
+<p>使用<code>git rm -cached &lt;file&gt;</code>移除追踪但保留文件</p>
 </blockquote>
 <h3 id="提交变更"><a class="header-anchor" href="#提交变更">¶</a>提交变更</h3>
 <ul>
@@ -315,13 +314,10 @@
 </ul>
 <img src="/images/image-20250709142916006.png" alt="image-20250709142916006" style="zoom:50%;" />
 <blockquote>
-<ul>
-<li>首次提交需添加邮箱信息，后续修改邮箱信息也可使用以下命令
+<p>首次提交需添加邮箱信息，后续修改邮箱信息也可使用以下命令</p>
 <ul>
 <li><code>git config --global user.email &quot;your@email.com&quot;</code></li>
 <li><code>git config --global user.email &quot;your name&quot;</code></li>
-</ul>
-</li>
 </ul>
 </blockquote>
 <h1>Hexo框架</h1>
@@ -334,7 +330,7 @@
 <li>在命令行中使用<code>node -v</code>和<code>npm -v</code>检查是否成功安装</li>
 </ul>
 <p><img src="/images/image-20250709142934524.png" alt="image-20250709142934524"></p>
-<h2 id="静态部署"><a class="header-anchor" href="#静态部署">¶</a>静态部署</h2>
+<h2 id="Hexo部署"><a class="header-anchor" href="#Hexo部署">¶</a>Hexo部署</h2>
 <blockquote>
 <p>Hexo 是一个基于 Node.js 的静态博客框架， 能够将Markdown 文档快速渲染成静态的 HTML 网页<sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup></p>
 </blockquote>
@@ -381,7 +377,7 @@
 </ul>
 <img src="/images/image-20250709143406082.png" alt="image-20250709143406082" style="zoom:67%;" />
 <ul>
-<li>在已购域名的控制台中添加github.io的解析记录</li>
+<li>在已购域名的控制台中添加github.io的解析记录，经CDN服务商加速访问</li>
 </ul>
 <img src="/images/image-20250709143416072.png" alt="image-20250709143416072" style="zoom: 67%;" />
 <ul>
@@ -401,14 +397,26 @@
 </li>
 </ul>
 <h2 id="NEXT主题"><a class="header-anchor" href="#NEXT主题">¶</a>NEXT主题</h2>
+<h3 id="下载启用"><a class="header-anchor" href="#下载启用">¶</a>下载启用</h3>
 <ul>
-<li>在Blog路径下输入<code>git clone https://github.com/theme-next/hexo-theme-next themes/next</code>下载NEXT主题</li>
-<li>打开根目录下的_config.yml（站点配置文件）</li>
+<li>输入<code>git clone https://github.com/theme-next/hexo-theme-next themes/next</code>下载NEXT主题</li>
+<li>配置根目录下的站点配置文件_config.yml</li>
 </ul>
-<h1>Typora编辑</h1>
+<h2 id="联动Typora"><a class="header-anchor" href="#联动Typora">¶</a>联动Typora</h2>
+<h3 id="引用图片"><a class="header-anchor" href="#引用图片">¶</a>引用图片</h3>
 <blockquote>
 <p>由于Gitee不允许个人使用仓库当作图床使用，因此修改图片引用方式</p>
 </blockquote>
+<ul>
+<li>在blog/source/路径下新建images文件夹，.md文件放入默认位置blog/source/_posts/</li>
+<li>将Typora-格式-设置图片根目录设置为source，在文章的YAML中即体现为<code>typora-root-url: ./..</code></li>
+<li>将Typora-偏好设置-图片设置如下</li>
+</ul>
+<img src="/images/image-20250709150435441.png" alt="image-20250709150435441" style="zoom: 33%;" />
+<ul>
+<li>此后Typora中和Hexo渲染均可正确显示图片</li>
+</ul>
+<p>引用公式</p>
 <hr class="footnotes-sep">
 <section class="footnotes">
 <ol class="footnotes-list">
@@ -506,7 +514,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Git-GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Git"><span class="nav-number">1.1.</span> <span class="nav-text">安装Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%91%E5%AE%9AGitHub"><span class="nav-number">1.2.</span> <span class="nav-text">绑定GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH%E5%AF%86%E9%92%A5"><span class="nav-number">1.2.1.</span> <span class="nav-text">SSH密钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%91%E5%AE%9AGitHub-v2"><span class="nav-number">1.2.2.</span> <span class="nav-text">绑定GitHub</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git%E4%BB%93%E5%BA%93"><span class="nav-number">1.3.</span> <span class="nav-text">Git仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.3.1.</span> <span class="nav-text">本地下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E8%BF%BD%E8%B8%AA"><span class="nav-number">1.3.2.</span> <span class="nav-text">文件追踪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E5%8F%98%E6%9B%B4"><span class="nav-number">1.3.3.</span> <span class="nav-text">提交变更</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Hexo框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85node-js"><span class="nav-number">2.1.</span> <span class="nav-text">安装node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E9%83%A8%E7%BD%B2"><span class="nav-number">2.2.</span> <span class="nav-text">静态部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2"><span class="nav-number">2.2.1.</span> <span class="nav-text">本地部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub%E9%83%A8%E7%BD%B2"><span class="nav-number">2.2.2.</span> <span class="nav-text">GitHub部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90%E5%9F%9F%E5%90%8D"><span class="nav-number">2.2.3.</span> <span class="nav-text">解析域名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NEXT%E4%B8%BB%E9%A2%98"><span class="nav-number">2.3.</span> <span class="nav-text">NEXT主题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Typora编辑</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Git-GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Git"><span class="nav-number">1.1.</span> <span class="nav-text">安装Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%91%E5%AE%9AGitHub"><span class="nav-number">1.2.</span> <span class="nav-text">绑定GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH%E5%AF%86%E9%92%A5"><span class="nav-number">1.2.1.</span> <span class="nav-text">SSH密钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%91%E5%AE%9AGitHub-v2"><span class="nav-number">1.2.2.</span> <span class="nav-text">绑定GitHub</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git%E4%BB%93%E5%BA%93"><span class="nav-number">1.3.</span> <span class="nav-text">Git仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.3.1.</span> <span class="nav-text">本地下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E8%BF%BD%E8%B8%AA"><span class="nav-number">1.3.2.</span> <span class="nav-text">文件追踪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E5%8F%98%E6%9B%B4"><span class="nav-number">1.3.3.</span> <span class="nav-text">提交变更</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Hexo框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85node-js"><span class="nav-number">2.1.</span> <span class="nav-text">安装node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E9%83%A8%E7%BD%B2"><span class="nav-number">2.2.</span> <span class="nav-text">Hexo部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2"><span class="nav-number">2.2.1.</span> <span class="nav-text">本地部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub%E9%83%A8%E7%BD%B2"><span class="nav-number">2.2.2.</span> <span class="nav-text">GitHub部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90%E5%9F%9F%E5%90%8D"><span class="nav-number">2.2.3.</span> <span class="nav-text">解析域名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NEXT%E4%B8%BB%E9%A2%98"><span class="nav-number">2.3.</span> <span class="nav-text">NEXT主题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%90%AF%E7%94%A8"><span class="nav-number">2.3.1.</span> <span class="nav-text">下载启用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%81%94%E5%8A%A8Typora"><span class="nav-number">2.4.</span> <span class="nav-text">联动Typora</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E5%9B%BE%E7%89%87"><span class="nav-number">2.4.1.</span> <span class="nav-text">引用图片</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
