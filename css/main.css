@@ -1175,7 +1175,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #497909;
+  background: #28fff5;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1325,7 +1325,7 @@ pre .javascript .function {
   white-space: nowrap;
 }
 .post-toc .nav .nav-child {
-  display: none;
+  display: block;
 }
 .post-toc .nav .active > .nav-child {
   display: block;
@@ -1969,13 +1969,6 @@ pre .javascript .function {
 #qr p {
   text-align: center;
 }
-.post-copyright {
-  background: var(--card-bg-color);
-  border-left: 3px solid #ff2a2a;
-  list-style: none;
-  margin: 2em 0 0;
-  padding: 0.5em 1em;
-}
 .post-body p a {
   color: #0593d3;
   border-bottom: none;
@@ -2591,4 +2584,46 @@ mjx-container + br {
   .pagination {
     margin: 8px 0 0;
   }
+}
+.post-block .post-body {
+  counter-reset: h1;
+}
+.post-block h1 {
+  counter-reset: h2;
+}
+.post-block h2 {
+  counter-reset: h3;
+}
+.post-block h3 {
+  counter-reset: h4;
+}
+.post-block h4 {
+  counter-reset: h5;
+}
+.post-block h5 {
+  counter-reset: h6;
+}
+.post-body h1:before {
+  counter-increment: h1;
+  content: counter(h1) ". ";
+}
+.post-body h2:before {
+  counter-increment: h2;
+  content: counter(h1) "." counter(h2) ". ";
+}
+.post-body h3:before {
+  counter-increment: h3;
+  content: counter(h1) "." counter(h2) "." counter(h3) ". ";
+}
+.post-body h4:before {
+  counter-increment: h4;
+  content: counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) ". ";
+}
+.post-body h5:before {
+  counter-increment: h5;
+  content: counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". ";
+}
+.post-body h6:before {
+  counter-increment: h6;
+  content: counter(h1) "." counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". ";
 }
