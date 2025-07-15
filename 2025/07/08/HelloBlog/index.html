@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
@@ -40,7 +40,7 @@
 <meta property="og:image" content="http://arvinhwo.com/images/image-20250709143416072.png">
 <meta property="og:image" content="http://arvinhwo.com/images/image-20250709150435441.png">
 <meta property="article:published_time" content="2025-07-08T08:37:25.078Z">
-<meta property="article:modified_time" content="2025-07-14T08:04:15.931Z">
+<meta property="article:modified_time" content="2025-07-15T02:26:35.147Z">
 <meta property="article:author" content="ArvinHwO">
 <meta property="article:tag" content="Git">
 <meta property="article:tag" content="Hexo">
@@ -216,6 +216,7 @@
         </h1>
 
         <div class="post-meta">
+          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
@@ -229,7 +230,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-07-14 16:04:15" itemprop="dateModified" datetime="2025-07-14T16:04:15+08:00">2025-07-14</time>
+                <time title="修改时间：2025-07-15 10:26:35" itemprop="dateModified" datetime="2025-07-15T10:26:35+08:00">2025-07-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -237,7 +238,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%83%A8%E7%BD%B2/" itemprop="url" rel="index"><span itemprop="name">软件部署</span></a>
+                  <a href="/categories/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/" itemprop="url" rel="index"><span itemprop="name">环境部署</span></a>
                 </span>
             </span>
 
@@ -485,6 +486,18 @@
 <li>也可在页脚配置文件 themes\next\layout_partial\footer.swig中添加</li>
 </ul>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">div</span> class=&quot;copyright&quot;&gt;</span><br><span class="line">  &lt;<span class="selector-tag">p</span>&gt;</span><br><span class="line">    &lt;<span class="selector-tag">span</span>&gt;版权声明：本博客采用&lt;/<span class="selector-tag">span</span>&gt;</span><br><span class="line">    &lt;<span class="selector-tag">a</span> href=&quot;https://creativecommons.org/licenses/by-nc-sa/<span class="number">4.0</span>/<span class="string">&quot; target=&quot;</span>_blank<span class="string">&quot; rel=&quot;</span>noopener<span class="string">&quot;&gt;BY-NC-SA 4.0&lt;/a&gt;</span></span><br><span class="line"><span class="string">    &lt;span&gt;许可协议。&lt;/span&gt;</span></span><br><span class="line"><span class="string">  &lt;/p&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="博文置顶"><a class="header-anchor" href="#博文置顶">¶</a>博文置顶</h3>
+<ul>
+<li>重新安装插件
+<ul>
+<li><code>npm r hexo-generator-index</code></li>
+<li><code>npm i hexo-generator-index-pin-top --S</code></li>
+</ul>
+</li>
+<li>在博文的YAML中添加<code>top: true</code></li>
+<li>编辑themes/next/layout/_macro/post.swig，定位到&quot;post-meta&quot;，插入如下代码</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">div</span> class=&quot;post-meta&quot;&gt;</span><br><span class="line">	&#123;% if post<span class="selector-class">.top</span> %&#125;</span><br><span class="line">	&lt;<span class="selector-tag">i</span> class=&quot;fa fa-thumb-tack&quot;&gt;&lt;/<span class="selector-tag">i</span>&gt;</span><br><span class="line">    &lt;<span class="attribute">font</span> <span class="attribute">color</span>=<span class="number">7</span>D26CD&gt;置顶&lt;/<span class="attribute">font</span>&gt;</span><br><span class="line">    &lt;<span class="selector-tag">span</span> class=&quot;post-meta-divider&quot;&gt;|&lt;/<span class="selector-tag">span</span>&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="联动Typora"><a class="header-anchor" href="#联动Typora">¶</a>联动Typora</h2>
 <h3 id="引用图片"><a class="header-anchor" href="#引用图片">¶</a>引用图片</h3>
 <ul>
@@ -504,12 +517,19 @@
 <li>Hexo无法渲染Typora中的脚注，因此使用插件解决
 <ul>
 <li>卸载原渲染插件<code>npm un hexo-renderer-marked --save</code></li>
-<li>安装新渲染插件<code>npm i hexo-renderer-markdown-it --save</code></li>
+<li>安装GitHub风格渲染插件<code>npm i hexo-renderer-markdown-it --save</code></li>
 <li>修改站点配置文件_config.yml</li>
 </ul>
 </li>
 </ul>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Markdown-it config</span></span><br><span class="line"><span class="comment">## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki</span></span><br><span class="line"><span class="attr">markdown:</span></span><br><span class="line">  <span class="comment"># 渲染设置</span></span><br><span class="line">  <span class="attr">render:</span></span><br><span class="line">    <span class="comment"># 置为true时，html内容保持不变；置为false时，html内容将被转义成普通字符串</span></span><br><span class="line">    <span class="attr">html:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 是否生成与XHTML完全兼容的标签（虽然我不懂是什么意思）</span></span><br><span class="line">    <span class="attr">xhtmlOut:</span> <span class="literal">false</span></span><br><span class="line">    <span class="comment"># 置为true时，每个换行符都被渲染成一个&lt;br&gt;（即Hexo的默认表现）；置为false时，只有空行才会被渲染为&lt;br&gt;（GFM的默认表现）</span></span><br><span class="line">    <span class="attr">breaks:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 是否自动识别链接并把它渲染成链接</span></span><br><span class="line">    <span class="attr">linkify:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 是否自动识别印刷格式（意思是把(c)渲染为©这样的）</span></span><br><span class="line">    <span class="attr">typographer:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 如果typographer被设置为true，则该选项用于设置将dumb quotes（&quot;&quot;）自动替换为smart quotes</span></span><br><span class="line">    <span class="attr">quotes:</span> <span class="string">&#x27;“”‘’&#x27;</span></span><br><span class="line">  <span class="comment"># 设置所需插件</span></span><br><span class="line">  <span class="attr">plugins:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-abbr</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-footnote</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-ins</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-sub</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-sup</span></span><br><span class="line">  <span class="comment"># 锚点设置</span></span><br><span class="line">  <span class="attr">anchors:</span></span><br><span class="line">    <span class="attr">level:</span> <span class="number">2</span></span><br><span class="line">    <span class="attr">collisionSuffix:</span> <span class="string">&#x27;v&#x27;</span></span><br><span class="line">    <span class="attr">permalink:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">permalinkClass:</span> <span class="string">header-anchor</span></span><br></pre></td></tr></table></figure>
+<h3 id="任务列表"><a class="header-anchor" href="#任务列表">¶</a>任务列表</h3>
+<ul>
+<li>安装GitHub风格渲染插件<code>npm install hexo-renderer-markdown-it --save</code></li>
+<li>安装缺失依赖项<code>npm install markdown-it-task-lists --save</code></li>
+<li>编辑站点配置配置文件</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">markdown:</span></span><br><span class="line">  <span class="attr">plugins:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-task-lists</span>  <span class="comment"># 启用任务列表插件</span></span><br></pre></td></tr></table></figure>
 <h3 id="公式渲染"><a class="header-anchor" href="#公式渲染">¶</a>公式渲染</h3>
 <ul>
 <li>Hexo无法渲染Typora中的公式块，因此安装插件<code>npm install hexo-filter-mathjax --save</code></li>
@@ -566,7 +586,7 @@
       <i class="fa fa-chevron-left"></i> Typora技巧
     </a></div>
       <div class="post-nav-item">
-    <a href="/2025/07/09/MIPI%E6%A1%86%E6%9E%B6/" rel="next" title="MIPI框架">
+    <a href="/2025/07/09/MIPINote/" rel="next" title="MIPI框架">
       MIPI框架 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -627,7 +647,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Git-GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Git"><span class="nav-number">1.1.</span> <span class="nav-text">安装Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%91%E5%AE%9AGitHub"><span class="nav-number">1.2.</span> <span class="nav-text">绑定GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH%E5%AF%86%E9%92%A5"><span class="nav-number">1.2.1.</span> <span class="nav-text">SSH密钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%91%E5%AE%9AGitHub-v2"><span class="nav-number">1.2.2.</span> <span class="nav-text">绑定GitHub</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git%E4%BB%93%E5%BA%93"><span class="nav-number">1.3.</span> <span class="nav-text">Git仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.3.1.</span> <span class="nav-text">本地下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E8%BF%BD%E8%B8%AA"><span class="nav-number">1.3.2.</span> <span class="nav-text">文件追踪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E5%8F%98%E6%9B%B4"><span class="nav-number">1.3.3.</span> <span class="nav-text">提交变更</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Hexo框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85node-js"><span class="nav-number">2.1.</span> <span class="nav-text">安装node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E9%83%A8%E7%BD%B2"><span class="nav-number">2.2.</span> <span class="nav-text">Hexo部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2"><span class="nav-number">2.2.1.</span> <span class="nav-text">本地部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub%E9%83%A8%E7%BD%B2"><span class="nav-number">2.2.2.</span> <span class="nav-text">GitHub部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90%E5%9F%9F%E5%90%8D"><span class="nav-number">2.2.3.</span> <span class="nav-text">解析域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8D%89%E7%A8%BF%E5%8F%91%E5%B8%83"><span class="nav-number">2.2.4.</span> <span class="nav-text">草稿发布</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NEXT%E4%B8%BB%E9%A2%98"><span class="nav-number">2.3.</span> <span class="nav-text">NEXT主题[7]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8F%9C%E5%8D%95%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.3.1.</span> <span class="nav-text">菜单设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%B4%E5%83%8F%E5%9B%BE%E6%A0%87"><span class="nav-number">2.3.2.</span> <span class="nav-text">头像图标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%88%E6%9D%83%E8%AF%B4%E6%98%8E"><span class="nav-number">2.3.3.</span> <span class="nav-text">版权说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%81%94%E5%8A%A8Typora"><span class="nav-number">2.4.</span> <span class="nav-text">联动Typora</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E5%9B%BE%E7%89%87"><span class="nav-number">2.4.1.</span> <span class="nav-text">引用图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%84%9A%E6%B3%A8"><span class="nav-number">2.4.2.</span> <span class="nav-text">添加脚注</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AC%E5%BC%8F%E6%B8%B2%E6%9F%93"><span class="nav-number">2.4.3.</span> <span class="nav-text">公式渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E9%A2%98%E7%BC%96%E5%8F%B7"><span class="nav-number">2.4.4.</span> <span class="nav-text">标题编号</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Git-GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Git"><span class="nav-number">1.1.</span> <span class="nav-text">安装Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%91%E5%AE%9AGitHub"><span class="nav-number">1.2.</span> <span class="nav-text">绑定GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH%E5%AF%86%E9%92%A5"><span class="nav-number">1.2.1.</span> <span class="nav-text">SSH密钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%91%E5%AE%9AGitHub-v2"><span class="nav-number">1.2.2.</span> <span class="nav-text">绑定GitHub</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git%E4%BB%93%E5%BA%93"><span class="nav-number">1.3.</span> <span class="nav-text">Git仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.3.1.</span> <span class="nav-text">本地下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E8%BF%BD%E8%B8%AA"><span class="nav-number">1.3.2.</span> <span class="nav-text">文件追踪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E5%8F%98%E6%9B%B4"><span class="nav-number">1.3.3.</span> <span class="nav-text">提交变更</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Hexo框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85node-js"><span class="nav-number">2.1.</span> <span class="nav-text">安装node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E9%83%A8%E7%BD%B2"><span class="nav-number">2.2.</span> <span class="nav-text">Hexo部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2"><span class="nav-number">2.2.1.</span> <span class="nav-text">本地部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub%E9%83%A8%E7%BD%B2"><span class="nav-number">2.2.2.</span> <span class="nav-text">GitHub部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90%E5%9F%9F%E5%90%8D"><span class="nav-number">2.2.3.</span> <span class="nav-text">解析域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8D%89%E7%A8%BF%E5%8F%91%E5%B8%83"><span class="nav-number">2.2.4.</span> <span class="nav-text">草稿发布</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NEXT%E4%B8%BB%E9%A2%98"><span class="nav-number">2.3.</span> <span class="nav-text">NEXT主题[7]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8F%9C%E5%8D%95%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.3.1.</span> <span class="nav-text">菜单设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%B4%E5%83%8F%E5%9B%BE%E6%A0%87"><span class="nav-number">2.3.2.</span> <span class="nav-text">头像图标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%88%E6%9D%83%E8%AF%B4%E6%98%8E"><span class="nav-number">2.3.3.</span> <span class="nav-text">版权说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%9A%E6%96%87%E7%BD%AE%E9%A1%B6"><span class="nav-number">2.3.4.</span> <span class="nav-text">博文置顶</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%81%94%E5%8A%A8Typora"><span class="nav-number">2.4.</span> <span class="nav-text">联动Typora</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E5%9B%BE%E7%89%87"><span class="nav-number">2.4.1.</span> <span class="nav-text">引用图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%84%9A%E6%B3%A8"><span class="nav-number">2.4.2.</span> <span class="nav-text">添加脚注</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8"><span class="nav-number">2.4.3.</span> <span class="nav-text">任务列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AC%E5%BC%8F%E6%B8%B2%E6%9F%93"><span class="nav-number">2.4.4.</span> <span class="nav-text">公式渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E9%A2%98%E7%BC%96%E5%8F%B7"><span class="nav-number">2.4.5.</span> <span class="nav-text">标题编号</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
