@@ -24,7 +24,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Blog搭建">
 <meta property="og:url" content="http://arvinhwo.com/Blog%E6%90%AD%E5%BB%BA/index.html">
-<meta property="og:site_name" content="TeckArk by Arvin">
+<meta property="og:site_name" content="TeckArk">
 <meta property="og:description" content="Git绑定GitHub，Hexo框架部署，CDN解析，NEXT配置，Typora联动">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://arvinhwo.com/images/image-20250709141654216.png">
@@ -40,10 +40,13 @@
 <meta property="og:image" content="http://arvinhwo.com/images/image-20250709143416072.png">
 <meta property="og:image" content="http://arvinhwo.com/images/image-20250709150435441.png">
 <meta property="article:published_time" content="2025-07-08T08:37:25.078Z">
-<meta property="article:modified_time" content="2025-07-23T03:18:08.457Z">
+<meta property="article:modified_time" content="2025-07-23T09:11:30.970Z">
 <meta property="article:author" content="ArvinHwO">
-<meta property="article:tag" content="TOOL">
-<meta property="article:tag" content="BLOG">
+<meta property="article:tag" content="Git">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Next">
+<meta property="article:tag" content="Typora">
+<meta property="article:tag" content="Blog">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://arvinhwo.com/images/image-20250709141654216.png">
 
@@ -60,7 +63,7 @@
   };
 </script>
 
-  <title>Blog搭建 | TeckArk by Arvin</title>
+  <title>Blog搭建 | TeckArk</title>
   
 
 
@@ -111,9 +114,10 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">TeckArk by Arvin</h1>
+      <h1 class="site-title">TeckArk</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
+      <p class="site-subtitle" itemprop="description">ArvinHwO</p>
   </div>
 
   <div class="site-nav-right">
@@ -207,7 +211,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TeckArk by Arvin">
+      <meta itemprop="name" content="TeckArk">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -229,7 +233,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-07-23 11:18:08" itemprop="dateModified" datetime="2025-07-23T11:18:08+08:00">2025-07-23</time>
+                <time title="修改时间：2025-07-23 17:11:30" itemprop="dateModified" datetime="2025-07-23T17:11:30+08:00">2025-07-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -507,15 +511,20 @@
 <li>若需统计站点文章总字数，在/themes/next/layout/_partials/footer.swig文件尾部加上</li>
 </ul>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">div</span> class=&quot;theme-info&quot;&gt;</span><br><span class="line">  &lt;<span class="selector-tag">div</span> class=&quot;powered-by&quot;&gt;&lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">  &lt;<span class="selector-tag">span</span> class=&quot;post-count&quot;&gt;博客全站共&#123;&#123; totalcount(site) &#125;&#125;字&lt;/<span class="selector-tag">span</span>&gt;</span><br><span class="line">&lt;/<span class="selector-tag">div</span>&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="浏览进度"><a class="header-anchor" href="#浏览进度">¶</a>浏览进度</h3>
+<ul>
+<li>直接修改主题配置文件_config.yml</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">back2top:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Back to top in sidebar.</span></span><br><span class="line">  <span class="attr">sidebar:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Scroll percent label in b2t button.</span></span><br><span class="line">  <span class="attr">scrollpercent:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 <h3 id="代码块渲染"><a class="header-anchor" href="#代码块渲染">¶</a>代码块渲染</h3>
 <ul>
 <li>对于高版本的next可以直接修改主题配置文件_config.yml</li>
 </ul>
-<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">codeblock:</span><br><span class="line"><span class="comment">  # Code Highlight theme</span></span><br><span class="line"><span class="comment">  # Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic</span></span><br><span class="line"><span class="comment">  # See: https://github.com/chriskempson/tomorrow-theme</span></span><br><span class="line">  highlight_theme: night bright</span><br><span class="line"><span class="comment">  # Add copy button on codeblock</span></span><br><span class="line">  copy_button:</span><br><span class="line">    enable: true</span><br><span class="line"><span class="comment">    # Show text copy result.</span></span><br><span class="line">    show_result: true</span><br><span class="line"><span class="comment">    # Available values: default | flat | mac</span></span><br><span class="line">    style: mac</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line">  <span class="comment"># Code Highlight theme</span></span><br><span class="line">  <span class="comment"># Available values: normal | night | night eighties | night blue | night bright | solarized | solarized dark | galactic</span></span><br><span class="line">  <span class="comment"># See: https://github.com/chriskempson/tomorrow-theme</span></span><br><span class="line">  <span class="attr">highlight_theme:</span> <span class="string">night</span> <span class="string">bright</span></span><br><span class="line">  <span class="comment"># Add copy button on codeblock</span></span><br><span class="line">  <span class="attr">copy_button:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># Show text copy result.</span></span><br><span class="line">    <span class="attr">show_result:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># Available values: default | flat | mac</span></span><br><span class="line">    <span class="attr">style:</span> <span class="string">mac</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>对于低版本的next，可以在主题根目录下的source\css\main.styl的末尾添加</li>
 </ul>
-<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">.highlight</span><br><span class="line">    background:rgb(<span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>)</span><br><span class="line">    border-radius: <span class="number">5</span>px</span><br><span class="line">    box-shadow: <span class="number">0</span> <span class="number">10</span>px <span class="number">30</span>px <span class="number">0</span> rgba(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">.4</span>)</span><br><span class="line">    padding-top: <span class="number">30</span>px</span><br><span class="line"></span><br><span class="line">    &amp;::before</span><br><span class="line">      background: #fc625d</span><br><span class="line">      border-radius: <span class="number">50</span>%</span><br><span class="line">      box-shadow: <span class="number">20</span>px <span class="number">0</span> #fdbc40, <span class="number">40</span>px <span class="number">0</span> #<span class="number">35</span>cd4b</span><br><span class="line">      content: &#x27; &#x27;</span><br><span class="line">      height: <span class="number">12</span>px</span><br><span class="line">      left: <span class="number">12</span>px</span><br><span class="line">      margin-top: <span class="number">-20</span>px</span><br><span class="line">      position: absolute</span><br><span class="line">      width: <span class="number">12</span>px</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">.highlight</span></span><br><span class="line">    <span class="string">background:rgb(4,</span> <span class="number">4</span><span class="string">,</span> <span class="number">4</span><span class="string">)</span></span><br><span class="line">    <span class="attr">border-radius:</span> <span class="string">5px</span></span><br><span class="line">    <span class="attr">box-shadow:</span> <span class="number">0</span> <span class="string">10px</span> <span class="string">30px</span> <span class="number">0</span> <span class="string">rgba(0,</span> <span class="number">0</span><span class="string">,</span> <span class="number">0</span><span class="string">,</span> <span class="number">.4</span><span class="string">)</span></span><br><span class="line">    <span class="attr">padding-top:</span> <span class="string">30px</span></span><br><span class="line"></span><br><span class="line">    <span class="string">&amp;::before</span></span><br><span class="line">      <span class="attr">background:</span> <span class="comment">#fc625d</span></span><br><span class="line">      <span class="attr">border-radius:</span> <span class="number">50</span><span class="string">%</span></span><br><span class="line">      <span class="attr">box-shadow:</span> <span class="string">20px</span> <span class="number">0</span> <span class="comment">#fdbc40, 40px 0 #35cd4b</span></span><br><span class="line">      <span class="attr">content:</span> <span class="string">&#x27; &#x27;</span></span><br><span class="line">      <span class="attr">height:</span> <span class="string">12px</span></span><br><span class="line">      <span class="attr">left:</span> <span class="string">12px</span></span><br><span class="line">      <span class="attr">margin-top:</span> <span class="string">-20px</span></span><br><span class="line">      <span class="attr">position:</span> <span class="string">absolute</span></span><br><span class="line">      <span class="attr">width:</span> <span class="string">12px</span></span><br></pre></td></tr></table></figure>
 <h2 id="站点配置"><a class="header-anchor" href="#站点配置">¶</a>站点配置</h2>
 <blockquote>
 <p>使用Typora作为文本编辑器，参见本站文章<a href="../Typora%E6%8A%80%E5%B7%A7">Typora技巧</a></p>
@@ -541,6 +550,9 @@
 <blockquote>
 <p>由于Gitee不允许个人使用仓库当作图床使用，也可改用GitHub图床<sup class="footnote-ref"><a href="#fn8" id="fnref8">[8]</a></sup>，若使用GitHub作为图床同样需要CDN加速</p>
 </blockquote>
+<ul>
+<li>由于不适用和文件同名的文件夹用于存储文件，可以关闭站点配置文件中的<code>post_asset_floder: false</code>，这样在使用<code>hexo new</code>、<code>hexo new draft</code>和<code>hexo p</code>命令时，不再自动生成同名文件夹</li>
+</ul>
 <h3 id="添加脚注"><a class="header-anchor" href="#添加脚注">¶</a>添加脚注</h3>
 <ul>
 <li>Hexo无法渲染Typora中的脚注，因此使用插件解决
@@ -600,8 +612,11 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/TOOL/" rel="tag"># TOOL</a>
-              <a href="/tags/BLOG/" rel="tag"># BLOG</a>
+              <a href="/tags/Git/" rel="tag"># Git</a>
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/Next/" rel="tag"># Next</a>
+              <a href="/tags/Typora/" rel="tag"># Typora</a>
+              <a href="/tags/Blog/" rel="tag"># Blog</a>
           </div>
 
         
@@ -675,7 +690,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Git-GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Git"><span class="nav-number">1.1.</span> <span class="nav-text">安装Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%91%E5%AE%9AGitHub"><span class="nav-number">1.2.</span> <span class="nav-text">绑定GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH%E5%AF%86%E9%92%A5"><span class="nav-number">1.2.1.</span> <span class="nav-text">SSH密钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%91%E5%AE%9AGitHub-v2"><span class="nav-number">1.2.2.</span> <span class="nav-text">绑定GitHub</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git%E4%BB%93%E5%BA%93"><span class="nav-number">1.3.</span> <span class="nav-text">Git仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.3.1.</span> <span class="nav-text">本地下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E8%BF%BD%E8%B8%AA"><span class="nav-number">1.3.2.</span> <span class="nav-text">文件追踪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E5%8F%98%E6%9B%B4"><span class="nav-number">1.3.3.</span> <span class="nav-text">提交变更</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Hexo框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85node-js"><span class="nav-number">2.1.</span> <span class="nav-text">安装node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E9%83%A8%E7%BD%B2"><span class="nav-number">2.2.</span> <span class="nav-text">Hexo部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2"><span class="nav-number">2.2.1.</span> <span class="nav-text">本地部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub%E9%83%A8%E7%BD%B2"><span class="nav-number">2.2.2.</span> <span class="nav-text">GitHub部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90%E5%9F%9F%E5%90%8D"><span class="nav-number">2.2.3.</span> <span class="nav-text">解析域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8D%89%E7%A8%BF%E5%8F%91%E5%B8%83"><span class="nav-number">2.2.4.</span> <span class="nav-text">草稿发布</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NEXT%E4%B8%BB%E9%A2%98"><span class="nav-number">2.3.</span> <span class="nav-text">NEXT主题[7]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8F%9C%E5%8D%95%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.3.1.</span> <span class="nav-text">菜单设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%B4%E5%83%8F%E5%9B%BE%E6%A0%87"><span class="nav-number">2.3.2.</span> <span class="nav-text">头像图标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%88%E6%9D%83%E8%AF%B4%E6%98%8E"><span class="nav-number">2.3.3.</span> <span class="nav-text">版权说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%9A%E6%96%87%E7%BD%AE%E9%A1%B6"><span class="nav-number">2.3.4.</span> <span class="nav-text">博文置顶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E5%AD%97%E6%95%B0"><span class="nav-number">2.3.5.</span> <span class="nav-text">文章字数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%9D%97%E6%B8%B2%E6%9F%93"><span class="nav-number">2.3.6.</span> <span class="nav-text">代码块渲染</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%99%E7%82%B9%E9%85%8D%E7%BD%AE"><span class="nav-number">2.4.</span> <span class="nav-text">站点配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E6%96%87%E7%AB%A0"><span class="nav-number">2.4.1.</span> <span class="nav-text">引用文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E5%9B%BE%E7%89%87"><span class="nav-number">2.4.2.</span> <span class="nav-text">引用图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%84%9A%E6%B3%A8"><span class="nav-number">2.4.3.</span> <span class="nav-text">添加脚注</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8"><span class="nav-number">2.4.4.</span> <span class="nav-text">任务列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AC%E5%BC%8F%E6%B8%B2%E6%9F%93"><span class="nav-number">2.4.5.</span> <span class="nav-text">公式渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E9%A2%98%E7%BC%96%E5%8F%B7"><span class="nav-number">2.4.6.</span> <span class="nav-text">标题编号</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Git-GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Git"><span class="nav-number">1.1.</span> <span class="nav-text">安装Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%91%E5%AE%9AGitHub"><span class="nav-number">1.2.</span> <span class="nav-text">绑定GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH%E5%AF%86%E9%92%A5"><span class="nav-number">1.2.1.</span> <span class="nav-text">SSH密钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%91%E5%AE%9AGitHub-v2"><span class="nav-number">1.2.2.</span> <span class="nav-text">绑定GitHub</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git%E4%BB%93%E5%BA%93"><span class="nav-number">1.3.</span> <span class="nav-text">Git仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.3.1.</span> <span class="nav-text">本地下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E8%BF%BD%E8%B8%AA"><span class="nav-number">1.3.2.</span> <span class="nav-text">文件追踪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4%E5%8F%98%E6%9B%B4"><span class="nav-number">1.3.3.</span> <span class="nav-text">提交变更</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Hexo框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85node-js"><span class="nav-number">2.1.</span> <span class="nav-text">安装node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo%E9%83%A8%E7%BD%B2"><span class="nav-number">2.2.</span> <span class="nav-text">Hexo部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2"><span class="nav-number">2.2.1.</span> <span class="nav-text">本地部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub%E9%83%A8%E7%BD%B2"><span class="nav-number">2.2.2.</span> <span class="nav-text">GitHub部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90%E5%9F%9F%E5%90%8D"><span class="nav-number">2.2.3.</span> <span class="nav-text">解析域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8D%89%E7%A8%BF%E5%8F%91%E5%B8%83"><span class="nav-number">2.2.4.</span> <span class="nav-text">草稿发布</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NEXT%E4%B8%BB%E9%A2%98"><span class="nav-number">2.3.</span> <span class="nav-text">NEXT主题[7]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8F%9C%E5%8D%95%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.3.1.</span> <span class="nav-text">菜单设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%B4%E5%83%8F%E5%9B%BE%E6%A0%87"><span class="nav-number">2.3.2.</span> <span class="nav-text">头像图标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%88%E6%9D%83%E8%AF%B4%E6%98%8E"><span class="nav-number">2.3.3.</span> <span class="nav-text">版权说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%9A%E6%96%87%E7%BD%AE%E9%A1%B6"><span class="nav-number">2.3.4.</span> <span class="nav-text">博文置顶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E5%AD%97%E6%95%B0"><span class="nav-number">2.3.5.</span> <span class="nav-text">文章字数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E8%BF%9B%E5%BA%A6"><span class="nav-number">2.3.6.</span> <span class="nav-text">浏览进度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%9D%97%E6%B8%B2%E6%9F%93"><span class="nav-number">2.3.7.</span> <span class="nav-text">代码块渲染</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%99%E7%82%B9%E9%85%8D%E7%BD%AE"><span class="nav-number">2.4.</span> <span class="nav-text">站点配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E6%96%87%E7%AB%A0"><span class="nav-number">2.4.1.</span> <span class="nav-text">引用文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E5%9B%BE%E7%89%87"><span class="nav-number">2.4.2.</span> <span class="nav-text">引用图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E8%84%9A%E6%B3%A8"><span class="nav-number">2.4.3.</span> <span class="nav-text">添加脚注</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8"><span class="nav-number">2.4.4.</span> <span class="nav-text">任务列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AC%E5%BC%8F%E6%B8%B2%E6%9F%93"><span class="nav-number">2.4.5.</span> <span class="nav-text">公式渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E9%A2%98%E7%BC%96%E5%8F%B7"><span class="nav-number">2.4.6.</span> <span class="nav-text">标题编号</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -703,7 +718,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
