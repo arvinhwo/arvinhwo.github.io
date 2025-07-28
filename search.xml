@@ -13,9 +13,9 @@
       
       <categories>
           
-          <category> 芯片验证 </category>
+          <category> 数字前端 </category>
           
-          <category> SystemVerilog </category>
+          <category> 验证方法学 </category>
           
       </categories>
       
@@ -42,9 +42,9 @@
       
       <categories>
           
-          <category> 芯片验证 </category>
+          <category> 数字前端 </category>
           
-          <category> SystemVerilog </category>
+          <category> 验证方法学 </category>
           
       </categories>
       
@@ -53,9 +53,9 @@
             
             <tag> SystemVerilog </tag>
             
-            <tag> UVM </tag>
-            
             <tag> 数据结构 </tag>
+            
+            <tag> UVM </tag>
             
         </tags>
       
@@ -73,9 +73,9 @@
       
       <categories>
           
-          <category> 芯片验证 </category>
+          <category> 数字前端 </category>
           
-          <category> SystemVerilog </category>
+          <category> 验证方法学 </category>
           
       </categories>
       
@@ -84,9 +84,9 @@
             
             <tag> SystemVerilog </tag>
             
-            <tag> UVM </tag>
-            
             <tag> 数据结构 </tag>
+            
+            <tag> UVM </tag>
             
         </tags>
       
@@ -117,9 +117,9 @@
       
       <categories>
           
-          <category> 芯片验证 </category>
+          <category> 数字前端 </category>
           
-          <category> SystemVerilog </category>
+          <category> 验证方法学 </category>
           
       </categories>
       
@@ -175,7 +175,7 @@
       
       <categories>
           
-          <category> 环境部署 </category>
+          <category> 操作指南 </category>
           
       </categories>
       
