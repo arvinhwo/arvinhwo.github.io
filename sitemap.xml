@@ -65,42 +65,6 @@
   </url>
   
   <url>
-    <loc>http://arvinhwo.com/navigation/index.html</loc>
-    
-    <lastmod>2025-07-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://arvinhwo.com/sitemap/index.html</loc>
-    
-    <lastmod>2025-07-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://arvinhwo.com/content/index.html</loc>
-    
-    <lastmod>2025-07-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://arvinhwo.com/schedule/index.html</loc>
-    
-    <lastmod>2025-07-29</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://arvinhwo.com/MIPI%E6%A1%86%E6%9E%B6/</loc>
     
     <lastmod>2025-07-18</lastmod>
@@ -172,14 +136,14 @@
   </url>
   
   <url>
-    <loc>http://arvinhwo.com/tags/Next/</loc>
+    <loc>http://arvinhwo.com/tags/SystemVerilog/</loc>
     <lastmod>2025-07-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://arvinhwo.com/tags/SystemVerilog/</loc>
+    <loc>http://arvinhwo.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2025-07-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -193,7 +157,7 @@
   </url>
   
   <url>
-    <loc>http://arvinhwo.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+    <loc>http://arvinhwo.com/tags/Next/</loc>
     <lastmod>2025-07-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
