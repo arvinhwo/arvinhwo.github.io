@@ -2,9 +2,9 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 7.3.0">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-A.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-A.png">
@@ -13,14 +13,14 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
 
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"arvinhwo.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":true,"dimer":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.0.5/fancybox/fancybox.css" integrity="sha256-uTcjoMD6rPt4OyV3Rs02Slxl0BJGMNVKAm/1eYPt2go=" crossorigin="anonymous">
 
-  <meta name="description" content="System Verilog内建数据类型的学习：四值类型、双值类型、字符串、结构体与枚举类型等">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"arvinhwo.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":300},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="System Verilog内建数据类型的学习：四值类型、双值类型、字符串、结构体与枚举类型等">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SV数据类型">
 <meta property="og:url" content="http://arvinhwo.com/SV%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
@@ -28,27 +28,21 @@
 <meta property="og:description" content="System Verilog内建数据类型的学习：四值类型、双值类型、字符串、结构体与枚举类型等">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-07-23T07:33:50.000Z">
-<meta property="article:modified_time" content="2025-07-28T08:22:36.584Z">
+<meta property="article:modified_time" content="2025-07-29T09:48:44.512Z">
 <meta property="article:author" content="ArvinHwO">
 <meta property="article:tag" content="SystemVerilog">
 <meta property="article:tag" content="UVM">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
 
+
 <link rel="canonical" href="http://arvinhwo.com/SV%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://arvinhwo.com/SV%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/","path":"SV数据类型/","title":"SV数据类型"}</script>
 
-  <title>SV数据类型 | Arvin's TeckArk</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>SV数据类型 | Arvin's TeckArk</title>
   
 
 
@@ -56,56 +50,64 @@
 
 
 
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.0.5/fancybox/fancybox.umd.js" integrity="sha256-UiSieVaV/DXce2LW7QH+o77w+AIoAvSCPBkezriZ2DQ=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/6.1.3/pangu.umd.js" integrity="sha256-erngBMP3zzoIM6eqQ8dmrReh2vqCRgWmORroIfVoDlE=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+
+
+  
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://arvinhwo.com/SV%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 <!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha512-fHwaWebuwA7NSF5Qg/af4UeDx9XqUpYpOGgubo3yWu+b2IQR4UeQwbb42Ti7gVAjNtVoI/I9TEoYeu9omwcC6g==" crossorigin="anonymous" referrerpolicy="no-referrer" /><!-- hexo injector head_end end --><style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Arvin's TeckArk</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
+      <p class="site-title">Arvin's TeckArk</p>
+      <i class="logo-line"></i>
     </a>
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
         <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
@@ -113,24 +115,8 @@
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-sitemap fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-calendar fa-fw"></i>归档</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -142,111 +128,165 @@
 
   <div class="search-pop-overlay">
     <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 
-</div>
-    </header>
+</header>
+        
+  
+  <aside class="sidebar">
 
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E7%8A%B6%E6%80%81%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">四状态类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">逻辑类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">整数类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8C%E7%8A%B6%E6%80%81%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">双状态类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B-v2"><span class="nav-number">2.1.</span> <span class="nav-text">整数类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.</span> <span class="nav-text">类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.1.</span> <span class="nav-text">静态转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.2.</span> <span class="nav-text">动态转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.3.</span> <span class="nav-text">隐式转换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.</span> <span class="nav-text">特殊类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">5.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%80%A7"><span class="nav-number">5.1.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%BB%BA%E6%96%B9%E6%B3%95"><span class="nav-number">5.2.</span> <span class="nav-text">内建方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%BF%E5%BA%A6%E6%93%8D%E4%BD%9C"><span class="nav-number">5.2.1.</span> <span class="nav-text">长度操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E5%B0%8F%E5%86%99%E8%BD%AC%E6%8D%A2"><span class="nav-number">5.2.2.</span> <span class="nav-text">大小写转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E4%B8%B2%E6%93%8D%E4%BD%9C"><span class="nav-number">5.2.3.</span> <span class="nav-text">子串操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E4%B8%8E%E6%90%9C%E7%B4%A2"><span class="nav-number">5.2.4.</span> <span class="nav-text">比较与搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2-v2"><span class="nav-number">5.2.5.</span> <span class="nav-text">类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">5.2.6.</span> <span class="nav-text">格式化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-number">6.</span> <span class="nav-text">结构体</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E9%87%8D%E5%91%BD%E5%90%8D"><span class="nav-number">6.1.</span> <span class="nav-text">类型重命名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%85"><span class="nav-number">6.2.</span> <span class="nav-text">包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-number">6.3.</span> <span class="nav-text">创建结构体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="nav-number">6.4.</span> <span class="nav-text">流操作符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B"><span class="nav-number">7.</span> <span class="nav-text">枚举类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%89%B9%E6%80%A7"><span class="nav-number">7.1.</span> <span class="nav-text">定义与特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B"><span class="nav-number">7.2.</span> <span class="nav-text">自定义枚举类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E5%AD%90%E7%A8%8B%E5%BA%8F"><span class="nav-number">7.3.</span> <span class="nav-text">枚举类型子程序</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ArvinHwO"
+      src="/images/A.png">
+  <p class="site-author-name" itemprop="name">ArvinHwO</p>
+  <div class="site-description" itemprop="description">Some Notes & Memos</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
   </div>
 
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
+        </div>
+      </div>
+    </div>
 
     
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://arvinhwo.com/SV%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/A.png">
       <meta itemprop="name" content="ArvinHwO">
-      <meta itemprop="description" content="Some Notes & Memos">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Arvin's TeckArk">
+      <meta itemprop="description" content="Some Notes & Memos">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="SV数据类型 | Arvin's TeckArk">
+      <meta itemprop="description" content="System Verilog内建数据类型的学习：四值类型、双值类型、字符串、结构体与枚举类型等">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           SV数据类型
         </h1>
 
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2025-07-23 15:33:50" itemprop="dateCreated datePublished" datetime="2025-07-23T15:33:50+08:00">2025-07-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-07-28 16:22:36" itemprop="dateModified" datetime="2025-07-28T16:22:36+08:00">2025-07-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%97%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">数字前端</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%97%E5%89%8D%E7%AB%AF/%E9%AA%8C%E8%AF%81%E6%96%B9%E6%B3%95%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">验证方法学</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2025-07-23 15:33:50" itemprop="dateCreated datePublished" datetime="2025-07-23T15:33:50+08:00">2025-07-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-07-29 17:48:44" itemprop="dateModified" datetime="2025-07-29T17:48:44+08:00">2025-07-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E5%AD%97%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">数字前端</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E5%AD%97%E5%89%8D%E7%AB%AF/SystemVerilog/" itemprop="url" rel="index"><span itemprop="name">SystemVerilog</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
+
             <div class="post-description">System Verilog内建数据类型的学习：四值类型、双值类型、字符串、结构体与枚举类型等</div>
-
         </div>
       </header>
 
     
     
     
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <h1>四状态类型</h1>
-<h2 id="逻辑类型"><a class="header-anchor" href="#逻辑类型">¶</a>逻辑类型</h2>
+    <div class="post-body" itemprop="articleBody"><h1 id="四状态类型">四状态类型</h1>
+<h2 id="逻辑类型">逻辑类型</h2>
 <ul>
 <li>
 <p><code>logic</code>：推荐替代<code>wire</code>和<code>reg</code>的类型</p>
@@ -268,7 +308,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="整数类型"><a class="header-anchor" href="#整数类型">¶</a>整数类型</h2>
+<h2 id="整数类型">整数类型</h2>
 <ul>
 <li><code>integer</code>：带符号的四值整数，不指定明确位宽
 <ul>
@@ -283,11 +323,11 @@
 </ul>
 </li>
 </ul>
-<h1>双状态类型</h1>
+<h1 id="双状态类型">双状态类型</h1>
 <blockquote>
 <p>相比于四值类型，引入双值类型有利于提高仿真器性能并减少内存的使用量</p>
 </blockquote>
-<h2 id="整数类型-v2"><a class="header-anchor" href="#整数类型-v2">¶</a>整数类型</h2>
+<h2 id="整数类型-v2">整数类型</h2>
 <ul>
 <li><code>bit</code>：最常用的二值类型，无符号整数</li>
 <li><code>bit [31:0]</code>：32比特无符号整数</li>
@@ -301,14 +341,14 @@
 <p>注意：当把双状态变量连接到被测设计输出时，若输出X或Z态会被转换成双状态值而测试代码无法察觉。使用<code>$isunknown</code>操作符，在表达式任意位出现X或Z态时返回1</p>
 </blockquote>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">$isunknown</span>(iport) == <span class="number">1</span>)</span><br><span class="line">    <span class="built_in">$display</span>(<span class="string">&quot;@%t: 4-state value detected on iport %b&quot;</span>, <span class="built_in">$time</span>, iport);</span><br></pre></td></tr></table></figure>
-<h1>类型转换</h1>
-<h2 id="静态转换"><a class="header-anchor" href="#静态转换">¶</a>静态转换</h2>
+<h1 id="类型转换">类型转换</h1>
+<h2 id="静态转换">静态转换</h2>
 <ul>
 <li>语法：<code>目标类型'(表达式)</code></li>
 <li>强制改变表达式类型，不进行越界检查</li>
 </ul>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="keyword">int</span>&#x27;(<span class="number">10</span><span class="variable">.0</span> - <span class="number">0</span><span class="variable">.1</span>);           <span class="comment">// 浮点转整型（截断小数）</span></span><br><span class="line"><span class="keyword">bit</span> [<span class="number">7</span>:<span class="number">0</span>] byte_val = <span class="keyword">unsigned</span>&#x27;(-<span class="number">1</span>); <span class="comment">// 有符号转无符号（结果为255）</span></span><br><span class="line"><span class="keyword">void</span>&#x27;(function_call());             <span class="comment">// 忽略函数返回值  </span></span><br></pre></td></tr></table></figure>
-<h2 id="动态转换"><a class="header-anchor" href="#动态转换">¶</a>动态转换</h2>
+<h2 id="动态转换">动态转换</h2>
 <ul>
 <li>语法：<code>$cast(目标变量, 源表达式)</code></li>
 <li>返回值：1表示转换成功，0表示转换失败</li>
@@ -320,7 +360,7 @@
 </li>
 </ul>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 枚举转换</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> &#123;RED, BLUE&#125; color_e;    <span class="comment">// RED=0, BLUE=1</span></span><br><span class="line"><span class="keyword">int</span> c = <span class="number">2</span>;</span><br><span class="line">color_e color;</span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">$cast</span>(color, c)) <span class="built_in">$error</span>(<span class="string">&quot;越界&quot;</span>); <span class="comment">// c=2超出枚举范围</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 类向下转型</span></span><br><span class="line"><span class="keyword">class</span> Parent; <span class="keyword">endclass</span></span><br><span class="line"><span class="keyword">class</span> Child <span class="keyword">extends</span> Parent; <span class="keyword">endclass</span></span><br><span class="line">Parent p = <span class="keyword">new</span> Child();</span><br><span class="line">Child c;</span><br><span class="line"><span class="built_in">$cast</span>(c, p);  <span class="comment">// 合法向下转型</span></span><br></pre></td></tr></table></figure>
-<h2 id="隐式转换"><a class="header-anchor" href="#隐式转换">¶</a>隐式转换</h2>
+<h2 id="隐式转换">隐式转换</h2>
 <ul>
 <li>由编译器自动完成，无需额外语法
 <ul>
@@ -330,7 +370,7 @@
 </li>
 </ul>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">logic</span> [<span class="number">3</span>:<span class="number">0</span>] x_vec = <span class="number">&#x27;b11x0</span>; </span><br><span class="line"><span class="keyword">bit</span> [<span class="number">2</span>:<span class="number">0</span>] b_vec = x_vec; <span class="comment">// 风险：b_vec=&#x27;b010（x被转为0），四值-&gt;二值，可能隐蔽错误</span></span><br></pre></td></tr></table></figure>
-<h1>特殊类型</h1>
+<h1 id="特殊类型">特殊类型</h1>
 <ul>
 <li>浮点数类型
 <ul>
@@ -360,8 +400,8 @@
 </ul>
 </li>
 </ul>
-<h1>字符串</h1>
-<h2 id="特性"><a class="header-anchor" href="#特性">¶</a>特性</h2>
+<h1 id="字符串">字符串</h1>
+<h2 id="特性">特性</h2>
 <ul>
 <li>动态长度：运行时自动调整长度，无需预定义大小</li>
 <li>ASCII存储：每个字符以字节形式存储 (ASCII 编码)</li>
@@ -370,15 +410,15 @@
 <li>支持转移序列：<code>\n</code> <code>\t</code> <code>\\</code> <code>\&quot;</code> <code>\0</code> <code>\xHH</code> (十六进制)</li>
 </ul>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">string</span> msg = <span class="string">&quot;Hello SV!&quot;</span>;         <span class="comment">// 初始化</span></span><br><span class="line"><span class="keyword">string</span> empty_str;                 <span class="comment">// 默认值 &quot;&quot; </span></span><br><span class="line"><span class="keyword">string</span> path = <span class="string">&quot;dir/file.txt&quot;</span>;     <span class="comment">// 路径字符串</span></span><br><span class="line"><span class="keyword">string</span> hex_str = <span class="string">&quot;A\x42C&quot;</span>;        <span class="comment">// 包含十六进制字符 (ABC)</span></span><br></pre></td></tr></table></figure>
-<h2 id="内建方法"><a class="header-anchor" href="#内建方法">¶</a>内建方法</h2>
-<h3 id="长度操作"><a class="header-anchor" href="#长度操作">¶</a>长度操作</h3>
+<h2 id="内建方法">内建方法</h2>
+<h3 id="长度操作">长度操作</h3>
 <ul>
 <li><code>len()</code>或<code>length()</code>：返回字符串长度</li>
 <li><code>putc(int i, byte c)</code>：替换位置<code>i</code>的的字符为<code>c</code>，索引从0开始</li>
 <li><code>getc(int i)</code>：获取位置<code>i</code>的字符</li>
 </ul>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">string</span> word = <span class="string">&quot;test&quot;</span>;</span><br><span class="line"><span class="keyword">int</span> length = word<span class="variable">.len</span>();       <span class="comment">// length = 4</span></span><br><span class="line">word<span class="variable">.putc</span>(length-<span class="number">1</span>, &#x27;!&#x27;);      <span class="comment">// 修改为 &quot;tes!&quot;</span></span><br><span class="line"><span class="keyword">byte</span> last_char = word<span class="variable">.getc</span>(<span class="number">3</span>); <span class="comment">// 返回 &#x27;!&#x27; (ASCII 33)</span></span><br></pre></td></tr></table></figure>
-<h3 id="大小写转换"><a class="header-anchor" href="#大小写转换">¶</a>大小写转换</h3>
+<h3 id="大小写转换">大小写转换</h3>
 <ul>
 <li><code>toupper()</code>：转为全大写</li>
 <li><code>tolower()</code>：转为全小写</li>
@@ -386,13 +426,13 @@
 <blockquote>
 <p>大写：Uppercase Letter；小写：Lowercase Letter</p>
 </blockquote>
-<h3 id="子串操作"><a class="header-anchor" href="#子串操作">¶</a>子串操作</h3>
+<h3 id="子串操作">子串操作</h3>
 <ul>
 <li><code>substr(int s, int e)</code>：提取子串<code>[s,e]</code></li>
 <li><code>delete(int s, int e)</code>：删除子串</li>
 </ul>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">string</span> full = <span class="string">&quot;SystemVerilog&quot;</span>;</span><br><span class="line"><span class="keyword">string</span> sub = full<span class="variable">.substr</span>(<span class="number">6</span>, <span class="number">8</span>);  <span class="comment">// &quot;Ver&quot;</span></span><br></pre></td></tr></table></figure>
-<h3 id="比较与搜索"><a class="header-anchor" href="#比较与搜索">¶</a>比较与搜索</h3>
+<h3 id="比较与搜索">比较与搜索</h3>
 <ul>
 <li><code>compare(string s)</code>：区分大小写比较，相等时返回0，大于时返回1，小于时返回-1</li>
 <li><code>icompare(string s)</code>：不区分大小写比较</li>
@@ -415,7 +455,7 @@
 </li>
 </ul>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">string</span> s = <span class="string">&quot;apple,orange,apple&quot;</span>;</span><br><span class="line"><span class="keyword">string</span> file_path = <span class="string">&quot;/home/user/report_2023.pdf&quot;</span>;</span><br><span class="line"><span class="keyword">int</span> pos1 = s<span class="variable">.find</span>(<span class="string">&quot;apple&quot;</span>);    <span class="comment">// 返回 0 (第一个&quot;apple&quot;)</span></span><br><span class="line"><span class="keyword">int</span> pos2 = s<span class="variable">.rfind</span>(<span class="string">&quot;apple&quot;</span>);   <span class="comment">// 返回 13 (最后一个&quot;apple&quot;)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> dot_pos = file_path<span class="variable">.rfind</span>(<span class="string">&quot;.&quot;</span>);      <span class="comment">// 查找最后一个点号的位置</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(dot_pos != -<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">string</span> extension = file_path<span class="variable">.substr</span>(dot_pos, file_path<span class="variable">.len</span>()-<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">$display</span>(<span class="string">&quot;Extension: %s&quot;</span>, extension); <span class="comment">// 输出 &quot;.pdf&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="类型转换"><a class="header-anchor" href="#类型转换">¶</a>类型转换</h3>
+<h3 id="类型转换-v2">类型转换</h3>
 <ul>
 <li><code>atoi()</code>：字符串-&gt;十进制整数</li>
 <li><code>atohex()</code>：字符串-&gt;十六进制整数</li>
@@ -433,7 +473,7 @@
 </li>
 </ul>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> value = <span class="string">&quot;7F&quot;</span><span class="variable">.atohex</span>();  <span class="comment">// 十六进制转整数 → 127</span></span><br><span class="line"><span class="keyword">real</span> pi = <span class="string">&quot;3.1416&quot;</span><span class="variable">.atoreal</span>(); <span class="comment">// 字符串转实数</span></span><br></pre></td></tr></table></figure>
-<h3 id="格式化"><a class="header-anchor" href="#格式化">¶</a>格式化</h3>
+<h3 id="格式化">格式化</h3>
 <ul>
 <li><code>$sformatf</code>：格式化字符串生成器
 <ul>
@@ -444,8 +484,8 @@
 </li>
 </ul>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> data = <span class="number">255</span>;</span><br><span class="line"><span class="keyword">string</span> hex_str = <span class="built_in">$sformatf</span>(<span class="string">&quot;%h&quot;</span>, data);     <span class="comment">// 默认格式 → &quot;ff&quot;</span></span><br><span class="line"><span class="keyword">string</span> hex_fmt = <span class="built_in">$sformatf</span>(<span class="string">&quot;0x%h&quot;</span>, data);    <span class="comment">// 带前缀 → &quot;0xff&quot;</span></span><br><span class="line"><span class="keyword">string</span> hex_auto = <span class="built_in">$sformatf</span>(<span class="string">&quot;%0h&quot;</span>, data);    <span class="comment">// &quot;ff&quot; (推荐)</span></span><br><span class="line"><span class="keyword">string</span> hex_4bit = <span class="built_in">$sformatf</span>(<span class="string">&quot;%4h&quot;</span>, value);   <span class="comment">// &quot;  ff&quot; (空格填充)</span></span><br><span class="line"><span class="keyword">string</span> hex_04bit = <span class="built_in">$sformatf</span>(<span class="string">&quot;%04h&quot;</span>, value); <span class="comment">// &quot;00ff&quot; (零填充)</span></span><br></pre></td></tr></table></figure>
-<h1>结构体</h1>
-<h2 id="类型重命名"><a class="header-anchor" href="#类型重命名">¶</a>类型重命名</h2>
+<h1 id="结构体">结构体</h1>
+<h2 id="类型重命名">类型重命名</h2>
 <ul>
 <li><code>typedef</code>语句为现有的数据类型创建新名称（别名）
 <ul>
@@ -457,7 +497,7 @@
 <li>定义数组类型的语法：<code>typedef &lt;元素类型&gt; &lt;新类型&gt; [&lt;维度&gt;];</code></li>
 </ul>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Verilog风格</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> OPSIZE 8</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> OPREG reg [`OPSIZE-1:0]</span></span><br><span class="line">`OPREG op_a, op_b;</span><br><span class="line"></span><br><span class="line"><span class="comment">//SystemVerilog风格</span></span><br><span class="line"><span class="keyword">parameter</span> OPSIZE = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">reg</span> [OPSIZE-<span class="number">1</span>:<span class="number">0</span>] opreg_t;</span><br><span class="line">opreg_t op_a op_b;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义数组类型</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">bit</span> [<span class="number">7</span>:<span class="number">0</span>] byte_array [<span class="number">64</span>];</span><br><span class="line">byte_array buffer;</span><br></pre></td></tr></table></figure>
-<h2 id="包"><a class="header-anchor" href="#包">¶</a>包</h2>
+<h2 id="包">包</h2>
 <ul>
 <li>可以把<code>parameter</code>和<code>typedef</code>语句放到一个程序包（package）里，使之能被整个设计和测试平台使用
 <ul>
@@ -478,7 +518,7 @@
 </li>
 </ul>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ABC总线的包</span></span><br><span class="line"><span class="keyword">package</span> ABC;</span><br><span class="line">    <span class="keyword">parameter</span> <span class="keyword">int</span> abc_data_width = <span class="number">32</span>;</span><br><span class="line">    <span class="keyword">typedef</span> <span class="keyword">logic</span> [abc_data_width-<span class="number">1</span>:<span class="number">0</span>] abc_data_t;</span><br><span class="line">    <span class="keyword">parameter</span> <span class="keyword">time</span> timeout = <span class="number">100</span>ns;</span><br><span class="line">    <span class="keyword">string</span> message = <span class="string">&quot;ABC done&quot;</span>;</span><br><span class="line"><span class="keyword">endpackage</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 导入包</span></span><br><span class="line"><span class="keyword">module</span> test;</span><br><span class="line">    <span class="keyword">import</span> ABC::*;		                <span class="comment">// 导入包中所有符号</span></span><br><span class="line">    </span><br><span class="line">    abc_data_t data;                    <span class="comment">// 来自包ABC的符号</span></span><br><span class="line">    <span class="keyword">string</span> message = <span class="string">&quot;Test timed out&quot;</span>;  <span class="comment">// 本地的message隐藏了包里的message符号</span></span><br><span class="line">    <span class="comment">//若确实需要使用ABC中的messge，则使用ABC::message指定</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        <span class="variable">#(timeout)</span>;                     <span class="comment">// 来自包ABC的符号</span></span><br><span class="line">        <span class="built_in">$display</span>(<span class="string">&quot;Timeout - %s&quot;</span>, message);</span><br><span class="line">        <span class="built_in">$finish</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-<h2 id="创建结构体"><a class="header-anchor" href="#创建结构体">¶</a>创建结构体</h2>
+<h2 id="创建结构体">创建结构体</h2>
 <ul>
 <li><code>struct</code>语句把若干变量组合到一个结构中
 <ul>
@@ -497,7 +537,7 @@
 </li>
 </ul>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 上例中的pixel_s占用了三个长字的存储空间，即使实际只需三个字节</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="keyword">packed</span> &#123;         <span class="comment">// 使用packed进行压缩</span></span><br><span class="line">    <span class="keyword">bit</span> [<span class="number">7</span>:<span class="number">0</span>] r, g, b;          <span class="comment">// 8位红、绿、蓝通道</span></span><br><span class="line">&#125; pixel_s_p;</span><br></pre></td></tr></table></figure>
-<h2 id="流操作符"><a class="header-anchor" href="#流操作符">¶</a>流操作符</h2>
+<h2 id="流操作符">流操作符</h2>
 <ul>
 <li>流操作符用于数据打包和解包，简化数据的序列化操作
 <ul>
@@ -521,8 +561,8 @@
 </li>
 </ul>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bit</span> [<span class="number">31</span>:<span class="number">0</span>] stream = <span class="number">32&#x27;hA5A5_A5A5</span>;</span><br><span class="line"><span class="keyword">int</span> arr [<span class="number">0</span>:<span class="number">3</span>]; <span class="comment">// 非合并数组</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 直接赋值违反语言规则</span></span><br><span class="line">arr = stream; <span class="comment">// 编译报错</span></span><br><span class="line"><span class="comment">// 正确：左侧流操作符拆分比特流</span></span><br><span class="line">&#123; &gt;&gt; &#123;arr&#125; &#125; = stream;      <span class="comment">// 等价于按32比特分段，未被赋值的部分自动填充默认值0</span></span><br><span class="line">&#123; &gt;&gt; <span class="keyword">byte</span> &#123;arr&#125; &#125; = stream; <span class="comment">// 按照指定片段宽度解包</span></span><br></pre></td></tr></table></figure>
-<h1>枚举类型</h1>
-<h2 id="定义与特性"><a class="header-anchor" href="#定义与特性">¶</a>定义与特性</h2>
+<h1 id="枚举类型">枚举类型</h1>
+<h2 id="定义与特性">定义与特性</h2>
 <ul>
 <li>
 <p>定义</p>
@@ -559,7 +599,7 @@
 </li>
 </ul>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> &#123;RED, YELLOW, GREEN&#125; light;  <span class="comment">// 默认标签：RED=0, YELLOW=1, GREEN=2</span></span><br><span class="line"><span class="keyword">enum</span> &#123;R, Y, G&#125; color;             <span class="comment">// 默认标签：R=0, Y=1, G=2</span></span><br><span class="line"><span class="comment">//标签值重复：虽然RED和R默认都为0，但属于两个不同的枚举类型，相互独立并不冲突</span></span><br><span class="line"><span class="comment">//也可使用显示赋值，避免打印时混淆</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//标签名称重复：同一模块内不同枚举类型的标签名称重复会导致编译错误，哪怕值不同</span></span><br><span class="line"><span class="keyword">enum</span> &#123;R = <span class="number">10</span>, Y, G&#125; color_e;      <span class="comment">// 默认标签：R=10, Y=11, G=12</span></span><br><span class="line"><span class="comment">//应对方法：使用唯一的标签名；在不同的模块中使用</span></span><br><span class="line"><span class="comment">//或使用typedef定义枚举类型，为每个枚举类型创建独立类型，减少名称污染风险</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">enum</span> &#123;RESET, S[<span class="number">5</span>], W[<span class="number">6</span>:<span class="number">9</span>]&#125; state; <span class="comment">// 生成 RESET, S0-S4, W6-W9</span></span><br></pre></td></tr></table></figure>
-<h2 id="自定义枚举类型"><a class="header-anchor" href="#自定义枚举类型">¶</a>自定义枚举类型</h2>
+<h2 id="自定义枚举类型">自定义枚举类型</h2>
 <ul>
 <li>使用<code>typedef</code>定义可复用的枚举类型
 <ul>
@@ -568,7 +608,7 @@
 </li>
 </ul>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> &#123;INIT, DECODE, IDLE&#125; fsm_state_e; <span class="comment">//使用后缀_e表示枚举类型</span></span><br><span class="line">fsm_state_e st, nst;</span><br><span class="line"></span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">case</span> (st)</span><br><span class="line">        IDLE: nst = INIT;</span><br><span class="line">        INIT: nst = DECODE;</span><br><span class="line">        <span class="keyword">default</span>: nst = IDLE;</span><br><span class="line">    <span class="keyword">endcase</span></span><br><span class="line">    <span class="built_in">$display</span>(<span class="string">&quot;Next state is %s&quot;</span>, nst<span class="variable">.name</span>());</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<h2 id="枚举类型子程序"><a class="header-anchor" href="#枚举类型子程序">¶</a>枚举类型子程序</h2>
+<h2 id="枚举类型子程序">枚举类型子程序</h2>
 <ul>
 <li><code>first()</code>或<code>first</code>返回第一个枚举常量</li>
 <li><code>last()</code>返回最后一个枚举常量</li>
@@ -588,214 +628,75 @@
     
     
 
-      <footer class="post-footer">
+    <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/SystemVerilog/" rel="tag"># SystemVerilog</a>
-              <a href="/tags/UVM/" rel="tag"># UVM</a>
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+              <a href="/tags/SystemVerilog/" rel="tag"><i class="fa fa-tag"></i> SystemVerilog</a>
+              <a href="/tags/UVM/" rel="tag"><i class="fa fa-tag"></i> UVM</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"><i class="fa fa-tag"></i> 数据结构</a>
           </div>
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/%E7%AB%99%E7%82%B9%E7%9B%AE%E5%BD%95/" rel="prev" title="站点目录">
-      <i class="fa fa-chevron-left"></i> 站点目录
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/SV%E6%95%B0%E7%BB%84%E9%98%9F%E5%88%97/" rel="next" title="SV数组队列">
-      SV数组队列 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/SV%E5%B8%B8%E9%87%8F%E5%8F%98%E9%87%8F/" rel="prev" title="SV常量变量">
+                  <i class="fa fa-angle-left"></i> SV常量变量
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/SV%E6%95%B0%E7%BB%84%E9%98%9F%E5%88%97/" rel="next" title="SV数组队列">
+                  SV数组队列 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
           </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">四状态类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">逻辑类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">整数类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">双状态类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B-v2"><span class="nav-number">2.1.</span> <span class="nav-text">整数类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.1.</span> <span class="nav-text">静态转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.2.</span> <span class="nav-text">动态转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%90%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.3.</span> <span class="nav-text">隐式转换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">特殊类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%80%A7"><span class="nav-number">5.1.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%BB%BA%E6%96%B9%E6%B3%95"><span class="nav-number">5.2.</span> <span class="nav-text">内建方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%BF%E5%BA%A6%E6%93%8D%E4%BD%9C"><span class="nav-number">5.2.1.</span> <span class="nav-text">长度操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E5%B0%8F%E5%86%99%E8%BD%AC%E6%8D%A2"><span class="nav-number">5.2.2.</span> <span class="nav-text">大小写转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E4%B8%B2%E6%93%8D%E4%BD%9C"><span class="nav-number">5.2.3.</span> <span class="nav-text">子串操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E4%B8%8E%E6%90%9C%E7%B4%A2"><span class="nav-number">5.2.4.</span> <span class="nav-text">比较与搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">5.2.5.</span> <span class="nav-text">类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">5.2.6.</span> <span class="nav-text">格式化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">结构体</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E9%87%8D%E5%91%BD%E5%90%8D"><span class="nav-number">6.1.</span> <span class="nav-text">类型重命名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%85"><span class="nav-number">6.2.</span> <span class="nav-text">包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-number">6.3.</span> <span class="nav-text">创建结构体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="nav-number">6.4.</span> <span class="nav-text">流操作符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">7.</span> <span class="nav-text">枚举类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%89%B9%E6%80%A7"><span class="nav-number">7.1.</span> <span class="nav-text">定义与特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B"><span class="nav-number">7.2.</span> <span class="nav-text">自定义枚举类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B%E5%AD%90%E7%A8%8B%E5%BA%8F"><span class="nav-number">7.3.</span> <span class="nav-text">枚举类型子程序</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="ArvinHwO"
-      src="/images/A.png">
-  <p class="site-author-name" itemprop="name">ArvinHwO</p>
-  <div class="site-description" itemprop="description">Some Notes & Memos</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">8</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">11</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2025</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">ArvinHwO</span>
-</div>
-
-  <p>
-    <span>版权声明：本博客采用</span>
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">BY-NC-SA 4.0</a>
-    <span>许可协议。</span>
-  </p>
-
-        
-
-
-
-
-
-
-
-
-      </div>
     </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-blog"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ArvinHwO</span>
   </div>
 
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
+    </div>
+  </footer>
 
   
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
 
-
-
-
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-  
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 
 <script>
 var options = {
-  bottom: '64px',
-  right: '27px',
+  bottom: '24px',
+  right: '20px',
   left: 'unset',
   time: '0.5s',
   mixColor: 'transparent',
@@ -810,7 +711,6 @@ const darkmode = new Darkmode(options);
 window.darkmode = darkmode;
 darkmode.showWidget();
 </script>
-
 
 </body>
 </html>
