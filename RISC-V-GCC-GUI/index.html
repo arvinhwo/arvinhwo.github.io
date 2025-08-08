@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-A.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-A.png">
+  <link rel="mask-icon" href="/images/favicon-A.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.0.5/fancybox/fancybox.css" integrity="sha256-uTcjoMD6rPt4OyV3Rs02Slxl0BJGMNVKAm/1eYPt2go=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"arvinhwo.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":300},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="RISC-V Compiler GUI使用说明及开发记录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RISC-V GCC GUI">
+<meta property="og:url" content="http://arvinhwo.com/RISC-V-GCC-GUI/index.html">
+<meta property="og:site_name" content="Arvin&#39;s TeckArk">
+<meta property="og:description" content="RISC-V Compiler GUI使用说明及开发记录">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://arvinhwo.com/image-20250808110732132.png">
+<meta property="og:image" content="http://arvinhwo.com/image-20250808110911551.png">
+<meta property="og:image" content="http://arvinhwo.com/image-20250808111219456.png">
+<meta property="og:image" content="http://arvinhwo.com/image-20250808111335704.png">
+<meta property="og:image" content="http://arvinhwo.com/image-20250808110227069.png">
+<meta property="og:image" content="http://arvinhwo.com/image-20250807134828543.png">
+<meta property="og:image" content="http://arvinhwo.com/image-20250808102045734.png">
+<meta property="og:image" content="http://arvinhwo.com/image-20250808103451834.png">
+<meta property="article:published_time" content="2025-08-08T03:28:54.000Z">
+<meta property="article:modified_time" content="2025-08-08T03:31:18.363Z">
+<meta property="article:author" content="ArvinHwO">
+<meta property="article:tag" content="Eclipse">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="RISC-V">
+<meta property="article:tag" content="GCC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://arvinhwo.com/image-20250808110732132.png">
+
+
+<link rel="canonical" href="http://arvinhwo.com/RISC-V-GCC-GUI/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://arvinhwo.com/RISC-V-GCC-GUI/","path":"RISC-V-GCC-GUI/","title":"RISC-V GCC GUI"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>RISC-V GCC GUI | Arvin's TeckArk</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.0.5/fancybox/fancybox.umd.js" integrity="sha256-UiSieVaV/DXce2LW7QH+o77w+AIoAvSCPBkezriZ2DQ=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/6.1.3/pangu.umd.js" integrity="sha256-erngBMP3zzoIM6eqQ8dmrReh2vqCRgWmORroIfVoDlE=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+
+
+  
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://arvinhwo.com/RISC-V-GCC-GUI/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha512-fHwaWebuwA7NSF5Qg/af4UeDx9XqUpYpOGgubo3yWu+b2IQR4UeQwbb42Ti7gVAjNtVoI/I9TEoYeu9omwcC6g==" crossorigin="anonymous" referrerpolicy="no-referrer" /><!-- hexo injector head_end end --><style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Arvin's TeckArk</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-book fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-sitemap fa-fw"></i>分类</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">使用说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E6%BA%90"><span class="nav-number">1.1.</span> <span class="nav-text">开源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">1.3.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">开发准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-v2"><span class="nav-number">2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%A7%8B%E8%84%9A%E6%9C%AC"><span class="nav-number">2.2.</span> <span class="nav-text">原始脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E9%93%BE%E5%8F%98%E9%87%8F"><span class="nav-number">2.2.1.</span> <span class="nav-text">工具链变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%8F%98%E9%87%8F"><span class="nav-number">2.2.2.</span> <span class="nav-text">文件变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E9%80%89%E9%A1%B9"><span class="nav-number">2.2.3.</span> <span class="nav-text">编译选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E9%80%89%E9%A1%B9"><span class="nav-number">2.2.4.</span> <span class="nav-text">链接选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%91%BD%E4%BB%A4"><span class="nav-number">2.2.5.</span> <span class="nav-text">编译命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95"><span class="nav-number">3.</span> <span class="nav-text">开发记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9E%8B"><span class="nav-number">3.1.</span> <span class="nav-text">原型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%95%8C%E9%9D%A2"><span class="nav-number">3.1.1.</span> <span class="nav-text">界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E4%BA%92"><span class="nav-number">3.1.2.</span> <span class="nav-text">交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91"><span class="nav-number">3.1.3.</span> <span class="nav-text">编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%95%E8%BF%90%E8%A1%8C"><span class="nav-number">3.1.4.</span> <span class="nav-text">试运行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%8C%85"><span class="nav-number">3.2.</span> <span class="nav-text">打包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GCC%E6%89%93%E5%8C%85"><span class="nav-number">3.2.1.</span> <span class="nav-text">GCC打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAR%E6%89%93%E5%8C%85"><span class="nav-number">3.2.2.</span> <span class="nav-text">JAR打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXE%E6%89%93%E5%8C%85"><span class="nav-number">3.2.3.</span> <span class="nav-text">EXE打包</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ArvinHwO"
+      src="/images/A.png">
+  <p class="site-author-name" itemprop="name">ArvinHwO</p>
+  <div class="site-description" itemprop="description">Some Notes & Memos</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:root@arvinhwo.com" title="E-Mail → mailto:root@arvinhwo.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://arvinhwo.com/RISC-V-GCC-GUI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/A.png">
+      <meta itemprop="name" content="ArvinHwO">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Arvin's TeckArk">
+      <meta itemprop="description" content="Some Notes & Memos">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="RISC-V GCC GUI | Arvin's TeckArk">
+      <meta itemprop="description" content="RISC-V Compiler GUI使用说明及开发记录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          RISC-V GCC GUI
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-08-08 11:28:54 / 修改时间：11:31:18" itemprop="dateCreated datePublished" datetime="2025-08-08T11:28:54+08:00">2025-08-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">工具开发</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">RISC-V Compiler GUI使用说明及开发记录</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="使用说明">使用说明</h1>
+<h2 id="开源">开源</h2>
+<ul>
+<li>RISC-V Compiler开发基于<a target="_blank" rel="noopener" href="https://www.eclipse.org/">Eclipse</a></li>
+<li>内置GCC使用开源项目<a target="_blank" rel="noopener" href="https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack">riscv-none-elf-gcc-xpack</a></li>
+</ul>
+<h2 id="安装">安装</h2>
+<ul>
+<li>选择安装位置，默认安装于<code>C:\Program Files\RiscvCompiler</code></li>
+</ul>
+<p><img src="/image-20250808110732132.png" alt="image-20250808110732132"></p>
+<ul>
+<li>选择快捷方式存放位置</li>
+</ul>
+<p><img src="/image-20250808110911551.png" alt="image-20250808110911551"></p>
+<ul>
+<li>安装预计用时1分钟</li>
+</ul>
+<p><img src="/image-20250808111219456.png" alt="image-20250808111219456"></p>
+<h2 id="使用">使用</h2>
+<p><img src="/image-20250808111335704.png" alt="image-20250808111335704"></p>
+<ul>
+<li>指定项目目录：C语言主程序、启动文件、链接脚本</li>
+<li>指定主程序文件名（不带文件类型后缀），指定链接脚本</li>
+<li>GCC编译文件自动存入指定项目目录</li>
+</ul>
+<img src="/image-20250808110227069.png" alt="image-20250808110227069" style="zoom:80%;" />
+<h1 id="开发准备">开发准备</h1>
+<h2 id="安装-v2">安装</h2>
+<ul>
+<li><a href="../Eclipse%E6%8C%87%E5%8D%97">Eclipse安装及入门</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/tag/v14.2.0-3">xpack-riscv-gcc下载</a></li>
+<li><a target="_blank" rel="noopener" href="https://jrsoftware.org/isinfo.php">Inno Setup安装</a></li>
+<li><a target="_blank" rel="noopener" href="https://adoptium.net/zh-CN/temurin/releases?version=8">JRE下载</a></li>
+</ul>
+<h2 id="原始脚本">原始脚本</h2>
+<h3 id="工具链变量">工具链变量</h3>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># TOOLCHAIN</span></span><br><span class="line"><span class="variable">$TOOLCHAIN_DIR</span> = <span class="string">&quot;C:\riscv\xpack-riscv-none-elf-gcc-14.2.0-3\bin&quot;</span></span><br><span class="line"><span class="variable">$RISCV_GCC</span> = <span class="string">&quot;<span class="variable">$TOOLCHAIN_DIR</span>\riscv-none-elf-gcc.exe&quot;</span></span><br><span class="line"><span class="variable">$OBJCOPY</span> = <span class="string">&quot;<span class="variable">$TOOLCHAIN_DIR</span>\riscv-none-elf-objcopy.exe&quot;</span></span><br><span class="line"><span class="variable">$OBJDUMP</span> = <span class="string">&quot;<span class="variable">$TOOLCHAIN_DIR</span>\riscv-none-elf-objdump.exe&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>gcc</code>：RISC-V架构的交叉编译器前端
+<ul>
+<li>将C/C++源代码编译为RISC-V目标平台的机器码</li>
+<li>管理整个编译流程（预处理→编译→汇编→链接）</li>
+<li>支持RISC-V RV32/RV64指令集及扩展（如M/C/F/D等）</li>
+</ul>
+</li>
+<li><code>objcopy</code>：目标文件格式转换工具
+<ul>
+<li>提取/转换ELF文件中的特定段（如从.elf提取.bin固件）</li>
+<li>生成可烧录的二进制镜像（如用于Flash编程）</li>
+<li>修改文件头信息或段属性</li>
+</ul>
+</li>
+<li><code>objdump</code>：目标文件分析诊断工具
+<ul>
+<li>反汇编机器码为RISC-V汇编指令</li>
+<li>显示ELF文件结构（段头、符号表等）</li>
+<li>生成带地址的汇编列表文件</li>
+</ul>
+</li>
+</ul>
+<h3 id="文件变量">文件变量</h3>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># PROJECT</span></span><br><span class="line"><span class="variable">$PROJECT_DIR</span> = <span class="string">&quot;your_project_path&quot;</span></span><br><span class="line"><span class="variable">$MAIN_CODE</span> = <span class="string">&quot;main_file_name_without_extension&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># SOURCE</span></span><br><span class="line"><span class="variable">$LINKER_SCRIPT</span> = <span class="string">&quot;<span class="variable">$PROJECT_DIR</span>\sections.lds&quot;</span></span><br><span class="line"><span class="variable">$SOURCE_FILES</span> = <span class="selector-tag">@</span>(</span><br><span class="line">    <span class="string">&quot;<span class="variable">$PROJECT_DIR</span>\start.S&quot;</span>,</span><br><span class="line">    <span class="string">&quot;<span class="variable">$PROJECT_DIR</span>\<span class="variable">$MAIN_CODE</span>.c&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># OUTPUT</span></span><br><span class="line"><span class="variable">$MAP_FILE</span> = <span class="string">&quot;<span class="variable">$PROJECT_DIR</span>\sys.map&quot;</span></span><br><span class="line"><span class="variable">$ELF_OUTPUT</span> = <span class="string">&quot;<span class="variable">$PROJECT_DIR</span>\<span class="variable">$MAIN_CODE</span>.elf&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="编译选项">编译选项</h3>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># OPTIONS</span></span><br><span class="line"><span class="variable">$CFLAGS</span> = <span class="selector-tag">@</span>(</span><br><span class="line">    <span class="string">&quot;-O3&quot;</span>,                  <span class="comment"># 启用最高级别优化</span></span><br><span class="line">    <span class="string">&quot;-nostdlib&quot;</span>,            <span class="comment"># 禁用标准库链接</span></span><br><span class="line">    <span class="string">&quot;-flto&quot;</span>,                <span class="comment"># 链接时优化</span></span><br><span class="line">    <span class="string">&quot;-ffreestanding&quot;</span>,       <span class="comment"># 独立环境编译</span></span><br><span class="line">    <span class="string">&quot;-ffunction-sections&quot;</span>,  <span class="comment"># 函数分段，配合链接器GC移除未使用函数</span></span><br><span class="line">    <span class="string">&quot;-fdata-sections&quot;</span>,      <span class="comment"># 数据分段，支持链接时移除未用数据</span></span><br><span class="line">    <span class="string">&quot;-fno-builtin&quot;</span>,         <span class="comment"># 禁用内置函数</span></span><br><span class="line">    <span class="string">&quot;--specs=nano.specs&quot;</span>,   <span class="comment"># 轻量库配置</span></span><br><span class="line">    <span class="string">&quot;--specs=nosys.specs&quot;</span>   <span class="comment"># 无系统调用配置</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>性能强化：编译、链接双阶段优化
+<ul>
+<li><code>-O3</code>+<code>-flto</code></li>
+</ul>
+</li>
+<li>裸机环境适配：确保编译结果不依赖操作系统
+<ul>
+<li><code>-nostdlib</code>+<code>-ffreestanding</code>+<code>nosys.specs</code></li>
+</ul>
+</li>
+<li>代码尺寸优化：移除未使用代码、数据
+<ul>
+<li><code>-ffunction-sections</code>+<code>-fdata-sections</code></li>
+</ul>
+</li>
+<li>精简库：减小二进制体积
+<ul>
+<li><code>nano.specs</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="链接选项">链接选项</h3>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$LDFLAGS</span> = <span class="selector-tag">@</span>(</span><br><span class="line">    <span class="string">&quot;-Wl,--build-id=none&quot;</span>,   <span class="comment"># 禁用构建ID，减少二进制体积</span></span><br><span class="line">    <span class="string">&quot;-Wl,-Bstatic&quot;</span>,          <span class="comment"># 强制静态链接</span></span><br><span class="line">    <span class="string">&quot;-Wl,-T,<span class="variable">$LINKER_SCRIPT</span>&quot;</span>, <span class="comment"># 指定链接脚本，自定以内存布局</span></span><br><span class="line">    <span class="string">&quot;-Wl,-Map=<span class="variable">$MAP_FILE</span>&quot;</span>,    <span class="comment"># 生成链接映射，用于调试与内存分析</span></span><br><span class="line">    <span class="string">&quot;-L.&quot;</span>                    <span class="comment"># 添加库搜索路径</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>部署控制：强制静态链接（<code>-Bstatic</code>）和自定义内存布局（<code>-T</code>脚本）确保程序在目标硬件精确运行</li>
+</ul>
+<h3 id="编译命令">编译命令</h3>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># COMPILE</span></span><br><span class="line">&amp; <span class="variable">$RISCV_GCC</span> <span class="literal">-march</span>=rv32e <span class="literal">-mabi</span>=ilp32e <span class="variable">$CFLAGS</span> <span class="variable">$LDFLAGS</span> <span class="literal">-o</span> <span class="variable">$ELF_OUTPUT</span> <span class="variable">$SOURCE_FILES</span></span><br><span class="line">&amp; <span class="variable">$OBJDUMP</span> <span class="literal">-S</span> <span class="variable">$ELF_OUTPUT</span> &gt; (<span class="variable">$ELF_OUTPUT</span> <span class="operator">-replace</span> <span class="string">&#x27;\.elf$&#x27;</span>, <span class="string">&#x27;.s&#x27;</span>)</span><br><span class="line">&amp; <span class="variable">$OBJCOPY</span> <span class="literal">-O</span> binary <span class="variable">$ELF_OUTPUT</span> (<span class="variable">$ELF_OUTPUT</span> <span class="operator">-replace</span> <span class="string">&#x27;\.elf$&#x27;</span>, <span class="string">&#x27;.bin&#x27;</span>)</span><br><span class="line">&amp; <span class="variable">$OBJCOPY</span> <span class="literal">-O</span> verilog <span class="literal">--verilog-data-width</span> <span class="number">4</span> <span class="variable">$ELF_OUTPUT</span> (<span class="variable">$ELF_OUTPUT</span> <span class="operator">-replace</span> <span class="string">&#x27;\.elf$&#x27;</span>, <span class="string">&#x27;.hex&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="开发记录">开发记录</h1>
+<ul>
+<li>Eclipse新建Java Project，不勾选<code>Create module-info.java</code></li>
+<li>先实现调用本地GCC的GUI原型，再封装GCC及GUI</li>
+</ul>
+<h2 id="原型">原型</h2>
+<ul>
+<li>部分原型GUI代码展示，调用本地RISC-V GCC实现C程序编译</li>
+</ul>
+<h3 id="界面">界面</h3>
+<ul>
+<li>组件声明</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="type">JTextField</span> <span class="variable">toolchainDirField</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JTextField</span>(<span class="number">30</span>); <span class="comment">// 工具链路径输入框</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="type">JTextField</span> <span class="variable">projectDirField</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JTextField</span>(<span class="number">30</span>);  <span class="comment">// 项目路径输入框</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="type">JTextField</span> <span class="variable">mainCodeField</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JTextField</span>(<span class="string">&quot;主文件名(无后缀)&quot;</span>, <span class="number">15</span>); <span class="comment">// 主代码文件名</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="type">JTextField</span> <span class="variable">linkerScriptField</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JTextField</span>(<span class="number">30</span>); <span class="comment">// 链接脚本路径输入框</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="type">JTextArea</span> <span class="variable">logArea</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JTextArea</span>(<span class="number">15</span>, <span class="number">60</span>); <span class="comment">// 日志显示区域</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="type">JButton</span> <span class="variable">compileButton</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JButton</span>(<span class="string">&quot;开始编译&quot;</span>); <span class="comment">// 核心功能按钮</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>窗口布局</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">RiscvCompilerGUI</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>(<span class="string">&quot;RISC-V编译工具&quot;</span>); <span class="comment">// 窗口标题</span></span><br><span class="line">    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line">    setLayout(<span class="keyword">new</span> <span class="title class_">BorderLayout</span>(<span class="number">10</span>, <span class="number">10</span>)); <span class="comment">// 边界布局：上(输入区)、中(日志区)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 添加组件到窗口</span></span><br><span class="line">    add(createInputPanel(), BorderLayout.NORTH); <span class="comment">// 顶部：参数输入面板</span></span><br><span class="line">    add(<span class="keyword">new</span> <span class="title class_">JScrollPane</span>(logArea), BorderLayout.CENTER); <span class="comment">// 中间：日志区域(带滚动条)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 日志区域配置（只读+等宽字体）</span></span><br><span class="line">    logArea.setEditable(<span class="literal">false</span>);</span><br><span class="line">    logArea.setFont(<span class="keyword">new</span> <span class="title class_">Font</span>(<span class="string">&quot;Consolas&quot;</span>, Font.PLAIN, <span class="number">12</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 窗口属性设置</span></span><br><span class="line">    pack(); <span class="comment">// 自动调整大小</span></span><br><span class="line">    setLocationRelativeTo(<span class="literal">null</span>); <span class="comment">// 居中显示</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输入区</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> JPanel <span class="title function_">createInputPanel</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">JPanel</span> <span class="variable">panel</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JPanel</span>(<span class="keyword">new</span> <span class="title class_">GridBagLayout</span>());</span><br><span class="line">    <span class="type">GridBagConstraints</span> <span class="variable">gbc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">GridBagConstraints</span>();</span><br><span class="line">    gbc.insets = <span class="keyword">new</span> <span class="title class_">Insets</span>(<span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>); <span class="comment">// 组件间距</span></span><br><span class="line">    gbc.anchor = GridBagConstraints.WEST; <span class="comment">// 左对齐</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输入行1：工具链目录（标签+输入框+浏览按钮）</span></span><br><span class="line">    addInputRow(panel, gbc, <span class="number">0</span>, <span class="string">&quot;工具链目录：&quot;</span>, toolchainDirField, e -&gt; chooseDirectory(toolchainDirField));</span><br><span class="line">    <span class="comment">// 输入行2：项目目录</span></span><br><span class="line">    addInputRow(panel, gbc, <span class="number">1</span>, <span class="string">&quot;项目目录：&quot;</span>, projectDirField, e -&gt; chooseDirectory(projectDirField));</span><br><span class="line">    <span class="comment">// 输入行3：主代码文件名</span></span><br><span class="line">    addInputRow(panel, gbc, <span class="number">2</span>, <span class="string">&quot;主代码文件名：&quot;</span>, mainCodeField, <span class="literal">null</span>);</span><br><span class="line">    <span class="comment">// 输入行4：链接脚本（文件过滤.lds）</span></span><br><span class="line">    addInputRow(panel, gbc, <span class="number">3</span>, <span class="string">&quot;链接脚本：&quot;</span>, linkerScriptField, e -&gt; chooseFile(linkerScriptField, <span class="string">&quot;lds&quot;</span>));</span><br><span class="line">    <span class="comment">// 输入行5：编译按钮（跨列居中）</span></span><br><span class="line">    gbc.gridx = <span class="number">0</span>; gbc.gridy = <span class="number">4</span>; gbc.gridwidth = <span class="number">3</span>; gbc.anchor = GridBagConstraints.CENTER;</span><br><span class="line">    panel.add(compileButton, gbc);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> panel;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="交互">交互</h3>
+<ul>
+<li>目录选择</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">chooseDirectory</span><span class="params">(JTextField field)</span> &#123;</span><br><span class="line">    <span class="type">JFileChooser</span> <span class="variable">chooser</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JFileChooser</span>();</span><br><span class="line">    chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); <span class="comment">// 仅允许选择目录</span></span><br><span class="line">    <span class="keyword">if</span> (chooser.showOpenDialog(<span class="built_in">this</span>) == JFileChooser.APPROVE_OPTION) &#123;</span><br><span class="line">        <span class="comment">// 将选中的目录路径显示到输入框</span></span><br><span class="line">        field.setText(chooser.getSelectedFile().getAbsolutePath());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>文件选择</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">chooseFile</span><span class="params">(JTextField field, String ext)</span> &#123;</span><br><span class="line">    <span class="type">JFileChooser</span> <span class="variable">chooser</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JFileChooser</span>();</span><br><span class="line">    <span class="comment">// 过滤文件类型（仅显示.lds文件）</span></span><br><span class="line">    chooser.setFileFilter(<span class="keyword">new</span> <span class="title class_">FileNameExtensionFilter</span>(ext.toUpperCase() + <span class="string">&quot;文件&quot;</span>, ext));</span><br><span class="line">    <span class="keyword">if</span> (chooser.showOpenDialog(<span class="built_in">this</span>) == JFileChooser.APPROVE_OPTION) &#123;</span><br><span class="line">        <span class="comment">// 将选中的文件路径显示到输入框</span></span><br><span class="line">        field.setText(chooser.getSelectedFile().getAbsolutePath());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编译按钮</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">initButtonAction</span><span class="params">()</span> &#123;</span><br><span class="line">    compileButton.addActionListener(e -&gt; &#123;</span><br><span class="line">        logArea.setText(<span class="string">&quot;&quot;</span>); <span class="comment">// 清空旧日志</span></span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">CompileWorker</span>().execute(); <span class="comment">// 启动后台任务（避免界面卡死）</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="编译">编译</h3>
+<ul>
+<li>识别路径</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> String <span class="title function_">getBuiltInToolchainDir</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 获取程序当前运行目录</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">appDir</span> <span class="operator">=</span> System.getProperty(<span class="string">&quot;user.dir&quot;</span>); </span><br><span class="line">    <span class="type">String</span> <span class="variable">toolchainBinDir</span> <span class="operator">=</span> appDir + File.separator + <span class="string">&quot;toolchain&quot;</span> + File.separator + <span class="string">&quot;bin&quot;</span>;</span><br><span class="line">            </span><br><span class="line">    <span class="comment">// 检查工具链核心文件是否存在（避免打包时遗漏工具链）</span></span><br><span class="line">    <span class="type">File</span> <span class="variable">gccFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(toolchainBinDir + File.separator + <span class="string">&quot;riscv-none-elf-gcc.exe&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (!gccFile.exists()) &#123;</span><br><span class="line">        publish(<span class="string">&quot;错误：内置工具链缺失！请确保程序目录下存在 toolchain/bin/riscv-none-elf-gcc.exe&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> toolchainBinDir; <span class="comment">// 返回工具链bin目录路径（含riscv-none-elf-gcc.exe等工具）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编译任务</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 0. 自动获取内置工具链路径（无需用户输入）</span></span><br><span class="line"><span class="type">String</span> <span class="variable">toolchainDir</span> <span class="operator">=</span> getBuiltInToolchainDir();</span><br><span class="line"><span class="keyword">if</span> (toolchainDir == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span>; <span class="comment">// 工具链缺失，退出</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 获取用户输入的参数（路径、文件名）</span></span><br><span class="line"><span class="type">String</span> <span class="variable">projectDir</span> <span class="operator">=</span> projectDirField.getText().trim();</span><br><span class="line"><span class="type">String</span> <span class="variable">mainCode</span> <span class="operator">=</span> mainCodeField.getText().trim();</span><br><span class="line"><span class="type">String</span> <span class="variable">linkerScript</span> <span class="operator">=</span> linkerScriptField.getText().trim();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 检查参数是否完整</span></span><br><span class="line"><span class="keyword">if</span> (projectDir.isEmpty() || mainCode.isEmpty() || linkerScript.isEmpty()) &#123;</span><br><span class="line">publish(<span class="string">&quot;错误：请填写所有路径和参数！&quot;</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 拼接工具路径（RISC-V GCC、OBJCOPY等）</span></span><br><span class="line"><span class="type">String</span> <span class="variable">riscvGcc</span> <span class="operator">=</span> toolchainDir + <span class="string">&quot;\riscv-none-elf-gcc.exe&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">objdump</span> <span class="operator">=</span> toolchainDir + <span class="string">&quot;\riscv-none-elf-objdump.exe&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">objcopy</span> <span class="operator">=</span> toolchainDir + <span class="string">&quot;\riscv-none-elf-objcopy.exe&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 检查工具是否存在（避免路径错误）</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">new</span> <span class="title class_">File</span>(riscvGcc).exists()) &#123;</span><br><span class="line">publish(<span class="string">&quot;错误：未找到riscv-none-elf-gcc.exe，请检查工具链路径！&quot;</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5. 拼接输出文件路径（和原脚本一致）</span></span><br><span class="line"><span class="type">String</span> <span class="variable">elfOutput</span> <span class="operator">=</span> projectDir + <span class="string">&quot;\&quot; + mainCode + &quot;</span>.elf<span class="string">&quot;;</span></span><br><span class="line"><span class="string">String mapFile = projectDir + &quot;</span>\<span class="string">&quot; + mainCode + &quot;</span>.map<span class="string">&quot;;</span></span><br><span class="line"><span class="string">String asmOutput = elfOutput.replace(&quot;</span>.elf<span class="string">&quot;, &quot;</span>.s<span class="string">&quot;);</span></span><br><span class="line"><span class="string">String binOutput = elfOutput.replace(&quot;</span>.elf<span class="string">&quot;, &quot;</span>.bin<span class="string">&quot;);</span></span><br><span class="line"><span class="string">String hexOutput = elfOutput.replace(&quot;</span>.elf<span class="string">&quot;, &quot;</span>.hex<span class="string">&quot;);</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>文件生成</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 步骤1：编译生成ELF文件（核心命令）</span></span><br><span class="line">String[] gccCommand = &#123;</span><br><span class="line">riscvGcc,</span><br><span class="line"><span class="string">&quot;-march=rv32e&quot;</span>, <span class="string">&quot;-mabi=ilp32e&quot;</span>, <span class="comment">// RISC-V架构参数（rv32e/ilp32e）</span></span><br><span class="line"><span class="string">&quot;-O3&quot;</span>, <span class="string">&quot;-nostdlib&quot;</span>, <span class="string">&quot;-flto&quot;</span>, <span class="string">&quot;-ffreestanding&quot;</span>, <span class="comment">// CFLAGS优化选项</span></span><br><span class="line"><span class="string">&quot;-ffunction-sections&quot;</span>, <span class="string">&quot;-fdata-sections&quot;</span>, <span class="string">&quot;-fno-builtin&quot;</span>,</span><br><span class="line"><span class="string">&quot;--specs=nano.specs&quot;</span>, <span class="string">&quot;--specs=nosys.specs&quot;</span>,</span><br><span class="line"><span class="string">&quot;-Wl,--build-id=none&quot;</span>, <span class="string">&quot;-Wl,-Bstatic&quot;</span>, <span class="comment">// LDFLAGS链接选项</span></span><br><span class="line"><span class="string">&quot;-Wl,-T,&quot;</span> + linkerScript, <span class="comment">// 链接脚本（用户选择的.lds）</span></span><br><span class="line"><span class="string">&quot;-Wl,-Map=&quot;</span> + mapFile, <span class="comment">// 生成map文件</span></span><br><span class="line"><span class="string">&quot;-L.&quot;</span>,</span><br><span class="line"><span class="string">&quot;-o&quot;</span>, elfOutput, <span class="comment">// 输出ELF文件</span></span><br><span class="line">projectDir + <span class="string">&quot;\start.S&quot;</span>, <span class="comment">// 源文件1：start.S（固定）</span></span><br><span class="line">projectDir + <span class="string">&quot;\&quot; + mainCode + &quot;</span>.c<span class="string">&quot; // 源文件2：主代码.c</span></span><br><span class="line"><span class="string">&#125;;</span></span><br><span class="line"><span class="string">publish(&quot;</span>执行编译命令：<span class="string">&quot; + String.join(&quot;</span> <span class="string">&quot;, gccCommand));</span></span><br><span class="line"><span class="string">if (!runCommand(gccCommand)) return null; // 执行命令，失败则退出</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// 步骤2：生成反汇编.s文件（objdump -S）</span></span><br><span class="line"><span class="string">String[] objdumpCommand = &#123;objdump, &quot;</span>-S<span class="string">&quot;, elfOutput&#125;;</span></span><br><span class="line"><span class="string">publish(&quot;</span>\n执行反汇编：<span class="string">&quot; + String.join(&quot;</span> <span class="string">&quot;, objdumpCommand));</span></span><br><span class="line"><span class="string">if (!runCommandToFile(objdumpCommand, asmOutput)) return null;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// 步骤3：生成bin文件（objcopy -O binary）</span></span><br><span class="line"><span class="string">String[] binCommand = &#123;objcopy, &quot;</span>-O<span class="string">&quot;, &quot;</span>binary<span class="string">&quot;, elfOutput, binOutput&#125;;</span></span><br><span class="line"><span class="string">publish(&quot;</span>\n生成bin文件：<span class="string">&quot; + String.join(&quot;</span> <span class="string">&quot;, binCommand));</span></span><br><span class="line"><span class="string">if (!runCommand(binCommand)) return null;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// 步骤4：生成hex文件（objcopy -O verilog）</span></span><br><span class="line"><span class="string">String[] hexCommand = &#123;objcopy, &quot;</span>-O<span class="string">&quot;, &quot;</span>verilog<span class="string">&quot;, &quot;</span>--verilog-data-width<span class="string">&quot;, &quot;</span><span class="number">4</span><span class="string">&quot;, elfOutput, hexOutput&#125;;</span></span><br><span class="line"><span class="string">publish(&quot;</span>\n生成hex文件：<span class="string">&quot; + String.join(&quot;</span> <span class="string">&quot;, hexCommand));</span></span><br><span class="line"><span class="string">if (!runCommand(hexCommand)) return null;</span></span><br></pre></td></tr></table></figure>
+<h3 id="试运行">试运行</h3>
+<p><img src="/image-20250807134828543.png" alt="image-20250807134828543"></p>
+<h2 id="打包">打包</h2>
+<ul>
+<li>将RISCV GCC和Java环境封装进安装包，达到开箱即用的目的</li>
+</ul>
+<h3 id="GCC打包">GCC打包</h3>
+<ul>
+<li>将编译工具链放入项目根目录并改名<code>toolchain</code>
+<ul>
+<li>目录结构为<code>riscv_compiler/toolchain/bin/riscv-none-elf-gcc.exe</code></li>
+</ul>
+</li>
+<li>将原型中工具链路径由用户输入改为自动获取</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除原工具链路径输入框相关代码</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改编译逻辑，使用自动获取的工具链路径</span></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">CompileWorker</span> <span class="keyword">extends</span> <span class="title class_">SwingWorker</span>&lt;Void, String&gt; &#123;</span><br><span class="line">        <span class="comment">// 自动识别内置工具链路径</span></span><br><span class="line">        <span class="keyword">private</span> String <span class="title function_">getBuiltInToolchainDir</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="comment">// 获取程序当前运行目录（打包后为EXE解压的临时目录，工具链固定放在&quot;toolchain/bin&quot;下）</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">appDir</span> <span class="operator">=</span> System.getProperty(<span class="string">&quot;user.dir&quot;</span>); </span><br><span class="line">            <span class="type">String</span> <span class="variable">toolchainBinDir</span> <span class="operator">=</span> appDir + File.separator + <span class="string">&quot;toolchain&quot;</span> + File.separator + <span class="string">&quot;bin&quot;</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 检查工具链核心文件是否存在（避免打包时遗漏工具链）</span></span><br><span class="line">            <span class="type">File</span> <span class="variable">gccFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(toolchainBinDir + File.separator + <span class="string">&quot;riscv-none-elf-gcc.exe&quot;</span>);</span><br><span class="line">            <span class="keyword">if</span> (!gccFile.exists()) &#123;</span><br><span class="line">                <span class="comment">// 此时 publish 方法属于 CompileWorker（SwingWorker子类），可正常调用</span></span><br><span class="line">                publish(<span class="string">&quot;错误：内置工具链缺失！请确保程序目录下存在 toolchain/bin/riscv-none-elf-gcc.exe&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> toolchainBinDir; <span class="comment">// 返回工具链bin目录路径（含riscv-none-elf-gcc.exe等工具）</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">protected</span> Void <span class="title function_">doInBackground</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">            <span class="comment">// 0. 自动获取内置工具链路径（无需用户输入）</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">toolchainDir</span> <span class="operator">=</span> getBuiltInToolchainDir();</span><br><span class="line">            <span class="keyword">if</span> (toolchainDir == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span>; <span class="comment">// 工具链缺失，退出</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 1. 获取用户输入的参数（路径、文件名）</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">projectDir</span> <span class="operator">=</span> projectDirField.getText().trim();</span><br><span class="line">            <span class="type">String</span> <span class="variable">mainCode</span> <span class="operator">=</span> mainCodeField.getText().trim();</span><br><span class="line">            <span class="type">String</span> <span class="variable">linkerScript</span> <span class="operator">=</span> linkerScriptField.getText().trim();</span><br><span class="line">            </span><br><span class="line">            ...</span><br></pre></td></tr></table></figure>
+<h3 id="JAR打包">JAR打包</h3>
+<ul>
+<li>打包为<code>Runnable JAR file</code>类型
+<ul>
+<li>选择主类入口<code>RiscvCompilerGUI - risv_compiler</code></li>
+<li>打包依赖项<code>Package required libraries into generated JAR</code></li>
+<li>目录结构为<code>riscv_compiler/RiscvCompiler.jar</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="/image-20250808102045734.png" alt="image-20250808102045734"></p>
+<ul>
+<li>使用JDK自带的<code>jlink</code>在项目目录中生成精简JRE，使封装后的GUI能在无JDK的环境中运行
+<ul>
+<li>JDK添加到环境变量后，<code>jlink --module-path jmods --add-modules java.base,java.desktop --output jre</code></li>
+<li>目录结构为<code>riscv_compiler/jre/bin/java.exe</code></li>
+<li>CMD验证JRE<code>jre\bin\java.exe -jar RiscvCompiler.jar</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="/image-20250808103451834.png" alt="image-20250808103451834"></p>
+<h3 id="EXE打包">EXE打包</h3>
+<ul>
+<li>在项目目录中新建<code>setup.iss</code>文件，使用Inno Setup打开并编译</li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Setup]</span></span><br><span class="line"><span class="attr">AppName</span>=RISC-V Compiler Suite</span><br><span class="line"><span class="attr">AppVersion</span>=<span class="number">1.0</span></span><br><span class="line"><span class="attr">DefaultDirName</span>=&#123;pf&#125;\RiscvCompiler</span><br><span class="line"><span class="attr">OutputDir</span>=.\Output</span><br><span class="line"><span class="attr">OutputBaseFilename</span>=RiscvCompiler_Setup</span><br><span class="line"><span class="attr">Compression</span>=lzma2</span><br><span class="line"><span class="attr">SolidCompression</span>=<span class="literal">yes</span></span><br><span class="line"><span class="attr">ArchitecturesAllowed</span>=x64</span><br><span class="line"><span class="attr">ArchitecturesInstallIn64BitMode</span>=x64</span><br><span class="line"></span><br><span class="line"><span class="section">[Files]</span></span><br><span class="line">Source: &quot;.\RiscvCompiler.jar&quot;<span class="comment">; DestDir: &quot;&#123;app&#125;&quot;; Flags: ignoreversion</span></span><br><span class="line">Source: &quot;.\toolchain\*&quot;<span class="comment">; DestDir: &quot;&#123;app&#125;\toolchain&quot;; Flags: ignoreversion recursesubdirs</span></span><br><span class="line">Source: &quot;.\jre\*&quot;<span class="comment">; DestDir: &quot;&#123;app&#125;\jre&quot;; Flags: ignoreversion recursesubdirs</span></span><br><span class="line"></span><br><span class="line"><span class="section">[Icons]</span></span><br><span class="line">Name: &quot;&#123;commondesktop&#125;\RISC-V Compiler&quot;<span class="comment">; Filename: &quot;&#123;app&#125;\RiscvCompiler.bat&quot;; IconFilename: &quot;&#123;app&#125;\compiler_icon.ico&quot;</span></span><br><span class="line">Name: &quot;&#123;commonprograms&#125;\RISC-V Compiler&quot;<span class="comment">; Filename: &quot;&#123;app&#125;\RiscvCompiler.bat&quot;; IconFilename: &quot;&#123;app&#125;\compiler_icon.ico&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="section">[Run]</span></span><br><span class="line">Filename: &quot;&#123;app&#125;\RiscvCompiler.bat&quot;<span class="comment">; Description: &quot;启动编译器&quot;; Flags: postinstall nowait skipifsilent</span></span><br><span class="line"></span><br><span class="line"><span class="section">[Code]</span></span><br><span class="line">// 创建强制使用内置JRE的启动脚本</span><br><span class="line">procedure CreateBatchFile<span class="comment">;</span></span><br><span class="line">var</span><br><span class="line">  BatchFile: string<span class="comment">;</span></span><br><span class="line">begin</span><br><span class="line">  BatchFile := ExpandConstant(&#x27;&#123;app&#125;\RiscvCompiler.bat&#x27;)<span class="comment">;</span></span><br><span class="line">  SaveStringToFile(BatchFile,</span><br><span class="line">    &#x27;@echo off&#x27; + <span class="comment">#13#10 +</span></span><br><span class="line">    &#x27;set <span class="attr">APPDIR</span>=%~dp0<span class="string">&#x27; + #13#10 +</span></span><br><span class="line"><span class="string">    &#x27;</span>start <span class="string">&quot;&quot;</span> <span class="string">&quot;%APPDIR%jre\bin\javaw.exe&quot;</span> -jar <span class="string">&quot;%APPDIR%RiscvCompiler.jar&quot;</span><span class="string">&#x27; + #13#10,</span></span><br><span class="line"><span class="string">    False</span></span><br><span class="line"><span class="string">  );</span></span><br><span class="line"><span class="string">end;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">procedure CurStepChanged(CurStep: TSetupStep);</span></span><br><span class="line"><span class="string">begin</span></span><br><span class="line"><span class="string">  if CurStep = ssPostInstall then</span></span><br><span class="line"><span class="string">    CreateBatchFile;</span></span><br><span class="line"><span class="string">end;</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Eclipse/" rel="tag"><i class="fa fa-tag"></i> Eclipse</a>
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+              <a href="/tags/RISC-V/" rel="tag"><i class="fa fa-tag"></i> RISC-V</a>
+              <a href="/tags/GCC/" rel="tag"><i class="fa fa-tag"></i> GCC</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/SV%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1/" rel="prev" title="SV类与对象">
+                  <i class="fa fa-angle-left"></i> SV类与对象
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-blog"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ArvinHwO</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '24px',
+  right: '20px',
+  left: 'unset',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>
