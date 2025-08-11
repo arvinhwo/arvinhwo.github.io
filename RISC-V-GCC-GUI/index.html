@@ -27,23 +27,23 @@
 <meta property="og:site_name" content="Arvin&#39;s TeckArk">
 <meta property="og:description" content="RISC-V Compiler GUI使用说明及开发记录">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://arvinhwo.com/image-20250808110732132.png">
-<meta property="og:image" content="http://arvinhwo.com/image-20250808110911551.png">
-<meta property="og:image" content="http://arvinhwo.com/image-20250808111219456.png">
-<meta property="og:image" content="http://arvinhwo.com/image-20250808111335704.png">
-<meta property="og:image" content="http://arvinhwo.com/image-20250808110227069.png">
-<meta property="og:image" content="http://arvinhwo.com/image-20250807134828543.png">
-<meta property="og:image" content="http://arvinhwo.com/image-20250808102045734.png">
-<meta property="og:image" content="http://arvinhwo.com/image-20250808103451834.png">
+<meta property="og:image" content="http://arvinhwo.com/images/image-20250808110732132.png">
+<meta property="og:image" content="http://arvinhwo.com/images/image-20250808110911551.png">
+<meta property="og:image" content="http://arvinhwo.com/images/image-20250808111219456.png">
+<meta property="og:image" content="http://arvinhwo.com/images/image-20250808111335704.png">
+<meta property="og:image" content="http://arvinhwo.com/images/image-20250808110227069.png">
+<meta property="og:image" content="http://arvinhwo.com/images/image-20250807134828543.png">
+<meta property="og:image" content="http://arvinhwo.com/images/image-20250808102045734.png">
+<meta property="og:image" content="http://arvinhwo.com/images/image-20250808103451834.png">
 <meta property="article:published_time" content="2025-08-08T03:28:54.000Z">
-<meta property="article:modified_time" content="2025-08-08T03:31:18.363Z">
+<meta property="article:modified_time" content="2025-08-11T10:39:57.135Z">
 <meta property="article:author" content="ArvinHwO">
 <meta property="article:tag" content="Eclipse">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="RISC-V">
 <meta property="article:tag" content="GCC">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://arvinhwo.com/image-20250808110732132.png">
+<meta name="twitter:image" content="http://arvinhwo.com/images/image-20250808110732132.png">
 
 
 <link rel="canonical" href="http://arvinhwo.com/RISC-V-GCC-GUI/">
@@ -192,7 +192,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -203,7 +203,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -266,9 +266,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-08-08 11:28:54 / 修改时间：11:31:18" itemprop="dateCreated datePublished" datetime="2025-08-08T11:28:54+08:00">2025-08-08</time>
+      <time title="创建时间：2025-08-08 11:28:54" itemprop="dateCreated datePublished" datetime="2025-08-08T11:28:54+08:00">2025-08-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-11 18:39:57" itemprop="dateModified" datetime="2025-08-11T18:39:57+08:00">2025-08-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -295,35 +301,39 @@
 <ul>
 <li>RISC-V Compiler开发基于<a target="_blank" rel="noopener" href="https://www.eclipse.org/">Eclipse</a></li>
 <li>内置GCC使用开源项目<a target="_blank" rel="noopener" href="https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack">riscv-none-elf-gcc-xpack</a></li>
+<li>Java GUI代码开源于我的<a target="_blank" rel="noopener" href="https://github.com/arvinhwo/RISC-V-GCC-GUI">GitHub仓库</a>
+<ul>
+<li>SSH地址：<code>git@github.com:arvinhwo/RISC-V-GCC-GUI.git</code></li>
+</ul>
+</li>
 </ul>
 <h2 id="安装">安装</h2>
 <ul>
 <li>选择安装位置，默认安装于<code>C:\Program Files\RiscvCompiler</code></li>
 </ul>
-<p><img src="/image-20250808110732132.png" alt="image-20250808110732132"></p>
+<p><img src="/images/image-20250808110732132.png" alt="image-20250808110732132"></p>
 <ul>
 <li>选择快捷方式存放位置</li>
 </ul>
-<p><img src="/image-20250808110911551.png" alt="image-20250808110911551"></p>
+<p><img src="/images/image-20250808110911551.png" alt="image-20250808110911551"></p>
 <ul>
 <li>安装预计用时1分钟</li>
 </ul>
-<p><img src="/image-20250808111219456.png" alt="image-20250808111219456"></p>
+<p><img src="/images/image-20250808111219456.png" alt="image-20250808111219456"></p>
 <h2 id="使用">使用</h2>
-<p><img src="/image-20250808111335704.png" alt="image-20250808111335704"></p>
+<p><img src="/images/image-20250808111335704.png" alt="image-20250808111335704"></p>
 <ul>
 <li>指定项目目录：C语言主程序、启动文件、链接脚本</li>
 <li>指定主程序文件名（不带文件类型后缀），指定链接脚本</li>
 <li>GCC编译文件自动存入指定项目目录</li>
 </ul>
-<img src="/image-20250808110227069.png" alt="image-20250808110227069" style="zoom:80%;" />
+<img src="/images/image-20250808110227069.png" alt="image-20250808110227069" style="zoom:80%;" />
 <h1 id="开发准备">开发准备</h1>
 <h2 id="安装-v2">安装</h2>
 <ul>
 <li><a href="../Eclipse%E6%8C%87%E5%8D%97">Eclipse安装及入门</a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/xpack-dev-tools/riscv-none-elf-gcc-xpack/releases/tag/v14.2.0-3">xpack-riscv-gcc下载</a></li>
 <li><a target="_blank" rel="noopener" href="https://jrsoftware.org/isinfo.php">Inno Setup安装</a></li>
-<li><a target="_blank" rel="noopener" href="https://adoptium.net/zh-CN/temurin/releases?version=8">JRE下载</a></li>
 </ul>
 <h2 id="原始脚本">原始脚本</h2>
 <h3 id="工具链变量">工具链变量</h3>
@@ -433,7 +443,7 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 步骤1：编译生成ELF文件（核心命令）</span></span><br><span class="line">String[] gccCommand = &#123;</span><br><span class="line">riscvGcc,</span><br><span class="line"><span class="string">&quot;-march=rv32e&quot;</span>, <span class="string">&quot;-mabi=ilp32e&quot;</span>, <span class="comment">// RISC-V架构参数（rv32e/ilp32e）</span></span><br><span class="line"><span class="string">&quot;-O3&quot;</span>, <span class="string">&quot;-nostdlib&quot;</span>, <span class="string">&quot;-flto&quot;</span>, <span class="string">&quot;-ffreestanding&quot;</span>, <span class="comment">// CFLAGS优化选项</span></span><br><span class="line"><span class="string">&quot;-ffunction-sections&quot;</span>, <span class="string">&quot;-fdata-sections&quot;</span>, <span class="string">&quot;-fno-builtin&quot;</span>,</span><br><span class="line"><span class="string">&quot;--specs=nano.specs&quot;</span>, <span class="string">&quot;--specs=nosys.specs&quot;</span>,</span><br><span class="line"><span class="string">&quot;-Wl,--build-id=none&quot;</span>, <span class="string">&quot;-Wl,-Bstatic&quot;</span>, <span class="comment">// LDFLAGS链接选项</span></span><br><span class="line"><span class="string">&quot;-Wl,-T,&quot;</span> + linkerScript, <span class="comment">// 链接脚本（用户选择的.lds）</span></span><br><span class="line"><span class="string">&quot;-Wl,-Map=&quot;</span> + mapFile, <span class="comment">// 生成map文件</span></span><br><span class="line"><span class="string">&quot;-L.&quot;</span>,</span><br><span class="line"><span class="string">&quot;-o&quot;</span>, elfOutput, <span class="comment">// 输出ELF文件</span></span><br><span class="line">projectDir + <span class="string">&quot;\start.S&quot;</span>, <span class="comment">// 源文件1：start.S（固定）</span></span><br><span class="line">projectDir + <span class="string">&quot;\&quot; + mainCode + &quot;</span>.c<span class="string">&quot; // 源文件2：主代码.c</span></span><br><span class="line"><span class="string">&#125;;</span></span><br><span class="line"><span class="string">publish(&quot;</span>执行编译命令：<span class="string">&quot; + String.join(&quot;</span> <span class="string">&quot;, gccCommand));</span></span><br><span class="line"><span class="string">if (!runCommand(gccCommand)) return null; // 执行命令，失败则退出</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// 步骤2：生成反汇编.s文件（objdump -S）</span></span><br><span class="line"><span class="string">String[] objdumpCommand = &#123;objdump, &quot;</span>-S<span class="string">&quot;, elfOutput&#125;;</span></span><br><span class="line"><span class="string">publish(&quot;</span>\n执行反汇编：<span class="string">&quot; + String.join(&quot;</span> <span class="string">&quot;, objdumpCommand));</span></span><br><span class="line"><span class="string">if (!runCommandToFile(objdumpCommand, asmOutput)) return null;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// 步骤3：生成bin文件（objcopy -O binary）</span></span><br><span class="line"><span class="string">String[] binCommand = &#123;objcopy, &quot;</span>-O<span class="string">&quot;, &quot;</span>binary<span class="string">&quot;, elfOutput, binOutput&#125;;</span></span><br><span class="line"><span class="string">publish(&quot;</span>\n生成bin文件：<span class="string">&quot; + String.join(&quot;</span> <span class="string">&quot;, binCommand));</span></span><br><span class="line"><span class="string">if (!runCommand(binCommand)) return null;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// 步骤4：生成hex文件（objcopy -O verilog）</span></span><br><span class="line"><span class="string">String[] hexCommand = &#123;objcopy, &quot;</span>-O<span class="string">&quot;, &quot;</span>verilog<span class="string">&quot;, &quot;</span>--verilog-data-width<span class="string">&quot;, &quot;</span><span class="number">4</span><span class="string">&quot;, elfOutput, hexOutput&#125;;</span></span><br><span class="line"><span class="string">publish(&quot;</span>\n生成hex文件：<span class="string">&quot; + String.join(&quot;</span> <span class="string">&quot;, hexCommand));</span></span><br><span class="line"><span class="string">if (!runCommand(hexCommand)) return null;</span></span><br></pre></td></tr></table></figure>
 <h3 id="试运行">试运行</h3>
-<p><img src="/image-20250807134828543.png" alt="image-20250807134828543"></p>
+<p><img src="/images/image-20250807134828543.png" alt="image-20250807134828543"></p>
 <h2 id="打包">打包</h2>
 <ul>
 <li>将RISCV GCC和Java环境封装进安装包，达到开箱即用的目的</li>
@@ -458,7 +468,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/image-20250808102045734.png" alt="image-20250808102045734"></p>
+<p><img src="/images/image-20250808102045734.png" alt="image-20250808102045734"></p>
 <ul>
 <li>使用JDK自带的<code>jlink</code>在项目目录中生成精简JRE，使封装后的GUI能在无JDK的环境中运行
 <ul>
@@ -468,7 +478,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/image-20250808103451834.png" alt="image-20250808103451834"></p>
+<p><img src="/images/image-20250808103451834.png" alt="image-20250808103451834"></p>
 <h3 id="EXE打包">EXE打包</h3>
 <ul>
 <li>在项目目录中新建<code>setup.iss</code>文件，使用Inno Setup打开并编译</li>
@@ -498,6 +508,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/Git%E6%8C%87%E5%8D%97/" rel="next" title="Git指南">
+                  Git指南 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>

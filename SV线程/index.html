@@ -27,15 +27,15 @@
 <meta property="og:site_name" content="Arvin&#39;s TeckArk">
 <meta property="og:description" content="System Verilog线程及线程间通信">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://arvinhwo.com/image-20250728173027785.png">
-<meta property="og:image" content="http://arvinhwo.com/image-20250724095858230.png">
-<meta property="og:image" content="http://arvinhwo.com/image-20250804105625565.png">
+<meta property="og:image" content="http://arvinhwo.com/images/image-20250728173027785.png">
+<meta property="og:image" content="http://arvinhwo.com/images/image-20250724095858230.png">
+<meta property="og:image" content="http://arvinhwo.com/images/image-20250804105625565.png">
 <meta property="article:published_time" content="2025-08-04T03:58:48.000Z">
-<meta property="article:modified_time" content="2025-08-05T08:43:44.505Z">
+<meta property="article:modified_time" content="2025-08-11T02:52:23.172Z">
 <meta property="article:author" content="ArvinHwO">
 <meta property="article:tag" content="SystemVerilog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://arvinhwo.com/image-20250728173027785.png">
+<meta name="twitter:image" content="http://arvinhwo.com/images/image-20250728173027785.png">
 
 
 <link rel="canonical" href="http://arvinhwo.com/SV%E7%BA%BF%E7%A8%8B/">
@@ -184,7 +184,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -195,7 +195,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -266,7 +266,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-08-05 16:43:44" itemprop="dateModified" datetime="2025-08-05T16:43:44+08:00">2025-08-05</time>
+      <time title="修改时间：2025-08-11 10:52:23" itemprop="dateModified" datetime="2025-08-11T10:52:23+08:00">2025-08-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -310,7 +310,7 @@
 </li>
 </ul>
 <h2 id="并行线程">并行线程</h2>
-<p><img src="/image-20250728173027785.png" alt="image-20250728173027785"></p>
+<p><img src="/images/image-20250728173027785.png" alt="image-20250728173027785"></p>
 <ul>
 <li><code>fork-join</code>：所有子线程结束才继续后续代码
 <ul>
@@ -404,7 +404,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/image-20250724095858230.png" alt="image-20250724095858230"></p>
+<p><img src="/images/image-20250724095858230.png" alt="image-20250724095858230"></p>
 <ul>
 <li>所有数据交换和控制的同步被称为线程间的通信（Inter-Process Communication, IPC），本章介绍以下三种
 <ul>
@@ -512,7 +512,7 @@
 </ul>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">semaphore sem = <span class="keyword">new</span>(<span class="number">1</span>); <span class="comment">// 创建含1把钥匙的信号量</span></span><br><span class="line">process_A: <span class="keyword">begin</span></span><br><span class="line">    sem<span class="variable">.get</span>(<span class="number">1</span>);         <span class="comment">// 获取钥匙</span></span><br><span class="line">    shared_var = ...;   <span class="comment">// 安全访问共享变量</span></span><br><span class="line">    sem<span class="variable">.put</span>(<span class="number">1</span>);         <span class="comment">// 归还钥匙</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">process_B: <span class="keyword">begin</span></span><br><span class="line">    sem<span class="variable">.get</span>(<span class="number">1</span>);         <span class="comment">// 若钥匙被占用，则阻塞等待</span></span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <h2 id="信箱">信箱</h2>
-<p><img src="/image-20250804105625565.png" alt="image-20250804105625565"></p>
+<p><img src="/images/image-20250804105625565.png" alt="image-20250804105625565"></p>
 <h3 id="基本特性-v2">基本特性</h3>
 <ul>
 <li>作用：用于并发线程间的数据交换</li>
