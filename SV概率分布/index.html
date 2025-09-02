@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-A.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-A.png">
+  <link rel="mask-icon" href="/images/favicon-A.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.0.5/fancybox/fancybox.css" integrity="sha256-uTcjoMD6rPt4OyV3Rs02Slxl0BJGMNVKAm/1eYPt2go=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"arvinhwo.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.2","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":300},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="System Verilog概率分布函数的简介，及调用dist_*系列函数完成随机化建模">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SV概率分布">
+<meta property="og:url" content="http://arvinhwo.com/SV%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83/index.html">
+<meta property="og:site_name" content="Arvin&#39;s TeckArk">
+<meta property="og:description" content="System Verilog概率分布函数的简介，及调用dist_*系列函数完成随机化建模">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://arvinhwo.com/images/image-20250827111723159.png">
+<meta property="og:image" content="http://arvinhwo.com/images/image-20250827111742532.png">
+<meta property="og:image" content="http://arvinhwo.com/images/image-20250827113840916.png">
+<meta property="og:image" content="http://arvinhwo.com/images/image-20250827113857767.png">
+<meta property="og:image" content="http://arvinhwo.com/images/image-20250827161346569.png">
+<meta property="og:image" content="http://arvinhwo.com/images/image-20250901141101463.png">
+<meta property="og:image" content="http://arvinhwo.com/images/image-20250901141636517.png">
+<meta property="article:published_time" content="2025-09-02T09:25:59.000Z">
+<meta property="article:modified_time" content="2025-09-02T09:26:34.102Z">
+<meta property="article:author" content="ArvinHwO">
+<meta property="article:tag" content="SystemVerilog">
+<meta property="article:tag" content="数字前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://arvinhwo.com/images/image-20250827111723159.png">
+
+
+<link rel="canonical" href="http://arvinhwo.com/SV%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://arvinhwo.com/SV%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83/","path":"SV概率分布/","title":"SV概率分布"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>SV概率分布 | Arvin's TeckArk</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.0.5/fancybox/fancybox.umd.js" integrity="sha256-UiSieVaV/DXce2LW7QH+o77w+AIoAvSCPBkezriZ2DQ=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/6.1.3/pangu.umd.js" integrity="sha256-erngBMP3zzoIM6eqQ8dmrReh2vqCRgWmORroIfVoDlE=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+
+
+  
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://arvinhwo.com/SV%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha512-fHwaWebuwA7NSF5Qg/af4UeDx9XqUpYpOGgubo3yWu+b2IQR4UeQwbb42Ti7gVAjNtVoI/I9TEoYeu9omwcC6g==" crossorigin="anonymous" referrerpolicy="no-referrer" /><!-- hexo injector head_end end --><style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Arvin's TeckArk</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-book fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-sitemap fa-fw"></i>分类</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E5%8C%96%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">随机化函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E5%87%BD%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">标准函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">分布函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83"><span class="nav-number">2.</span> <span class="nav-text">概率分布</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9D%87%E5%8C%80%E5%88%86%E5%B8%83"><span class="nav-number">2.1.</span> <span class="nav-text">均匀分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83"><span class="nav-number">2.2.</span> <span class="nav-text">正态分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%8A%E6%9D%BE%E5%88%86%E5%B8%83"><span class="nav-number">2.3.</span> <span class="nav-text">泊松分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E6%95%B0%E5%88%86%E5%B8%83"><span class="nav-number">2.4.</span> <span class="nav-text">指数分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%A1%E6%96%B9%E5%88%86%E5%B8%83"><span class="nav-number">2.5.</span> <span class="nav-text">卡方分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#T%E5%88%86%E5%B8%83"><span class="nav-number">2.6.</span> <span class="nav-text">T分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%83%E5%B0%94%E6%9C%97%E5%88%86%E5%B8%83"><span class="nav-number">2.7.</span> <span class="nav-text">埃尔朗分布</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ArvinHwO"
+      src="/images/A.png">
+  <p class="site-author-name" itemprop="name">ArvinHwO</p>
+  <div class="site-description" itemprop="description">Some Notes & Memos</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:root@arvinhwo.com" title="E-Mail → mailto:root@arvinhwo.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://arvinhwo.com/SV%E6%A6%82%E7%8E%87%E5%88%86%E5%B8%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/A.png">
+      <meta itemprop="name" content="ArvinHwO">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Arvin's TeckArk">
+      <meta itemprop="description" content="Some Notes & Memos">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="SV概率分布 | Arvin's TeckArk">
+      <meta itemprop="description" content="System Verilog概率分布函数的简介，及调用dist_*系列函数完成随机化建模">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SV概率分布
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-09-02 17:25:59 / 修改时间：17:26:34" itemprop="dateCreated datePublished" datetime="2025-09-02T17:25:59+08:00">2025-09-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/" itemprop="url" rel="index"><span itemprop="name">知识体系</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/SystemVerilog/" itemprop="url" rel="index"><span itemprop="name">SystemVerilog</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">System Verilog概率分布函数的简介，及调用dist_*系列函数完成随机化建模</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="随机化函数">随机化函数</h1>
+<ul>
+<li>对于SV随机化，除了使用<a href="../SV%E9%9A%8F%E6%9C%BA%E5%8C%96/#CRT%E6%9C%BA%E5%88%B6">CRT机制</a>创建对象和定义约束，也可以直接调用仿真器内置的系统函数快速生成随机数，或在CRT中调用<code>dist_*</code>系列函数完成复杂随机化的建模</li>
+</ul>
+<h2 id="标准函数">标准函数</h2>
+<ul>
+<li><code>random()</code>：返回一个32位有符号的随机整数</li>
+<li><code>urandom()</code>：返回一个32位符号的随机整数</li>
+<li><code>urandom_range(max,min)</code>：返回一个指定范围内的无符号整数
+<ul>
+<li>参数<code>min</code>的缺省值为<code>0</code></li>
+<li>如果<code>max</code>比<code>min</code>小，参数列表会自动反向</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> signed_var;</span><br><span class="line"><span class="keyword">bit</span> [<span class="number">31</span>:<span class="number">0</span>] unsigned_var;</span><br><span class="line"><span class="keyword">int</span> int_val;</span><br><span class="line"></span><br><span class="line">signed_var = <span class="built_in">$random</span>;           <span class="comment">// 产生一个-2^18到2^18-1之间的随机整数，如 123456, -7854332</span></span><br><span class="line">unsigned_var = $urandom;        <span class="comment">// 产生一个0到2^32-1之间的随机整数，如 3489572349</span></span><br><span class="line">int_val  = $urandom_range(<span class="number">100</span>); <span class="comment">// 生成一个 0 到 100 之间的数</span></span><br></pre></td></tr></table></figure>
+<h2 id="分布函数">分布函数</h2>
+<ul>
+<li><code>$dist_*</code>系列概率分布函数，使用局部种子生成具有特定统计特性的随机序列
+<ul>
+<li>用于模拟真实世界的噪声、延迟、故障间隔等场景</li>
+<li>都需要种子<code>seed</code>作为参数，控制随机序列</li>
+</ul>
+</li>
+<li>由于SV CRT的<a href="../SV%E9%9A%8F%E6%9C%BA%E5%8C%96/#%E7%BA%A6%E6%9D%9F%E5%9D%97">约束块</a>是声明式的，而随机化函数是一个过程化调用，故不能直接在约束块中使用随机化函数
+<ul>
+<li>可以在约束块中使用<a href="../SV%E9%9A%8F%E6%9C%BA%E5%8C%96/#%E6%A6%82%E7%8E%87%E7%BA%A6%E6%9D%9F">概率约束</a>中的<code>dist</code>关键词来近似模拟</li>
+<li>或者在<a href="../SV%E9%9A%8F%E6%9C%BA%E5%8C%96/#%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0">回调函数</a> <code>post_randomize()</code>中调用<code>dist_*</code>系列函数进行后处理</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==== 回调函数后处理 ==== //</span></span><br><span class="line"><span class="keyword">class</span> Packet;</span><br><span class="line">    <span class="keyword">rand</span> <span class="keyword">int</span> delay; <span class="comment">// 用于驱动的延迟值</span></span><br><span class="line">    <span class="keyword">int</span> delay_seed; <span class="comment">// 专门用于delay分布的种子</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 约束可以为空，或定义其他无关的约束</span></span><br><span class="line">    <span class="keyword">constraint</span> c_delay_basic &#123;</span><br><span class="line">        delay <span class="keyword">inside</span> &#123; [<span class="number">0</span>:<span class="number">1000</span>] &#125;; <span class="comment">// 可以提供一个基本的范围约束</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在随机化后处理函数中生成分布</span></span><br><span class="line">    <span class="keyword">function</span> <span class="keyword">void</span> post_randomize();</span><br><span class="line">        <span class="keyword">real</span> real_delay;</span><br><span class="line">        real_delay = <span class="built_in">$dist_exponential</span>(delay_seed, <span class="number">50</span><span class="variable">.0</span>); <span class="comment">// 生成均值为50的指数分布实数</span></span><br><span class="line">        delay = <span class="keyword">int</span>&#x27;(real_delay); <span class="comment">// 将实数转换为整数，赋值给delay</span></span><br><span class="line">    <span class="keyword">endfunction</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在new函数中初始化种子</span></span><br><span class="line">    <span class="keyword">function</span> <span class="keyword">new</span>(<span class="keyword">int</span> seed);</span><br><span class="line">        delay_seed = seed;</span><br><span class="line">    <span class="keyword">endfunction</span></span><br><span class="line"><span class="keyword">endclass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    Packet pkt = <span class="keyword">new</span>(<span class="number">123</span>); <span class="comment">// 初始化种子</span></span><br><span class="line">    pkt<span class="variable">.randomize</span>();       <span class="comment">// 此时，pkt.delay 的值将是一个符合指数分布的整数</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h1 id="概率分布">概率分布</h1>
+<h2 id="均匀分布">均匀分布</h2>
+<ul>
+<li><code>dist_uniform(seed, start, end)</code>：以实数形式返回一个区间内的随机整数
+<ul>
+<li><code>start</code>：范围起始整数</li>
+<li><code>end</code>：范围结束整数</li>
+</ul>
+</li>
+</ul>
+<img src="/images/image-20250827111723159.png" alt="image-20250827111723159" style="zoom: 50%;" />
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 模拟掷骰子</span></span><br><span class="line"><span class="keyword">int</span> seed = <span class="number">123</span>; <span class="comment">// 初始化种子</span></span><br><span class="line"><span class="keyword">int</span> dice_roll;</span><br><span class="line">dice_roll = <span class="built_in">$dist_uniform</span>(seed, <span class="number">1</span>, <span class="number">6</span>); <span class="comment">// 生成 1, 2, 3, 4, 5, 6 中的一个</span></span><br></pre></td></tr></table></figure>
+<h2 id="正态分布">正态分布</h2>
+<ul>
+<li><code>dist_normal(seed, mean, std_dev)</code>：经典“钟形分布”；返回一个符合正态分布的随机实数
+<ul>
+<li><code>mean</code>：分布均值（期望值）</li>
+<li><code>std_dev</code>：分布标准差（大于0）</li>
+</ul>
+</li>
+</ul>
+<img src="/images/image-20250827111742532.png" alt="image-20250827111742532" style="zoom:50%;" />
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 模拟一个期望值为 100ns，标准差为 15ns 的延迟</span></span><br><span class="line"><span class="keyword">int</span> seed = <span class="number">456</span>;</span><br><span class="line"><span class="keyword">real</span> delay;</span><br><span class="line">delay = <span class="built_in">$dist_normal</span>(seed, <span class="number">100</span><span class="variable">.0</span>, <span class="number">15</span><span class="variable">.0</span>); <span class="comment">// 大部分delay值在85-115ns之间</span></span><br></pre></td></tr></table></figure>
+<h2 id="泊松分布">泊松分布</h2>
+<ul>
+<li><code>dist_poisson(seed, mean)</code>：描述某个时间或空间范围内，某事件发生<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span>次的概率；以实数形式返回一个非负的随机整数
+<ul>
+<li><code>mean</code>：期望，等于标准差</li>
+</ul>
+</li>
+</ul>
+<img src="/images/image-20250827113840916.png" alt="image-20250827113840916" style="zoom:50%;" />
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 模拟一个小时内平均发生 3 次错误</span></span><br><span class="line"><span class="keyword">real</span> error_count_real;</span><br><span class="line"><span class="keyword">int</span> error_count;</span><br><span class="line"><span class="keyword">int</span> seed = <span class="number">321</span>;</span><br><span class="line">error_count_real = <span class="built_in">$dist_poisson</span>(seed, <span class="number">3</span><span class="variable">.0</span>);</span><br><span class="line">error_count = <span class="keyword">int</span>&#x27;(error_count_real); <span class="comment">// 转换为整型，如0, 1, 2, 3, ...</span></span><br></pre></td></tr></table></figure>
+<h2 id="指数分布">指数分布</h2>
+<ul>
+<li><code>dist_exponential(seed, mean)</code>：描述泊松过程（即事件以恒定的平均速率连续且独立地发生的过程）中随机事件发生的时间间隔；返回一个非负的随机实数
+<ul>
+<li><code>mean</code>：单位时间内，事件发生的次数</li>
+</ul>
+</li>
+</ul>
+<img src="/images/image-20250827113857767.png" alt="image-20250827113857767" style="zoom:50%;" />
+<ul>
+<li>模拟平均每秒到达 5 个数据包的流量</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> seed = <span class="number">789</span>;</span><br><span class="line"><span class="keyword">real</span> inter_arrival_time;</span><br><span class="line">inter_arrival_time = <span class="built_in">$dist_exponential</span>(seed, <span class="number">1</span><span class="variable">.0</span>/<span class="number">5</span><span class="variable">.0</span>); <span class="comment">// 平均间隔为0.2秒</span></span><br></pre></td></tr></table></figure>
+<h2 id="卡方分布">卡方分布</h2>
+<ul>
+<li><code>dist_chi_square(seed, degree_of_freedom)</code>：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>个服从标准正态分布的随机变量的平方和，构成新的随机变量的分布规律；返回一个非负的随机实数
+<ul>
+<li><code>degree_of_freedom</code>：自由度<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>，自由度越大，分布曲线越扁平，越接近正态分布</li>
+</ul>
+</li>
+</ul>
+<img src="/images/image-20250827161346569.png" alt="image-20250827161346569" style="zoom: 67%;" />
+<ul>
+<li>在验证中较少用于生成激励，更多用在测试平台分析组件或记分板进行统计检验
+<ul>
+<li>下例是用卡方分布函数比较期望频数与实际观测频数之间的差异，如果根据这个统计量计算出的概率非常小，说明在原假设成立的前提下，观察到</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假设检验一个随机数生成器（0-9）</span></span><br><span class="line"><span class="keyword">int</span> observed[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> seed = <span class="number">123</span>;</span><br><span class="line"><span class="keyword">real</span> chi_square_statistic = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">real</span> expected_count;</span><br><span class="line"><span class="keyword">real</span> p_value_threshold = <span class="number">0</span><span class="variable">.05</span>; <span class="comment">// 显著性水平5%</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 生成大量随机数并统计，只考虑其中任意一个值如5时，只有是5与不是5两种情况，而根据中心极限定理，二项分布可以用正态分布近似，故后续可以统计这10个值的卡方分布</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">int</span> val = $urandom_range(<span class="number">9</span>, <span class="number">0</span>);</span><br><span class="line">    observed[val]++;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算观测频数的卡方分布，卡方公式：Σ[(观测值 - 期望值)^2 / 期望值]</span></span><br><span class="line">expected_count = <span class="number">10000</span><span class="variable">.0</span> / <span class="number">10</span><span class="variable">.0</span>; <span class="comment">// 每个数字期望出现1000次</span></span><br><span class="line"><span class="keyword">foreach</span> (observed[i]) <span class="keyword">begin</span></span><br><span class="line">    chi_square_statistic += (observed[i] - expected_count) ** <span class="number">2</span> / expected_count;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用dist函数获取临界值，自由度为9，因为总频数已知，知道其中9个值得频率，剩下的那个频数也就清楚了</span></span><br><span class="line"><span class="keyword">real</span> critical_value = <span class="built_in">$dist_chi_square</span>(seed, <span class="number">9</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 极度简化的判断逻辑，实际检验更复杂，用于检验这个随机假设是否符合要求</span></span><br><span class="line"><span class="keyword">if</span> (chi_square_statistic &gt; critical_value) <span class="keyword">begin</span></span><br><span class="line">    <span class="built_in">$display</span>(<span class="string">&quot;WARNING: RNG may be biased! Chi-Square = %f&quot;</span>, chi_square_statistic);</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">else</span> <span class="keyword">begin</span></span><br><span class="line">    <span class="built_in">$display</span>(<span class="string">&quot;RNG looks uniform. Chi-Square = %f&quot;</span>, chi_square_statistic);</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="T分布">T分布</h2>
+<ul>
+<li><code>dist_t(seed, degree_of_freedom)</code>：模拟出现极端值概率更高的随机现象；返回一个随机实数
+<ul>
+<li><code>degree_of_freedom</code>：自由度</li>
+</ul>
+</li>
+</ul>
+<img src="/images/image-20250901141101463.png" alt="image-20250901141101463" style="zoom:67%;" />
+<ul>
+<li>常用于对小样本或高方差过程进行建模，或模拟具有高不确定性的测量过程
+<ul>
+<li>下例为模拟不稳定的传感器读数，<code>$dist_t</code> 生成的误差值出现 -4、+5 等极端值的概率，远高于 <code>$dist_normal</code>；这使得测试可以更容易地捕获到设计在处理异常输入时的潜在问题</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> sensor_model;</span><br><span class="line">    <span class="keyword">real</span> nominal_voltage = <span class="number">3</span><span class="variable">.3</span>; <span class="comment">// 标称电压</span></span><br><span class="line">    <span class="keyword">real</span> measured_voltage;</span><br><span class="line">    <span class="keyword">int</span> t_seed = <span class="number">200</span>; <span class="comment">// t分布专用种子</span></span><br><span class="line">    <span class="keyword">real</span> error_scale = <span class="number">0</span><span class="variable">.1</span>; <span class="comment">// 误差的缩放因子</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">task</span> read_voltage();</span><br><span class="line">        <span class="keyword">real</span> t_error;</span><br><span class="line">        <span class="comment">// 生成一个服从t分布（df=5）的随机误差</span></span><br><span class="line">        t_error = <span class="built_in">$dist_t</span>(t_seed, <span class="number">5</span>);</span><br><span class="line">        <span class="comment">// 将误差缩放后加到标称值上，得到测量值</span></span><br><span class="line">        measured_voltage = nominal_voltage + (t_error * error_scale);</span><br><span class="line">        <span class="built_in">$display</span>(<span class="string">&quot;Measured Voltage: %f (Error: %f)&quot;</span>, measured_voltage, t_error);</span><br><span class="line">    <span class="keyword">endtask</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<h2 id="埃尔朗分布">埃尔朗分布</h2>
+<ul>
+<li><code>dist_erlang(seed, k, mean)</code>：指数分布的广义形式，描述的是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span>次独立事件所需的总时间；返回一个非负的随机实数
+<ul>
+<li><code>k</code>：形状参数（阶数，整数）</li>
+<li><code>mean</code>：分布的平均值</li>
+</ul>
+</li>
+</ul>
+<img src="/images/image-20250901141636517.png" alt="image-20250901141636517" style="zoom:67%;" />
+<ul>
+<li>常用在通信和排队论中模拟总服务时间或总等待时间
+<ul>
+<li>下例为模拟网络数据包的多级跳转传输延迟：假设一个数据包要依次经过 3 个网络节点（路由器）才能到达目的地；每个节点的处理延迟是随机的，且平均延迟为 1 个时间单位</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> NetworkPacket;</span><br><span class="line">    <span class="keyword">real</span> total_delay; <span class="comment">// 总延迟</span></span><br><span class="line">    <span class="keyword">int</span> erlang_seed = <span class="number">300</span>; <span class="comment">// 埃尔朗分布专用种子</span></span><br><span class="line">    <span class="keyword">constraint</span> delay_range &#123;</span><br><span class="line">        <span class="comment">// 总延迟的基本约束</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">function</span> <span class="keyword">void</span> post_randomize();</span><br><span class="line">        <span class="comment">// 生成总延迟：通过3个节点，平均总延迟为3.0个单位时间</span></span><br><span class="line">        total_delay = <span class="built_in">$dist_erlang</span>(erlang_seed, <span class="number">3</span>, <span class="number">3</span><span class="variable">.0</span>);</span><br><span class="line">    <span class="keyword">endfunction</span></span><br><span class="line"><span class="keyword">endclass</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/SystemVerilog/" rel="tag"><i class="fa fa-tag"></i> SystemVerilog</a>
+              <a href="/tags/%E6%95%B0%E5%AD%97%E5%89%8D%E7%AB%AF/" rel="tag"><i class="fa fa-tag"></i> 数字前端</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/LFSR%E5%8E%9F%E7%90%86/" rel="prev" title="LFSR原理">
+                  <i class="fa fa-angle-left"></i> LFSR原理
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/SV%E9%9A%8F%E6%9C%BA%E5%8C%96/" rel="next" title="SV随机化">
+                  SV随机化 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-blog"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ArvinHwO</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '24px',
+  right: '20px',
+  left: 'unset',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>
