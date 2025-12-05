@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-A.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-A.png">
+  <link rel="mask-icon" href="/images/favicon-A.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"arvinhwo.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":300},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="System Verilog中的常量，静态变量、自动变量及其生命周期，时间值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SV常量变量">
+<meta property="og:url" content="http://arvinhwo.com/SV%E5%B8%B8%E9%87%8F%E5%8F%98%E9%87%8F/index.html">
+<meta property="og:site_name" content="Arvin&#39;s TeckArk">
+<meta property="og:description" content="System Verilog中的常量，静态变量、自动变量及其生命周期，时间值">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-07-16T07:33:50.000Z">
+<meta property="article:modified_time" content="2025-12-05T10:47:47.594Z">
+<meta property="article:author" content="ArvinHwO">
+<meta property="article:tag" content="sv">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://arvinhwo.com/SV%E5%B8%B8%E9%87%8F%E5%8F%98%E9%87%8F/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://arvinhwo.com/SV%E5%B8%B8%E9%87%8F%E5%8F%98%E9%87%8F/","path":"SV常量变量/","title":"SV常量变量"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>SV常量变量 | Arvin's TeckArk</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+
+
+  
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://arvinhwo.com/SV%E5%B8%B8%E9%87%8F%E5%8F%98%E9%87%8F/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Arvin's TeckArk</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-book fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-sitemap fa-fw"></i>Categories</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F"><span class="nav-number">1.</span> <span class="nav-text">常量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80"><span class="nav-number">1.1.</span> <span class="nav-text">全局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E7%BA%A7"><span class="nav-number">1.2.</span> <span class="nav-text">模块级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9D%97%E3%80%81%E7%B1%BB%E7%BA%A7"><span class="nav-number">1.3.</span> <span class="nav-text">块、类级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%9A%E4%B8%BE%E5%B8%B8%E9%87%8F"><span class="nav-number">1.4.</span> <span class="nav-text">枚举常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F%E5%87%BD%E6%95%B0"><span class="nav-number">1.5.</span> <span class="nav-text">常量函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F"><span class="nav-number">2.</span> <span class="nav-text">静态变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A3%B0%E6%98%8E"><span class="nav-number">2.1.</span> <span class="nav-text">声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%80%A7"><span class="nav-number">2.2.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">2.3.</span> <span class="nav-text">生命周期</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E5%8F%98%E9%87%8F"><span class="nav-number">3.</span> <span class="nav-text">自动变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A3%B0%E6%98%8E-v2"><span class="nav-number">3.1.</span> <span class="nav-text">声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%80%A7-v2"><span class="nav-number">3.2.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F-v2"><span class="nav-number">3.3.</span> <span class="nav-text">生命周期</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%80%BC"><span class="nav-number">4.</span> <span class="nav-text">时间值</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E4%BD%8D%E4%B8%8E%E7%B2%BE%E5%BA%A6"><span class="nav-number">4.1.</span> <span class="nav-text">单位与精度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E5%8F%82%E6%95%B0"><span class="nav-number">4.2.</span> <span class="nav-text">时间参数</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ArvinHwO"
+      src="/images/A.png">
+  <p class="site-author-name" itemprop="name">ArvinHwO</p>
+  <div class="site-description" itemprop="description">Some Notes & Memos</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:root@arvinhwo.com" title="E-Mail → mailto:root@arvinhwo.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://arvinhwo.com/SV%E5%B8%B8%E9%87%8F%E5%8F%98%E9%87%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/A.png">
+      <meta itemprop="name" content="ArvinHwO">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Arvin's TeckArk">
+      <meta itemprop="description" content="Some Notes & Memos">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="SV常量变量 | Arvin's TeckArk">
+      <meta itemprop="description" content="System Verilog中的常量，静态变量、自动变量及其生命周期，时间值">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SV常量变量
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-07-16 15:33:50" itemprop="dateCreated datePublished" datetime="2025-07-16T15:33:50+08:00">2025-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-12-05 18:47:47" itemprop="dateModified" datetime="2025-12-05T18:47:47+08:00">2025-12-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LNotes/" itemprop="url" rel="index"><span itemprop="name">LNotes</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LNotes/SystemVerilog/" itemprop="url" rel="index"><span itemprop="name">SystemVerilog</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">System Verilog中的常量，静态变量、自动变量及其生命周期，时间值</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="常量">常量</h1>
+<h2 id="全局">全局</h2>
+<ul>
+<li><code>define</code>定义宏常量
+<ul>
+<li>全局跨文件文本常量替换</li>
+</ul>
+</li>
+</ul>
+<h2 id="模块级">模块级</h2>
+<ul>
+<li><code>parameter</code>定义可重写模块级常量
+<ul>
+<li>编译时常量，实例化时可被覆盖</li>
+<li>支持表达式计算</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> RAM #(</span><br><span class="line">    <span class="keyword">parameter</span> DEPTH = <span class="number">1024</span>,                      <span class="comment">// 简单常量</span></span><br><span class="line">    <span class="keyword">parameter</span> ADDR_WIDTH = <span class="built_in">$clog2</span>(DEPTH),        <span class="comment">// 表达式计算</span></span><br><span class="line">    <span class="keyword">parameter</span> [<span class="number">7</span>:<span class="number">0</span>] INIT_VALUE = <span class="number">8&#x27;hA5</span>           <span class="comment">// 带类型声明</span></span><br><span class="line">) (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">logic</span> [ADDR_WIDTH-<span class="number">1</span>:<span class="number">0</span>] addrs</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">localparam</span> HIGH_BIT = ADDR_WIDTH - <span class="number">1</span>;        <span class="comment">// 派生常量</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 实例化时覆盖参数</span></span><br><span class="line">RAM <span class="variable">#(.DEPTH(2048), .INIT_VALUE(8&#x27;hFF)) ram_inst()</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>localparam</code>定义不可重写模块级常量
+<ul>
+<li>模块内部专用常量</li>
+<li>不能被外部覆盖，常用于派生参数</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> ALU (</span><br><span class="line">    <span class="keyword">input</span> <span class="keyword">logic</span> [<span class="number">7</span>:<span class="number">0</span>] a, b</span><br><span class="line">);</span><br><span class="line">    <span class="keyword">localparam</span> OP_ADD = <span class="number">2&#x27;b00</span>;            <span class="comment">// 操作码常量</span></span><br><span class="line">    <span class="keyword">localparam</span> OP_SUB = <span class="number">2&#x27;b01</span>;</span><br><span class="line">    <span class="keyword">localparam</span> OP_AND = <span class="number">2&#x27;b10</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">localparam</span> RESULT_WIDTH = <span class="number">9</span>;          <span class="comment">// 内部计算结果位宽</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+<h2 id="块、类级">块、类级</h2>
+<ul>
+<li><code>const</code>定义运行时可初始化的常量
+<ul>
+<li>可在类、函数、initial块中使用</li>
+<li>需要显示初始化，初始化后不可变</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Packet;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> MAX_SIZE;     <span class="comment">// 声明</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">function</span> <span class="keyword">new</span>(<span class="keyword">int</span> size);</span><br><span class="line">        MAX_SIZE = size;    <span class="comment">// 在构造函数中初始化</span></span><br><span class="line">    <span class="keyword">endfunction</span></span><br><span class="line"><span class="keyword">endclass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">real</span> PI = <span class="number">3</span><span class="variable">.1415926</span>;         <span class="comment">// initial块常量</span></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">byte</span> START_ADDR = <span class="number">8&#x27;h40</span>;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="枚举常量">枚举常量</h2>
+<ul>
+<li><code>typedef enum</code>定义枚举常量
+<ul>
+<li>用于定义状态机、命令码等有限值集合</li>
+<li>自动或手动赋值，提高代码可读性</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> <span class="keyword">logic</span> [<span class="number">2</span>:<span class="number">0</span>] &#123;       <span class="comment">// 显式指定底层类型</span></span><br><span class="line">    IDLE  = <span class="number">3&#x27;b001</span>,              <span class="comment">// 手动赋值</span></span><br><span class="line">    START = <span class="number">3&#x27;b010</span>,</span><br><span class="line">    RUN   = <span class="number">3&#x27;b100</span>,</span><br><span class="line">    ERROR = <span class="number">3&#x27;b111</span></span><br><span class="line">&#125; state_t;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> &#123;                   <span class="comment">// 自动赋值</span></span><br><span class="line">    RED,    <span class="comment">// 0</span></span><br><span class="line">    GREEN,  <span class="comment">// 1</span></span><br><span class="line">    BLUE    <span class="comment">// 2</span></span><br><span class="line">&#125; color_t;</span><br></pre></td></tr></table></figure>
+<h2 id="常量函数">常量函数</h2>
+<ul>
+<li>用于复杂计算生成常量值</li>
+<li>在编译时求值，只能包含常量表达式</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="keyword">automatic</span> <span class="keyword">int</span> clog2(<span class="keyword">input</span> <span class="keyword">int</span> n);</span><br><span class="line">    <span class="keyword">return</span> (n &lt;= <span class="number">1</span>) ? <span class="number">0</span> : <span class="number">1</span> + clog2(n &gt;&gt; <span class="number">1</span>);</span><br><span class="line"><span class="keyword">endfunction</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">parameter</span> MEM_SIZE = <span class="number">4096</span>;</span><br><span class="line"><span class="keyword">localparam</span> ADDR_W = clog2(MEM_SIZE); <span class="comment">// 计算结果为常量</span></span><br></pre></td></tr></table></figure>
+<h1 id="静态变量">静态变量</h1>
+<h2 id="声明">声明</h2>
+<ul>
+<li>隐式静态变量：<code>module</code>、<code>program</code>中的<code>function</code>和<code>task</code>中声明的变量默认是静态的</li>
+<li>显示静态变量：使用<code>static</code>关键词显式声明</li>
+</ul>
+<h2 id="特性">特性</h2>
+<ul>
+<li>
+<p>存储在全局数据区，固定内存位置</p>
+</li>
+<li>
+<p>同一个模块多次实例化时共享静态变量</p>
+<ul>
+<li>由于使用共享的静态存储区，这也可能导致不用线程之间窜用</li>
+</ul>
+</li>
+<li>
+<p>适用场景</p>
+<ul>
+<li>模块级配置参数</li>
+<li>硬件寄存器建模</li>
+<li>时序逻辑总是使用静态变量保持状态
+<ul>
+<li>如跨多个时钟周期保持值的计数器</li>
+</ul>
+</li>
+<li>跨时间控制语句的变量</li>
+</ul>
+</li>
+</ul>
+<h2 id="生命周期">生命周期</h2>
+<ul>
+<li>从仿真开始（时间0）持续到仿真结束</li>
+<li>在多次触发的过程块中，只在仿真时间为0时进行一次初始化</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span></span><br><span class="line"><span class="keyword">always_ff</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>;  <span class="comment">// 仅仿真开始时初始化为0，声明并非执行语句，后续不再重复初始化</span></span><br><span class="line">    count &lt;= count + <span class="number">1</span>;    <span class="comment">// 每次触发递增</span></span><br><span class="line"><span class="keyword">end</span>                           <span class="comment">// 输出序列：1, 2, 3...（非0,1,2...）</span></span><br><span class="line">   </span><br><span class="line"><span class="comment">// 等效硬件行为，更推荐</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">31</span>:<span class="number">0</span>] counter = <span class="number">0</span>;      <span class="comment">// 综合为带初始值的寄存器</span></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">  counter &lt;= counter + <span class="number">1</span>;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h1 id="自动变量">自动变量</h1>
+<h2 id="声明-v2">声明</h2>
+<ul>
+<li>隐式自动变量：<code>class</code>内部的<code>fucntion</code>、<code>task</code>中声明的变量默认是自动的，<code>initial</code>和<code>always</code>中声明的变量默认也是自动的</li>
+<li>显示自动变量：使用<code>automatic</code>关键词显示声明
+<ul>
+<li>建议在需要动态存储时，显式声明<code>automatic</code>，而非依赖隐式规则，避免混淆</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//program块中显示指定自动存储方式</span></span><br><span class="line"><span class="keyword">program</span> <span class="keyword">automatic</span> test();</span><br><span class="line">    <span class="comment">//用检测数据何时被写入存储器任务</span></span><br><span class="line">    <span class="keyword">task</span> wait_for_bus(<span class="keyword">input</span> <span class="keyword">logic</span> [<span class="number">31</span>:<span class="number">0</span>] addr, expect_data,</span><br><span class="line">                      <span class="keyword">output</span> <span class="keyword">logic</span> success);</span><br><span class="line">        <span class="keyword">while</span> (bus_addr !== addr)</span><br><span class="line">            @(bus_addr);</span><br><span class="line">        sucess = (bus_data == expect_data);</span><br><span class="line">    <span class="keyword">endtask</span></span><br><span class="line"><span class="keyword">endprogram</span></span><br></pre></td></tr></table></figure>
+<h2 id="特性-v2">特性</h2>
+<ul>
+<li>存储在栈帧中，动态分配内存</li>
+<li>多实例独立，每次调用创建独立副本</li>
+<li>适用场景
+<ul>
+<li>纯计算逻辑中使用自动变量</li>
+<li>递归函数必须使用自动变量</li>
+<li>不需要保持状态的中间变量</li>
+<li>验证环境中的临时对象</li>
+</ul>
+</li>
+</ul>
+<h2 id="生命周期-v2">生命周期</h2>
+<ul>
+<li>仅在作用域激活期间存在</li>
+<li>每次进入作用域时重新初始化</li>
+<li>作用域结束时销毁</li>
+<li><code>initial</code>中的自动变量可能在进程挂起后被回收，根据仿真器调度选项而定</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always_ff</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">int</span> count = <span class="number">0</span>;                 <span class="comment">// 错误：在always内部隐式声明自动变量</span></span><br><span class="line">    count &lt;= count + <span class="number">1</span>;            <span class="comment">// 永远输出1</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">task</span> calculate();</span><br><span class="line">    <span class="keyword">automatic</span> <span class="keyword">int</span> temp = <span class="number">0</span>;      <span class="comment">// 每次调用时初始化为0</span></span><br><span class="line">    temp++;</span><br><span class="line">    <span class="built_in">$display</span>(temp);              <span class="comment">// 总是显示1</span></span><br><span class="line"><span class="keyword">endtask</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">  <span class="keyword">automatic</span> <span class="keyword">int</span> delay = <span class="number">10</span>;</span><br><span class="line">  #delay;                          <span class="comment">// 挂起delay个时间单位</span></span><br><span class="line">  <span class="comment">// 调度器计划在($time + &amp;delay)时唤醒这个进程</span></span><br><span class="line">  <span class="comment">// 这里&amp;delay为delay的内存位置，而非实际值</span></span><br><span class="line">  <span class="comment">// 如果delay已被回收，仿真器可能无法确定何时唤醒</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h1 id="时间值">时间值</h1>
+<h2 id="单位与精度">单位与精度</h2>
+<ul>
+<li>一种方法是使用编译指示语句``timescale`。确保时延有适宜的量程和精度
+<ul>
+<li>当采用多种``timescale`时，可能会因编译次序导致问题</li>
+<li>建议每个文件末尾都以``timescale`结束，将其恢复为公司规定的默认值</li>
+</ul>
+</li>
+<li>另一种方式是使用<code>timeunit</code>和<code>timeprecision</code>声明语句为每个模块指明时间
+<ul>
+<li>若使用上述语句替代``timescale`，要求把它们放入每个带时延的模块中</li>
+</ul>
+</li>
+</ul>
+<h2 id="时间参数">时间参数</h2>
+<ul>
+<li>控制时间显示格式：<code>$timeformat(四个参数)</code>，主要影响<code>$display</code>、<code>monitor</code>等任务中<code>%t</code>格式符的输出
+<ul>
+<li>第一个参数：时间单位指数（必填），如-9对应1ns、-12对应1ps</li>
+<li>第二个参数：小数点后保留位数（默认0）</li>
+<li>第三个参数：时间值后的后缀（默认空字符串）</li>
+<li>第四个参数：时间字符串的最小宽度（默认20），自动左侧补空格</li>
+</ul>
+</li>
+<li><code>$time</code>的返回值是根据所在模块的时间精度要求进行舍入的整数，<code>$realtime</code>的返回值则是带小数部分的完整实数
+<ul>
+<li>在计算时延时也可以使用<code>time t</code>或<code>realtime r</code>定义变量存储数据</li>
+<li>如在``timescase 1ns/100ps<code>中，</code>time t = 800ps<code>以1ns存储，</code>realtime r = 800ps`以0.8ns存储</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> timing;</span><br><span class="line">    <span class="keyword">timeunit</span> <span class="number">1</span>ns;</span><br><span class="line">    <span class="keyword">timeprecision</span> <span class="number">1</span>ps;</span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        <span class="built_in">$timeformat</span>(-<span class="number">9</span>, <span class="number">3</span>, <span class="string">&quot;ns&quot;</span>, <span class="number">8</span>);</span><br><span class="line">        #<span class="number">1</span>     <span class="built_in">$display</span>(<span class="string">&quot;%t&quot;</span>, <span class="built_in">$realtime</span>); <span class="comment">//1.000ns</span></span><br><span class="line">        #<span class="number">2</span>ns   <span class="built_in">$display</span>(<span class="string">&quot;%t&quot;</span>, <span class="built_in">$realtime</span>); <span class="comment">//3.000ns</span></span><br><span class="line">        #<span class="number">0</span><span class="variable">.1ns</span> <span class="built_in">$display</span>(<span class="string">&quot;%t&quot;</span>, <span class="built_in">$realtime</span>); <span class="comment">//3.100ns</span></span><br><span class="line">        #<span class="number">41</span>ps  <span class="built_in">$display</span>(<span class="string">&quot;%t&quot;</span>, <span class="built_in">$realtime</span>); <span class="comment">//3.141ns</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/sv/" rel="tag"><i class="fa fa-tag"></i> sv</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/MIPI%E6%A1%86%E6%9E%B6/" rel="prev" title="MIPI框架">
+                  <i class="fa fa-angle-left"></i> MIPI框架
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/SV%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="next" title="SV数据类型">
+                  SV数据类型 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-blog"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ArvinHwO</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

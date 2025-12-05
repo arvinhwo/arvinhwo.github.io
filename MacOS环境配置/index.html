@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-A.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-A.png">
+  <link rel="mask-icon" href="/images/favicon-A.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"arvinhwo.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":300},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="MacOS开发环境配置及使用备忘录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MacOS环境配置">
+<meta property="og:url" content="http://arvinhwo.com/MacOS%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Arvin&#39;s TeckArk">
+<meta property="og:description" content="MacOS开发环境配置及使用备忘录">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-11-26T10:36:50.000Z">
+<meta property="article:modified_time" content="2025-12-05T10:47:47.594Z">
+<meta property="article:author" content="ArvinHwO">
+<meta property="article:tag" content="sh">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://arvinhwo.com/MacOS%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://arvinhwo.com/MacOS%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/","path":"MacOS环境配置/","title":"MacOS环境配置"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MacOS环境配置 | Arvin's TeckArk</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+
+
+  
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://arvinhwo.com/MacOS%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Arvin's TeckArk</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-book fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-sitemap fa-fw"></i>Categories</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#zprofile"><span class="nav-number">1.1.</span> <span class="nav-text">.zprofile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zshrc"><span class="nav-number">1.2.</span> <span class="nav-text">.zshrc</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8C%85%E7%AE%A1%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">包管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Homebrew"><span class="nav-number">2.1.</span> <span class="nav-text">Homebrew</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Install"><span class="nav-number">2.1.1.</span> <span class="nav-text">Install</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Info"><span class="nav-number">2.1.2.</span> <span class="nav-text">Info</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#update"><span class="nav-number">2.1.3.</span> <span class="nav-text">update</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python3"><span class="nav-number">2.2.</span> <span class="nav-text">Python3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Direnv"><span class="nav-number">2.3.</span> <span class="nav-text">Direnv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git"><span class="nav-number">2.4.</span> <span class="nav-text">Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js"><span class="nav-number">2.5.</span> <span class="nav-text">Node.js</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo"><span class="nav-number">2.5.1.</span> <span class="nav-text">Hexo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenJDK"><span class="nav-number">2.6.</span> <span class="nav-text">OpenJDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PlantUML"><span class="nav-number">2.7.</span> <span class="nav-text">PlantUML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Graphviz"><span class="nav-number">2.7.1.</span> <span class="nav-text">Graphviz</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tcl-Tk"><span class="nav-number">2.8.</span> <span class="nav-text">Tcl&#x2F;Tk</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">3.</span> <span class="nav-text">快捷键</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F"><span class="nav-number">3.1.</span> <span class="nav-text">系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AA%97%E5%8F%A3"><span class="nav-number">3.2.</span> <span class="nav-text">窗口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%AA%E5%9B%BE"><span class="nav-number">3.3.</span> <span class="nav-text">截图</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ArvinHwO"
+      src="/images/A.png">
+  <p class="site-author-name" itemprop="name">ArvinHwO</p>
+  <div class="site-description" itemprop="description">Some Notes & Memos</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:root@arvinhwo.com" title="E-Mail → mailto:root@arvinhwo.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://arvinhwo.com/MacOS%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/A.png">
+      <meta itemprop="name" content="ArvinHwO">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Arvin's TeckArk">
+      <meta itemprop="description" content="Some Notes & Memos">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MacOS环境配置 | Arvin's TeckArk">
+      <meta itemprop="description" content="MacOS开发环境配置及使用备忘录">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MacOS环境配置
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-11-26 18:36:50" itemprop="dateCreated datePublished" datetime="2025-11-26T18:36:50+08:00">2025-11-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-12-05 18:47:47" itemprop="dateModified" datetime="2025-12-05T18:47:47+08:00">2025-12-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/How-To/" itemprop="url" rel="index"><span itemprop="name">How-To</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/How-To/macOS/" itemprop="url" rel="index"><span itemprop="name">macOS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">MacOS开发环境配置及使用备忘录</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="环境配置">环境配置</h1>
+<h2 id="zprofile">.zprofile</h2>
+<ul>
+<li><code>.zprofile</code>管理环境：打开GU应用或Terminal时，自动从该文件中加载一次全局环境变量，直至本次进程结束
+<ul>
+<li>若<code>.zprofile</code>修改，GUI应用需要重启、Terminal重启或<code>source ~/.zprofile</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 自定义环境变量</span></span><br><span class="line"><span class="built_in">export</span> NAME=<span class="string">&quot;target_path&quot;</span></span><br><span class="line"><span class="comment"># 系统环境变量</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;<span class="variable">$BIN_DIR</span>:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改PATH识别顺序并去重</span></span><br><span class="line"><span class="function"><span class="title">prepend_path</span></span>() &#123;</span><br><span class="line">  [ <span class="string">&quot;<span class="variable">$#</span>&quot;</span> -lt 1 ] &amp;&amp; &#123; <span class="built_in">echo</span> <span class="string">&quot;Usage: prepend_path /path/one [/path/two ...]&quot;</span>; <span class="built_in">return</span> 1; &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">local</span> paths=<span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="keyword">for</span> <span class="built_in">dir</span> <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> [ -d <span class="string">&quot;<span class="variable">$dir</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">      paths=<span class="string">&quot;$paths<span class="variable">$dir</span>:&quot;</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      <span class="built_in">echo</span> <span class="string">&quot;Warning: directory <span class="variable">$dir</span> does not exist.&quot;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">  <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">  PATH=<span class="string">&quot;<span class="variable">$&#123;paths&#125;</span><span class="variable">$&#123;PATH&#125;</span>&quot;</span></span><br><span class="line">  <span class="built_in">export</span> PATH</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">export</span> PATH=$(<span class="built_in">echo</span> <span class="variable">$PATH</span> | <span class="built_in">tr</span> <span class="string">&#x27;:&#x27;</span> <span class="string">&#x27;\n&#x27;</span> | awk <span class="string">&#x27;!seen[$0]++&#x27;</span> | <span class="built_in">paste</span> -sd <span class="string">&#x27;:&#x27;</span> -)</span><br><span class="line"><span class="comment"># prepend_path path1 path2 ... pathn</span></span><br></pre></td></tr></table></figure>
+<h2 id="zshrc">.zshrc</h2>
+<ul>
+<li><code>.zshrc</code>管理交互：每打开一个Terminal的新标签页都会执行，适合设置命令行工具、提示符、自动激活工具</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 彩色输入</span></span><br><span class="line">alias ls=<span class="string">&#x27;ls -G&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入目录的同时打印，builtin强调shell原始命令，避免递归</span></span><br><span class="line">cd () &#123;</span><br><span class="line">  builtin cd <span class="string">&quot;$@&quot;</span> &amp;&amp; ls</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件删除确认及日志</span></span><br><span class="line">rm () &#123;</span><br><span class="line">  command rm -i <span class="string">&quot;$@&quot;</span></span><br><span class="line">  echo <span class="string">&quot;[$(date)] 删除了文件: $@&quot;</span> &gt;&gt; ~/.rm_log</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数扩展，&#x27;github prj_name&#x27; 可快速进入指定项目，其余同理</span></span><br><span class="line">gt () &#123;</span><br><span class="line">  cd <span class="string">&quot;$HOME/workspace/github/$1&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="包管理">包管理</h1>
+<h2 id="Homebrew">Homebrew</h2>
+<h3 id="Install">Install</h3>
+<ul>
+<li>Homebrew是macOS上的包管理器，是用于安装、更新、卸载各种开发工具的和软件的命令行工具</li>
+<li>使用官方安装脚本：<code>/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</code>
+<ul>
+<li><code>/bin/bash -c</code>：指定使用Bash shell，从字符串<code>$(...)</code>中读取命令并执行</li>
+<li><code>curl -fsSL</code>：从GitHub下载官方安装脚本<code>install.sh</code>
+<ul>
+<li><code>-f (--fail)</code>：入请求失败，直接返回非零退出码</li>
+<li><code>-s (--silent)</code>：静默模式，不显示进度条、连接信息等冗余输出</li>
+<li><code>-S (--show-error)</code>：与<code>-s</code>结合使用，当发生错误时显示冗余错误信息</li>
+<li><code>-L (--location)</code>：若目标URL有跳转，自动跟进最终地址</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>在<code>~/.zprofile</code>中设置环境变量：<code>eval &quot;$(/opt/homebrew/bin/brew shellenv)&quot;</code>
+<ul>
+<li><code>eval</code>会自动执行<code>$(...)</code>内的字符串输出：自动将<code>/opt/homebrew/bin</code>中的可执行文件或软链接加入全局变量</li>
+<li><code>source ~/.zrofile</code>后，输入<code>brew -v (--version)</code>检查环境变量设置是否成功</li>
+</ul>
+</li>
+</ul>
+<h3 id="Info">Info</h3>
+<ul>
+<li>使用<code>brew info xxx</code>能够查询到软件包的基础信息、安装状态、依赖项、注意事项和统计信息，以已安装的<code>openjdk</code>为例</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">arvin@arvinhwo ~ % brew info openjdk</span><br><span class="line">==&gt; openjdk: stable 25.0.1 (bottled) [keg-only]</span><br><span class="line">Development kit for the Java programming language</span><br><span class="line">https://openjdk.org/</span><br><span class="line">Installed</span><br><span class="line">/opt/homebrew/Cellar/openjdk/25.0.1 (557 files, 389.5MB)</span><br><span class="line">  Poured from bottle using the formulae.brew.sh API on 2025-11-26 at 15:29:20</span><br><span class="line">From: https://github.com/Homebrew/homebrew-core/blob/HEAD/Formula/o/openjdk.rb</span><br><span class="line">License: GPL-2.0-only WITH Classpath-exception-2.0</span><br><span class="line">==&gt; Dependencies</span><br><span class="line">Build: autoconf ✘, pkgconf ✘</span><br><span class="line">Required: freetype ✔, giflib ✔, harfbuzz ✔, jpeg-turbo ✔, libpng ✔, little-cms2 ✔</span><br><span class="line">==&gt; Requirements</span><br><span class="line">Build: Xcode (on macOS) ✘</span><br><span class="line">==&gt; Caveats</span><br><span class="line">For the system Java wrappers to find this JDK, symlink it with</span><br><span class="line">  sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk</span><br><span class="line"></span><br><span class="line">openjdk is keg-only, which means it was not symlinked into /opt/homebrew,</span><br><span class="line">because macOS provides similar software and installing this software in</span><br><span class="line">parallel can cause all kinds of trouble.</span><br><span class="line"></span><br><span class="line">If you need to have openjdk first in your PATH, run:</span><br><span class="line">  echo &#x27;export PATH=&quot;/opt/homebrew/opt/openjdk/bin:$PATH&quot;&#x27; &gt;&gt; /Users/arvin/.zshrc</span><br><span class="line"></span><br><span class="line">For compilers to find openjdk you may need to set:</span><br><span class="line">  export CPPFLAGS=&quot;-I/opt/homebrew/opt/openjdk/include&quot;</span><br><span class="line">==&gt; Analytics</span><br><span class="line">install: 79,590 (30 days), 230,715 (90 days), 1,003,295 (365 days)</span><br><span class="line">install-on-request: 34,596 (30 days), 102,135 (90 days), 501,993 (365 days)</span><br><span class="line">build-error: 1,961 (30 days)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>bottled</code>表示该软件包提供了预编译的二进制包，Homebrew默认优先使用
+<ul>
+<li>使用二进制包无需从源码编译安装，需要满足运行依赖项<code>Required</code></li>
+</ul>
+</li>
+<li><code>keg-only</code>软件包单独存放，安装后不会自动在<code>/opt/homebrew/bin</code>建立全局软链接
+<ul>
+<li>这可以避免直接覆盖系统自带同名软件、破坏系统依赖，如<code>openjdk</code>，同时若使用Homebrew安装了多版本的<code>keg-only</code>软件包，也可以手动选择使用哪个版本</li>
+</ul>
+</li>
+<li><code>Analytics</code>是Homebrew的匿名统计数据，反映该软件包的流行程度和稳定性</li>
+</ul>
+<h3 id="update">update</h3>
+<ul>
+<li>使用<code>brew update</code>拉取最新的软件包列表，会列出可供安装的新软件包和过时的软件包
+<ul>
+<li>或使用<code>brew outdated</code>查看可升级的软件包</li>
+</ul>
+</li>
+<li>升级所有可升级的软件包<code>brew upgrade</code>，或升级单个软件包<code>brew upgrade xxx</code>
+<ul>
+<li><code>upgrade</code>命令会自动下载新版Bottle、安装新版本、自动执行<code>cleanup</code>，把旧版本移除</li>
+<li>若需要保留旧版本，可以在<code>.zprofile</code>中设置<code>export HOMEBREW_NO_INSTALL_CLEANUP=1</code>关闭自动清除</li>
+</ul>
+</li>
+</ul>
+<h2 id="Python3">Python3</h2>
+<ul>
+<li>
+<p>Python3是新一代Python语言和运行环境</p>
+<ul>
+<li>使用<code>pip3</code>、<code>python3</code>等命令运行</li>
+<li><code>pip3</code>是Python3自带的包管理工具（Package Installer for Python）</li>
+</ul>
+</li>
+<li>
+<p>使用Homebrew安装Python3：<code>brew install python</code></p>
+<ul>
+<li>输入<code>brew info python</code>检查是否成功</li>
+</ul>
+</li>
+<li>
+<p>从info中得知，Homebrew并未直接将<code>python</code>、<code>pip</code>等无版本号命令加入全局链接</p>
+<ul>
+<li>在<code>~/.zprofile</code>中将<code>/opt/homebrew/opt/python@3.14/libexec/bin</code>加入环境变量后，即可使用<code>pip</code>、<code>python</code>等命令运行</li>
+<li>若同时打开<code>/opt/homebrew/bin/pip3</code>和<code>/opt/homebrew/opt/python@3.14/libexec/bin/pip</code>可以发现内容是相同的</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/opt/homebrew/Cellar/python@3.14/3.14.0_1/bin/python3.14</span></span><br><span class="line">import sys</span><br><span class="line">from pip._internal.cli.main import main</span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    if sys.argv[0].endswith(&#x27;.exe&#x27;):</span><br><span class="line">        sys.argv[0] = sys.argv[0][:-4]</span><br><span class="line">    sys.exit(main())</span><br></pre></td></tr></table></figure>
+<ul>
+<li>若项目需要，可在项目根目录创建虚拟环境：<code>python -m venv myenv</code>
+<ul>
+<li>虚拟环境能实现在不同项目中使用不同版本的库，避免冲突</li>
+<li>手动激活虚拟环境：<code>source myenv/bin/activate</code>；或使用下列<code>dienv</code>工具</li>
+</ul>
+</li>
+</ul>
+<h2 id="Direnv">Direnv</h2>
+<ul>
+<li>Direnv让目录自己管理环境，进出自动生效/撤销，不污染全局Shell</li>
+<li>使用Homebrew安装Direnv：<code>brew install direnv</code>
+<ul>
+<li>输入<code>brew info direnv</code>检查是否成功</li>
+</ul>
+</li>
+<li>配置自动识别：<code>echo 'eval &quot;$(direnv hook zsh)&quot;' &gt;&gt; ~/.zshrc</code>
+<ul>
+<li>放在<code>.zshrc</code>而非<code>.zprofile</code>是为了在新开的tab也能生效</li>
+</ul>
+</li>
+<li>在项目根目录创建<code>.envrc</code>：<code>echo 'source ./myenv_path/bin/activate' &gt; .envrc</code>
+<ul>
+<li><code>&gt;&gt;</code>追加写入；<code>&gt;</code>覆盖写入</li>
+</ul>
+</li>
+<li>允许<code>.envrc</code>：<code>dirnev allow</code>，实现每次进入项目目录，虚拟环境自动激活；离开目录，虚拟环境自动退出</li>
+</ul>
+<h2 id="Git">Git</h2>
+<ul>
+<li>
+<p>Git是一个分布式版本控制系统，用来记录代码历史i、多人协作、管理项目变更</p>
+<ul>
+<li>使用<code>git</code>命令运行</li>
+</ul>
+</li>
+<li>
+<p>使用Homebrew进行安装：<code>brew install git</code></p>
+<ul>
+<li>输入<code>brew info git</code>检查是否成功</li>
+</ul>
+</li>
+<li>
+<p>其余操作与Windows平台中相同，参见文章<a href="../Git%E6%8C%87%E5%8D%97/#GitHub%E4%BB%93%E5%BA%93">Git指南</a></p>
+</li>
+</ul>
+<h2 id="Node-js">Node.js</h2>
+<ul>
+<li>
+<p>Node.js是运行JavaScript的高性能运行环境</p>
+<ul>
+<li>使用<code>npm</code>命令安装包，<code>npm</code>是Node.js自带的包管理器（Node Package Manager）</li>
+</ul>
+</li>
+<li>
+<p>使用Homebrew进行安装：<code>brew install node</code></p>
+<ul>
+<li>输入<code>brew info node</code>检查是否成功</li>
+</ul>
+</li>
+</ul>
+<h3 id="Hexo">Hexo</h3>
+<ul>
+<li>Hexo是一个快速、轻量的静态博客框架</li>
+<li>使用<code>npm</code>命令安装Hexo：<code>npm install -g hexo-cli</code></li>
+<li>操作与Windows平台中相同，参见文章<a href="../Hexo%E9%83%A8%E7%BD%B2/#%E7%BD%91%E9%A1%B5%E9%83%A8%E7%BD%B2">Hexo部署</a></li>
+</ul>
+<h2 id="OpenJDK">OpenJDK</h2>
+<ul>
+<li>Open Java Development Kit是Java平台的开源实现，包含Java开发和运行的核心组件
+<ul>
+<li>使用<code>java</code>命令运行</li>
+</ul>
+</li>
+<li>使用Homebrew安装：<code>brew install openjdk</code>
+<ul>
+<li>也可以使用<code>brew search openjdk</code>搜索可用版本并安装</li>
+<li>输入<code>brew info openjdk</code>检查是否成功</li>
+</ul>
+</li>
+<li>OpenJDk是keg-only软件，需要在<code>~/.zprofile</code>中设置环境变量
+<ul>
+<li><code>source ~/.zrofile</code>后，输入<code>java -version</code>检查环境变量设置是否成功</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=<span class="string">&quot;/opt/homebrew/opt/openjdk&quot;</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="PlantUML">PlantUML</h2>
+<ul>
+<li>
+<p>PlantUML是一个文字画UML图的工具，内部可以调用Graphviz来排版</p>
+<ul>
+<li>使用<code>plantuml</code>运行脚本</li>
+<li>UML：Unified Modeling Landuage Diagram，统一建模语言图</li>
+</ul>
+</li>
+<li>
+<p>使用Homebrew安装：<code>brew install plantuml</code></p>
+<ul>
+<li>输入<code>brew info plantuml</code>检查是否成功</li>
+</ul>
+</li>
+</ul>
+<h3 id="Graphviz">Graphviz</h3>
+<ul>
+<li>Graphviz是一个图形布局引擎和绘图库，绘图基础工具
+<ul>
+<li>使用<code>dot</code>命令运行脚本</li>
+</ul>
+</li>
+<li>使用Homebrew安装：<code>brew install graphviz</code>
+<ul>
+<li>输入<code>brew info graphviz</code>检查是否成功</li>
+</ul>
+</li>
+</ul>
+<h2 id="Tcl-Tk">Tcl/Tk</h2>
+<ul>
+<li>Tlk/Tk是一个跨平台脚本语言和GUI工具包
+<ul>
+<li>Tcl：Tool Command Language，用于自动化、测试、嵌入式开发，使用<code>tclsh</code>命令运行脚本</li>
+<li>Tk：Tcl的图形界面库，可快速创建窗口、按钮、文本框等GUI，使用<code>wish</code>命令运行脚本</li>
+</ul>
+</li>
+<li>使用Homebrew安装：<code>brew install tcl-tk</code>
+<ul>
+<li>输入<code>brew info tcl-tk</code>检查是否成功</li>
+</ul>
+</li>
+</ul>
+<h1 id="快捷键"><a target="_blank" rel="noopener" href="https://support.apple.com/zh-cn/102650">快捷键</a></h1>
+<h2 id="系统">系统</h2>
+<ul>
+<li>锁屏：<code>ctrl</code>+<code>command</code>+<code>q</code></li>
+<li>结束当前应用进程：<code>command</code>+<code>q</code></li>
+<li>卡死时强制退出：<code>command</code>+<code>option</code>+<code>esc</code></li>
+<li>显示或隐藏程序坞<code>command</code>+<code>option</code>+<code>d</code></li>
+<li>切换应用：<code>command</code> +<code>tab</code>
+<ul>
+<li>切换上一个应用：<code>command</code>+<code>shift</code>+<code>tab</code></li>
+<li>切换同一个应用的窗口：<code>command</code>+<code>num</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="窗口">窗口</h2>
+<ul>
+<li>关闭当前窗口：<code>command</code>+<code>w</code>
+<ul>
+<li>对应窗口左上角红色圆点，应用转为后台运行，内存不足时自动退出</li>
+</ul>
+</li>
+<li>最小化窗口到程序坞：<code>command</code>+<code>m</code>
+<ul>
+<li>对应窗口左上角黄色圆点</li>
+</ul>
+</li>
+<li>进入/退出全屏：<code>ctrl</code>+<code>command</code>+<code>F</code>
+<ul>
+<li>对应窗口左上角绿色圆点</li>
+</ul>
+</li>
+<li>隐藏当前应用所有窗口：<code>command</code>+<code>h</code></li>
+</ul>
+<h2 id="截图">截图</h2>
+<ul>
+<li><code>command</code>+<code>shift</code>+<code>3</code>：截取屏幕到文件
+<ul>
+<li><code>command</code>+<code>shift</code>+<code>control</code>+<code>3</code>：截取屏幕到剪切板</li>
+</ul>
+</li>
+<li><code>command</code>+<code>shift</code>+<code>4</code>：截取指定区域到到文件
+<ul>
+<li><code>command</code>+<code>shift</code>+<code>control</code>+<code>4</code>：截取指定区域到到剪切板</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/sh/" rel="tag"><i class="fa fa-tag"></i> sh</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/SV%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%8E%A7%E5%88%B6/" rel="prev" title="SV随机化控制">
+                  <i class="fa fa-angle-left"></i> SV随机化控制
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-blog"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ArvinHwO</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
