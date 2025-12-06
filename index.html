@@ -69,6 +69,12 @@
 
 
 
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
   <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://arvinhwo.com/"}</script>
   <script src="/js/third-party/quicklink.js" defer></script>
@@ -76,7 +82,123 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -221,7 +343,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://arvinhwo.com/how-to/macos/macos-huan-jing-pei-zhi/">
+    <link itemprop="mainEntityOfPage" href="http://arvinhwo.com/MacOS%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/A.png">
@@ -239,7 +361,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/how-to/macos/macos-huan-jing-pei-zhi/" class="post-title-link" itemprop="url">MacOS环境配置</a>
+          <a href="/MacOS%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">MacOS环境配置</a>
         </h2>
 
         <div class="post-meta-container">
@@ -257,7 +379,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-12-05 18:47:47" itemprop="dateModified" datetime="2025-12-05T18:47:47+08:00">2025-12-05</time>
+      <time title="Modified: 2025-12-06 17:19:30" itemprop="dateModified" datetime="2025-12-06T17:19:30+08:00">2025-12-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -286,7 +408,7 @@
           <p>MacOS开发环境配置及使用备忘录</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/how-to/macos/macos-huan-jing-pei-zhi/">
+              <a class="btn" href="/MacOS%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
                 Read more &raquo;
               </a>
             </div>
@@ -317,7 +439,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://arvinhwo.com/lnotes/systemverilog/sv-sui-ji-hua-kong-zhi/">
+    <link itemprop="mainEntityOfPage" href="http://arvinhwo.com/SV%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%8E%A7%E5%88%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/A.png">
@@ -335,7 +457,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/lnotes/systemverilog/sv-sui-ji-hua-kong-zhi/" class="post-title-link" itemprop="url">SV随机化控制</a>
+          <a href="/SV%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%8E%A7%E5%88%B6/" class="post-title-link" itemprop="url">SV随机化控制</a>
         </h2>
 
         <div class="post-meta-container">
@@ -382,7 +504,7 @@
           <p>System Verilog CRT控制方法，以及随机化函数</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/lnotes/systemverilog/sv-sui-ji-hua-kong-zhi/">
+              <a class="btn" href="/SV%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%8E%A7%E5%88%B6/">
                 Read more &raquo;
               </a>
             </div>
@@ -413,7 +535,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://arvinhwo.com/lnotes/systemverilog/sv-sui-ji-hua-yue-shu/">
+    <link itemprop="mainEntityOfPage" href="http://arvinhwo.com/SV%E9%9A%8F%E6%9C%BA%E5%8C%96%E7%BA%A6%E6%9D%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/A.png">
@@ -431,7 +553,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/lnotes/systemverilog/sv-sui-ji-hua-yue-shu/" class="post-title-link" itemprop="url">SV随机化约束</a>
+          <a href="/SV%E9%9A%8F%E6%9C%BA%E5%8C%96%E7%BA%A6%E6%9D%9F/" class="post-title-link" itemprop="url">SV随机化约束</a>
         </h2>
 
         <div class="post-meta-container">
@@ -478,7 +600,7 @@
           <p>System Verilog CRT及约束方法</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/lnotes/systemverilog/sv-sui-ji-hua-yue-shu/">
+              <a class="btn" href="/SV%E9%9A%8F%E6%9C%BA%E5%8C%96%E7%BA%A6%E6%9D%9F/">
                 Read more &raquo;
               </a>
             </div>
@@ -509,7 +631,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://arvinhwo.com/lnotes/lfsr/lfsr-yuan-li/">
+    <link itemprop="mainEntityOfPage" href="http://arvinhwo.com/LFSR%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/A.png">
@@ -527,7 +649,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/lnotes/lfsr/lfsr-yuan-li/" class="post-title-link" itemprop="url">LFSR原理</a>
+          <a href="/LFSR%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">LFSR原理</a>
         </h2>
 
         <div class="post-meta-container">
@@ -545,7 +667,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-12-05 18:47:47" itemprop="dateModified" datetime="2025-12-05T18:47:47+08:00">2025-12-05</time>
+      <time title="Modified: 2025-12-06 17:13:31" itemprop="dateModified" datetime="2025-12-06T17:13:31+08:00">2025-12-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -574,7 +696,7 @@
           <p>线性移位寄存器原理及其实例</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/lnotes/lfsr/lfsr-yuan-li/">
+              <a class="btn" href="/LFSR%E5%8E%9F%E7%90%86/">
                 Read more &raquo;
               </a>
             </div>
