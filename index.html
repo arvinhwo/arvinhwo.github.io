@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"arvinhwo.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"mac"},"fold":{"enable":true,"height":300},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":0,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"arvinhwo.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"default"},"fold":{"enable":true,"height":300},"language":"fasle"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":0,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
     <meta name="description" content="Some Notes &amp; Memos">
 <meta property="og:type" content="website">
@@ -186,7 +186,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -231,7 +231,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://arvinhwo.com/VPS%E9%85%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="http://arvinhwo.com/WireGuard%E9%9A%A7%E9%81%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/A.png">
@@ -249,7 +249,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/VPS%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">VPS配置</a>
+          <a href="/WireGuard%E9%9A%A7%E9%81%93/" class="post-title-link" itemprop="url">WireGuard隧道</a>
         </h2>
 
         <div class="post-meta-container">
@@ -260,14 +260,14 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2025-12-24 15:11:47" itemprop="dateCreated datePublished" datetime="2025-12-24T15:11:47+08:00">2025-12-24</time>
+      <time title="Created: 2025-12-30 09:45:08" itemprop="dateCreated datePublished" datetime="2025-12-30T09:45:08+08:00">2025-12-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-12-25 18:27:39" itemprop="dateModified" datetime="2025-12-25T18:27:39+08:00">2025-12-25</time>
+      <time title="Modified: 2025-12-31 16:36:47" itemprop="dateModified" datetime="2025-12-31T16:36:47+08:00">2025-12-31</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -293,10 +293,106 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>VPS初始化及安全策略实践记录</p>
+          <p>WireGuard加密隧道及VPS内核中转</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/VPS%E9%85%8D%E7%BD%AE/">
+              <a class="btn" href="/WireGuard%E9%9A%A7%E9%81%93/">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://arvinhwo.com/VPS%E5%BC%80%E8%8D%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/A.png">
+      <meta itemprop="name" content="ArvinHwO">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Arvin's TeckArk">
+      <meta itemprop="description" content="Some Notes & Memos">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Arvin's TeckArk">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/VPS%E5%BC%80%E8%8D%92/" class="post-title-link" itemprop="url">VPS开荒</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2025-12-24 15:11:47" itemprop="dateCreated datePublished" datetime="2025-12-24T15:11:47+08:00">2025-12-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2025-12-31 15:58:22" itemprop="dateModified" datetime="2025-12-31T15:58:22+08:00">2025-12-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/How-To/" itemprop="url" rel="index"><span itemprop="name">How-To</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/How-To/Env/" itemprop="url" rel="index"><span itemprop="name">Env</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>VPS初始化及安全策略</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/VPS%E5%BC%80%E8%8D%92/">
                 Read more &raquo;
               </a>
             </div>
@@ -413,7 +509,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://arvinhwo.com/MacOS%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="http://arvinhwo.com/macOS%E5%BC%80%E8%8D%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/A.png">
@@ -431,7 +527,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/MacOS%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">MacOS环境配置</a>
+          <a href="/macOS%E5%BC%80%E8%8D%92/" class="post-title-link" itemprop="url">macOS开荒</a>
         </h2>
 
         <div class="post-meta-container">
@@ -449,7 +545,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-12-22 17:19:28" itemprop="dateModified" datetime="2025-12-22T17:19:28+08:00">2025-12-22</time>
+      <time title="Modified: 2025-12-29 14:44:54" itemprop="dateModified" datetime="2025-12-29T14:44:54+08:00">2025-12-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -475,106 +571,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>MacOS开发环境配置及使用备忘录</p>
+          <p>macOS CLI初始化、常用软件包安装、快捷键记录</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/MacOS%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://arvinhwo.com/SV%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%8E%A7%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/A.png">
-      <meta itemprop="name" content="ArvinHwO">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Arvin's TeckArk">
-      <meta itemprop="description" content="Some Notes & Memos">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | Arvin's TeckArk">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/SV%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%8E%A7%E5%88%B6/" class="post-title-link" itemprop="url">SV随机化控制</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2025-10-13 10:05:31" itemprop="dateCreated datePublished" datetime="2025-10-13T10:05:31+08:00">2025-10-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-12-22 17:21:17" itemprop="dateModified" datetime="2025-12-22T17:21:17+08:00">2025-12-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/LNotes/" itemprop="url" rel="index"><span itemprop="name">LNotes</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/LNotes/SV/" itemprop="url" rel="index"><span itemprop="name">SV</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>System Verilog CRT控制方法，以及随机化函数</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/SV%E9%9A%8F%E6%9C%BA%E5%8C%96%E6%8E%A7%E5%88%B6/">
+              <a class="btn" href="/macOS%E5%BC%80%E8%8D%92/">
                 Read more &raquo;
               </a>
             </div>
