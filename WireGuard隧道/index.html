@@ -20,16 +20,16 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"arvinhwo.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"default"},"fold":{"enable":true,"height":300},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":0,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="WireGuard加密隧道及VPS内核中转">
+    <meta name="description" content="VPS转发及WireGuard加密隧道">
 <meta property="og:type" content="article">
 <meta property="og:title" content="WireGuard隧道">
 <meta property="og:url" content="http://arvinhwo.com/WireGuard%E9%9A%A7%E9%81%93/index.html">
 <meta property="og:site_name" content="Arvin&#39;s TeckArk">
-<meta property="og:description" content="WireGuard加密隧道及VPS内核中转">
+<meta property="og:description" content="VPS转发及WireGuard加密隧道">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://arvinhwo.com/images/image-20251229182838415.png">
 <meta property="article:published_time" content="2025-12-30T01:45:08.000Z">
-<meta property="article:modified_time" content="2025-12-31T08:56:17.821Z">
+<meta property="article:modified_time" content="2025-12-31T09:19:40.881Z">
 <meta property="article:author" content="ArvinHwO">
 <meta property="article:tag" content="sh">
 <meta name="twitter:card" content="summary">
@@ -177,7 +177,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VPS%E7%AB%AF"><span class="nav-number">1.</span> <span class="nav-text">VPS端</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E6%A0%B8%E8%BD%AC%E5%8F%91"><span class="nav-number">1.1.</span> <span class="nav-text">内核转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.2.</span> <span class="nav-text">网络地址转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E6%94%BE%E8%A1%8C"><span class="nav-number">1.3.</span> <span class="nav-text">防火墙放行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WireGuard%E9%9A%A7%E9%81%93"><span class="nav-number">1.4.</span> <span class="nav-text">WireGuard隧道</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.4.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">1.4.2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8"><span class="nav-number">1.4.3.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5"><span class="nav-number">1.4.4.</span> <span class="nav-text">检查</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">2.</span> <span class="nav-text">客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%86%E9%92%A5"><span class="nav-number">2.1.</span> <span class="nav-text">密钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-1"><span class="nav-number">2.2.</span> <span class="nav-text">配置</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#VPS%E8%BD%AC%E5%8F%91"><span class="nav-number">1.</span> <span class="nav-text">VPS转发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E6%A0%B8%E8%BD%AC%E5%8F%91"><span class="nav-number">1.1.</span> <span class="nav-text">内核转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.2.</span> <span class="nav-text">地址转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-number">1.3.</span> <span class="nav-text">防火墙</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WireGuard%E9%9A%A7%E9%81%93"><span class="nav-number">2.</span> <span class="nav-text">WireGuard隧道</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#VPS%E7%AB%AF"><span class="nav-number">2.1.</span> <span class="nav-text">VPS端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.1.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">2.1.2.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8"><span class="nav-number">2.1.3.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5"><span class="nav-number">2.1.4.</span> <span class="nav-text">检查</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">2.2.</span> <span class="nav-text">客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%86%E9%92%A5"><span class="nav-number">2.2.1.</span> <span class="nav-text">密钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">配置</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -252,7 +252,7 @@
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
       <meta itemprop="name" content="WireGuard隧道 | Arvin's TeckArk">
-      <meta itemprop="description" content="WireGuard加密隧道及VPS内核中转">
+      <meta itemprop="description" content="VPS转发及WireGuard加密隧道">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -274,7 +274,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2025-12-31 16:56:17" itemprop="dateModified" datetime="2025-12-31T16:56:17+08:00">2025-12-31</time>
+      <time title="Modified: 2025-12-31 17:19:40" itemprop="dateModified" datetime="2025-12-31T17:19:40+08:00">2025-12-31</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -293,14 +293,14 @@
   
 </div>
 
-            <div class="post-description">WireGuard加密隧道及VPS内核中转</div>
+            <div class="post-description">VPS转发及WireGuard加密隧道</div>
         </div>
       </header>
 
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="VPS端"><a href="#VPS端" class="headerlink" title="VPS端"></a>VPS端</h1><h2 id="内核转发"><a href="#内核转发" class="headerlink" title="内核转发"></a>内核转发</h2><ul>
+    <div class="post-body" itemprop="articleBody"><h1 id="VPS转发"><a href="#VPS转发" class="headerlink" title="VPS转发"></a>VPS转发</h1><h2 id="内核转发"><a href="#内核转发" class="headerlink" title="内核转发"></a>内核转发</h2><ul>
 <li>切换到root shell：<code>sudo -i</code></li>
 <li>开启IPv4转发：取消<code>/etc/sysctl.conf</code>中<code>net.ipv4.ip_forward=1</code>的注释</li>
 <li>写入内核立即生效：<code>sysctl -p</code>，并验证<ul>
@@ -312,7 +312,7 @@
 <blockquote>
 <p>开启linux的内核转发后，VPS可将WireGuard加密隧道的流量转发到公网网卡，只不过这一过程中还需VPS进行网络地址转换（postrouting），将私网流量伪装（masquerade）成公网流量，才能通过HTTP与其他公网交互<br><img src="/images/image-20251229182838415.png" alt="image-20251229182838415" style="zoom: 67%;" /></p>
 </blockquote>
-<h2 id="网络地址转换"><a href="#网络地址转换" class="headerlink" title="网络地址转换"></a>网络地址转换</h2><ul>
+<h2 id="地址转换"><a href="#地址转换" class="headerlink" title="地址转换"></a>地址转换</h2><ul>
 <li><p>查看当前VPS的默认出口网卡：<code>ip route show default</code></p>
 <ul>
 <li>输出<code>default via xx.xx.xx.xx dev enp1s0 proto dhcp src xx.xx.xx.xx metric 100</code></li>
@@ -343,7 +343,7 @@
 <p>NAT（Network Address Translation），内核转发后还需将私网IP伪装成公网IP，才能与公网交互</p>
 <p>IPv4的本质是一个32位二进制证书，为了便于阅读将它拆为4段，每一段的合法范围是0~255<br><code>/24</code>是CIDR子网掩码，表示前24位是网络位，后8位是主机位</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">10.0.0.1 = 00001010.00000000.00000000.00000001</span><br><span class="line">/24 掩码  = 11111111.11111111.11111111.00000000</span><br><span class="line">-----------------------------------------------</span><br><span class="line">网络地址 = 10.0.0.0，所覆盖的IP范围是10.0.0.0~10.0.0.255</span><br></pre></td></tr></table></figure></blockquote>
-<h2 id="防火墙放行"><a href="#防火墙放行" class="headerlink" title="防火墙放行"></a>防火墙放行</h2><ul>
+<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><ul>
 <li><p>放行WireGuard出入站端口（默认UDP 51820）及<code>wg0</code>经<code>enp1s0</code>网卡转发</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ufw allow 51820/udp</span><br><span class="line">ufw route allow <span class="keyword">in</span> on wg0 out on enp1s0</span><br><span class="line">ufw route allow <span class="keyword">in</span> on enp1s0 out on wg0</span><br></pre></td></tr></table></figure>
 </li>
@@ -353,7 +353,7 @@
 <li><p>修改WireGuard的默认初入站端口，并删除旧端口</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ufw allow xxxxx/udp</span><br><span class="line">ufw status numbered</span><br><span class="line">ufw delete number <span class="comment">#51820对应的编号</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="WireGuard隧道"><a href="#WireGuard隧道" class="headerlink" title="WireGuard隧道"></a>WireGuard隧道</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
+<h1 id="WireGuard隧道"><a href="#WireGuard隧道" class="headerlink" title="WireGuard隧道"></a>WireGuard隧道</h1><h2 id="VPS端"><a href="#VPS端" class="headerlink" title="VPS端"></a>VPS端</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
 <li>安装：<code>sudo apt install -y wireguard</code></li>
 <li>验证：<code>wg --version</code>、<code>wg-quick --help</code></li>
 <li>检查ip：<code>ip link show | grep wg</code>，因为还未启动此时无任何WireGuard接口</li>
@@ -400,10 +400,10 @@
 <li><p>查看当前WireGuard状态：<code>wg</code>，无客户端时只能看到<code>[Interface]</code>信息</p>
 </li>
 </ul>
-<h1 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h1><blockquote>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><blockquote>
 <p>使用非国区Apple ID下载WireGuard GUI客户端</p>
 </blockquote>
-<h2 id="密钥"><a href="#密钥" class="headerlink" title="密钥"></a>密钥</h2><ul>
+<h3 id="密钥"><a href="#密钥" class="headerlink" title="密钥"></a>密钥</h3><ul>
 <li><p>生成客户端密钥对在当前路径：<code>wg genkey | tee client_priavte.key | wg pubkey &gt; client_public.key</code></p>
 <ul>
 <li>设置私钥文件用户权限：<code>chmod 600 ./client_priavte.key</code></li>
@@ -416,7 +416,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h2><ul>
+<h3 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h3><ul>
 <li><p>客户端创建并编辑<code>macbook-wg0.conf</code>文件</p>
 <ul>
 <li>与VPS的<code>wg0.conf</code>同理，只不过客户端成了<code>[Interface]</code>，VPS成了<code>[Peer]</code></li>
