@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://arvinhwo.com/images/image-20251225172939505.png">
 <meta property="og:image" content="http://arvinhwo.com/images/image-20251225175425204.png">
 <meta property="article:published_time" content="2025-12-24T07:11:47.000Z">
-<meta property="article:modified_time" content="2026-03-16T06:26:50.015Z">
+<meta property="article:modified_time" content="2026-03-19T01:43:57.155Z">
 <meta property="article:author" content="ArvinHwO">
 <meta property="article:tag" content="network">
 <meta name="twitter:card" content="summary">
@@ -297,7 +297,7 @@
     <div class="post-body" itemprop="articleBody"><h1 id="VPS初始化"><a href="#VPS初始化" class="headerlink" title="VPS初始化"></a>VPS初始化</h1><h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><ul>
 <li><p>VPS：具备独立IPv4（<code>xx.xx.xx.xx</code>）的Ubuntu 22.04实例</p>
 </li>
-<li><p>登陆：客户端有SSH，通过<code>ssh root@xx.xx.xx.xx</code>并输入密码登陆VPS</p>
+<li><p>登陆：客户端有SSH，通过<code>ssh root@xx.xx.xx.xx</code>登陆VPS</p>
 </li>
 <li><p>轮询：避免登陆后长时间未操作被VPS自动踢出，客户端配置<code>~/.ssh/config</code></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Host *</span><br><span class="line">    ServerAliveInterval 60</span><br><span class="line">    ServerAliveCountMax 3</span><br></pre></td></tr></table></figure></li>
