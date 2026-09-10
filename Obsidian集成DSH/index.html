@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-A.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-A.png">
+  <link rel="mask-icon" href="/images/favicon-A.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"arvinhwo.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"default"},"fold":{"enable":true,"height":300},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":-1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="安装 DeepSeek Harness，并通过 Obsidian 网页浏览器搭建本地 AI Agent 工作环境">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Obsidian集成DSH">
+<meta property="og:url" content="http://arvinhwo.com/Obsidian%E9%9B%86%E6%88%90DSH/index.html">
+<meta property="og:site_name" content="ArvinHwO">
+<meta property="og:description" content="安装 DeepSeek Harness，并通过 Obsidian 网页浏览器搭建本地 AI Agent 工作环境">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-09-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-10T07:06:18.359Z">
+<meta property="article:author" content="ArvinHwO">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="DeepSeek Harness">
+<meta property="article:tag" content="Node.js">
+<meta property="article:tag" content="Obsidian">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://arvinhwo.com/Obsidian%E9%9B%86%E6%88%90DSH/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://arvinhwo.com/Obsidian%E9%9B%86%E6%88%90DSH/","path":"Obsidian集成DSH/","title":"Obsidian集成DSH"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Obsidian集成DSH | ArvinHwO</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://arvinhwo.com/Obsidian%E9%9B%86%E6%88%90DSH/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ArvinHwO</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-sitemap fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%86-DeepSeek-Harness-%E9%9B%86%E6%88%90%E5%88%B0-Obsidian"><span class="nav-number">1.</span> <span class="nav-text">将 DeepSeek Harness 集成到 Obsidian</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DeepSeek-Harness-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.1.</span> <span class="nav-text">DeepSeek Harness 是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E4%BF%A1%E6%81%AF"><span class="nav-number">1.2.</span> <span class="nav-text">环境信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-npx-%E9%A6%96%E6%AC%A1%E5%90%AF%E5%8A%A8"><span class="nav-number">1.3.</span> <span class="nav-text">使用 npx 首次启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-UI-%E7%9A%84-token-%E8%AE%A4%E8%AF%81"><span class="nav-number">1.4.</span> <span class="nav-text">Web UI 的 token 认证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA%E7%9A%84%E5%90%AB%E4%B9%89"><span class="nav-number">1.5.</span> <span class="nav-text">工作区的含义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8-Obsidian-%E4%B8%AD%E5%B5%8C%E5%85%A5-Harness"><span class="nav-number">1.6.</span> <span class="nav-text">在 Obsidian 中嵌入 Harness</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-DeepSeek-%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.7.</span> <span class="nav-text">配置 DeepSeek 模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%86%E5%90%AF%E5%8A%A8%E5%91%BD%E4%BB%A4%E7%BC%A9%E7%9F%AD%E4%B8%BA-dsh-web"><span class="nav-number">1.8.</span> <span class="nav-text">将启动命令缩短为 dsh web</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E6%97%B6%E4%B8%8D%E8%87%AA%E5%8A%A8%E6%89%93%E5%BC%80%E7%B3%BB%E7%BB%9F%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="nav-number">1.9.</span> <span class="nav-text">启动时不自动打开系统浏览器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%9A%E8%AF%9D%E5%BD%92%E6%A1%A3"><span class="nav-number">1.10.</span> <span class="nav-text">会话归档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%BB%88%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">1.11.</span> <span class="nav-text">最终使用流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">1.12.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ArvinHwO"
+      src="/images/A.png">
+  <p class="site-author-name" itemprop="name">ArvinHwO</p>
+  <div class="site-description" itemprop="description">A Personal Knowledge Base</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:root@arvinhwo.com" title="E-Mail → mailto:root@arvinhwo.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://arvinhwo.com/Obsidian%E9%9B%86%E6%88%90DSH/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/A.png">
+      <meta itemprop="name" content="ArvinHwO">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ArvinHwO">
+      <meta itemprop="description" content="A Personal Knowledge Base">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Obsidian集成DSH | ArvinHwO">
+      <meta itemprop="description" content="安装 DeepSeek Harness，并通过 Obsidian 网页浏览器搭建本地 AI Agent 工作环境">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Obsidian集成DSH
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-09-10 00:00:00" itemprop="dateCreated datePublished" datetime="2026-09-10T00:00:00+08:00">2026-09-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Software/" itemprop="url" rel="index"><span itemprop="name">Software</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Software/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">安装 DeepSeek Harness，并通过 Obsidian 网页浏览器搭建本地 AI Agent 工作环境</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="将-DeepSeek-Harness-集成到-Obsidian"><a href="#将-DeepSeek-Harness-集成到-Obsidian" class="headerlink" title="将 DeepSeek Harness 集成到 Obsidian"></a>将 DeepSeek Harness 集成到 Obsidian</h1><p>本文记录 DeepSeek Harness 的安装、认证、工作区配置及 Obsidian 内嵌过程。最终效果是在 Obsidian 中直接打开 Harness Web UI，让 Agent 读取和修改选定工作区中的 Markdown 文件。</p>
+<blockquote>
+<p>本文实测 DeepSeek Harness 版本为 <code>0.1.5-rc.1</code>。它仍处于开发者预览阶段，后续版本可能调整命令和配置格式。</p>
+</blockquote>
+<h2 id="DeepSeek-Harness-是什么"><a href="#DeepSeek-Harness-是什么" class="headerlink" title="DeepSeek Harness 是什么"></a>DeepSeek Harness 是什么</h2><p>DeepSeek Harness，简称 DSH，不是大模型本身，而是一套 Agent 运行框架。它把模型与文件系统、Shell、工具、技能、会话记录、存储和 Web UI 连接起来，使模型能够在真实项目目录中持续工作。</p>
+<p>它采用“一切皆插件”的架构。模型、工具、会话、沙箱、存储和界面等能力均可由插件组合，因此 DeepSeek 模型只是其中一种可配置的模型来源。</p>
+<p>对 Obsidian 用户而言，它最直接的用途是：将 Obsidian Vault 作为工作区，让 Agent 直接整理、创建和修改其中的 Markdown 笔记。</p>
+<h2 id="环境信息"><a href="#环境信息" class="headerlink" title="环境信息"></a>环境信息</h2><p>本次实测环境：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">系统：macOS（Apple Silicon / ARM64）</span><br><span class="line">Node.js：v26.8.2</span><br><span class="line">npm：11.19.1</span><br><span class="line">DeepSeek Harness：0.1.5-rc.1</span><br></pre></td></tr></table></figure>
+
+<p>检查环境：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span> node</span><br><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+<p>Node.js 最初为 Homebrew 安装的 <code>v25.2.1</code>，通过以下命令升级：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew update</span><br><span class="line">brew upgrade node</span><br></pre></td></tr></table></figure>
+
+<p>Node.js 26 在本次安装和运行中没有出现兼容性问题，因此没有回退版本。</p>
+<h2 id="使用-npx-首次启动"><a href="#使用-npx-首次启动" class="headerlink" title="使用 npx 首次启动"></a>使用 npx 首次启动</h2><p>DeepSeek 官网提供的快速体验命令为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx @deepseek-ai/dsh web</span><br></pre></td></tr></table></figure>
+
+<p>首次运行时确认下载软件包。安装完成后，终端会打印类似下面的地址，并自动打开系统默认浏览器：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dsh web: http://127.0.0.1:3080/?token=&lt;认证令牌&gt;</span><br><span class="line">dsh web: opening the default browser; pass --no-open to disable</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li><code>127.0.0.1</code> 表示服务运行在本机；</li>
+<li><code>3080</code> 是默认端口；</li>
+<li><code>token</code> 是本次 Web UI 的认证凭证；</li>
+<li>终端进程必须保持运行，关闭终端或按 <code>Control + C</code> 后服务会停止。</li>
+</ul>
+<p>npx 首次下载后会使用本地缓存，后续启动通常不会完整重复下载。不过它仍需输入较长的完整命令，因此后面改用全局安装。</p>
+<h2 id="Web-UI-的-token-认证"><a href="#Web-UI-的-token-认证" class="headerlink" title="Web UI 的 token 认证"></a>Web UI 的 token 认证</h2><p>第一次启动时，浏览器需要通过带 token 的完整地址完成认证：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:3080/?token=&lt;认证令牌&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果在另一个浏览器中直接访问：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:3080/</span><br></pre></td></tr></table></figure>
+
+<p>可能看到：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dsh web authentication required; reopen the URL printed by dsh web.</span><br></pre></td></tr></table></figure>
+
+<p>这是因为不同浏览器不会共享认证状态。只需从终端复制当次启动打印的完整 URL，在新浏览器中完成一次认证。认证成功后，该浏览器通常就能继续通过基础地址访问。</p>
+<p>token 相当于本地 Web UI 的访问凭证，不应公开分享。</p>
+<h2 id="工作区的含义"><a href="#工作区的含义" class="headerlink" title="工作区的含义"></a>工作区的含义</h2><p>在 Web UI 中可以添加并选择工作区。本次先创建了一个名为 <code>dsh-web</code> 的测试目录，避免测试过程影响其他文件。</p>
+<p>工作区可以理解为 Agent 当前处理的项目目录：</p>
+<ul>
+<li>Agent 可以读取、创建和修改其中的文件；</li>
+<li>Shell 命令通常以该目录作为工作环境；</li>
+<li>不同目录产生的会话会按工作区归类；</li>
+<li>选择 Obsidian Vault 后，Agent 可以直接操作其中的 Markdown 文件。</li>
+</ul>
+<p>工作区不等于聊天记录目录。提问、回答、工具调用和运行轨迹由 Harness 的会话系统单独持久化，默认保存在 <code>~/.dsh/sessions/</code> 下，并按照工作区路径分类。只有 Agent 明确创建或修改的项目文件才会出现在工作区中。</p>
+<p>因此，Harness 不会自动把每次对话转换成 Obsidian 笔记。需要在提示词中明确要求它创建或更新某个 Markdown 文件。</p>
+<p>Web UI 支持启动后添加和选择工作区，所以从哪个目录启动并不是核心问题。真正需要确认的是当前选中的工作区，避免 Agent 误操作其他文件。</p>
+<h2 id="在-Obsidian-中嵌入-Harness"><a href="#在-Obsidian-中嵌入-Harness" class="headerlink" title="在 Obsidian 中嵌入 Harness"></a>在 Obsidian 中嵌入 Harness</h2><p>Obsidian 已提供内置网页浏览器，无需安装社区插件。</p>
+<p>操作步骤：</p>
+<ol>
+<li><p>打开“设置”；</p>
+</li>
+<li><p>进入“核心插件”；</p>
+</li>
+<li><p>启用“网页浏览器”；</p>
+</li>
+<li><p>在 Obsidian 网页浏览器中打开终端打印的完整 token 地址，完成首次认证；</p>
+</li>
+<li><p>将网页浏览器主页设置为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:3080/</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>以后打开 Obsidian 网页浏览器，即可直接进入 DeepSeek Harness。</p>
+<p>需要注意：Obsidian 网页浏览器只是 Web UI 的客户端，不负责启动 Harness 服务。如果认证状态失效，再使用终端当次打印的完整 token 地址认证一次即可。</p>
+<h2 id="配置-DeepSeek-模型"><a href="#配置-DeepSeek-模型" class="headerlink" title="配置 DeepSeek 模型"></a>配置 DeepSeek 模型</h2><p>进入 Harness Web UI 后：</p>
+<ol>
+<li>打开“设置 → 模型”；</li>
+<li>输入 DeepSeek API Key；</li>
+<li>保存配置；</li>
+<li>创建会话并进行测试。</li>
+</ol>
+<p>API Key 不应写入 Obsidian 笔记、Shell 历史或准备发布到博客的配置示例中。</p>
+<h2 id="将启动命令缩短为-dsh-web"><a href="#将启动命令缩短为-dsh-web" class="headerlink" title="将启动命令缩短为 dsh web"></a>将启动命令缩短为 <code>dsh web</code></h2><p>为了避免每次输入完整的 npx 命令，可以全局安装 Harness。本次安装使用固定版本，并仅授权它所需的安装脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @deepseek-ai/dsh@0.1.5-rc.1 \</span><br><span class="line">  --allow-scripts=<span class="string">&quot;@deepseek-ai/dsh-subprocess-local,koffi,node-pty,@google/genai,protobufjs&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>安装完成后验证：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span> dsh</span><br><span class="line">dsh --version</span><br></pre></td></tr></table></figure>
+
+<p>预期结果：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/opt/homebrew/bin/dsh</span><br><span class="line">0.1.5-rc.1</span><br></pre></td></tr></table></figure>
+
+<p><code>--allow-scripts</code> 允许列出的依赖执行安装脚本，其中包含终端和本地子进程所需的原生组件。安装脚本能够以当前用户权限执行代码，因此本文采用“固定版本 + 单次授权”，不设置永久白名单，也不使用 <code>sudo</code>。</p>
+<p>安装过程中出现下面的提示不影响使用：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm warn deprecated node-domexception@1.0.0</span><br></pre></td></tr></table></figure>
+
+<p>它来自 Harness 的间接依赖，只能等待上游更新，无需手动处理。</p>
+<h2 id="启动时不自动打开系统浏览器"><a href="#启动时不自动打开系统浏览器" class="headerlink" title="启动时不自动打开系统浏览器"></a>启动时不自动打开系统浏览器</h2><p>全局安装完成后，使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dsh web --no-open</span><br></pre></td></tr></table></figure>
+
+<p><code>--no-open</code> 会启动本地 Web 服务，但不会自动打开系统默认浏览器。随后直接在 Obsidian 网页浏览器中访问：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:3080/</span><br></pre></td></tr></table></figure>
+
+<p>停止服务：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Control + C</span><br></pre></td></tr></table></figure>
+
+<h2 id="会话归档"><a href="#会话归档" class="headerlink" title="会话归档"></a>会话归档</h2><p>Harness 中的“归档对话”主要用于整理会话列表：</p>
+<ul>
+<li>对话内容和运行记录仍然保留；</li>
+<li>不会删除工作区文件；</li>
+<li>不会撤销 Agent 已执行的文件修改或命令；</li>
+<li>归档会话不会自动成为新会话的上下文；</li>
+<li>需要时可以从归档区域重新查看或恢复。</li>
+</ul>
+<p>归档不是删除，也不会把对话自动导出为 Markdown 文件。</p>
+<h2 id="最终使用流程"><a href="#最终使用流程" class="headerlink" title="最终使用流程"></a>最终使用流程</h2><p>每次使用前，在终端运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dsh web --no-open</span><br></pre></td></tr></table></figure>
+
+<p>然后在 Obsidian 中打开网页浏览器即可。</p>
+<p>正式接入个人知识库前，建议继续使用 <code>dsh-web</code> 测试工作区，重点确认：</p>
+<ul>
+<li>Agent 的文件读取范围是否符合预期；</li>
+<li>创建和修改 Markdown 是否需要审批；</li>
+<li>文件命名与目录规则是否适合现有 Vault；</li>
+<li>修改错误时能否通过文件恢复或 Git 回滚；</li>
+<li>API Key、会话日志和私人笔记之间的边界是否清晰。</li>
+</ul>
+<p>验证完成后，再把实际 Obsidian Vault 添加为工作区。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.deepseek.com/harness/">DeepSeek Harness 官方页面</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness GitHub 仓库</a></li>
+<li><a target="_blank" rel="noopener" href="https://deepseek-harness.github.io/deepseek-harness/guide/quickstart">DeepSeek Harness Web UI 指南</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v11/using-npm/config/#allow-scripts">npm <code>allow-scripts</code> 配置说明</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Obsidian/" rel="tag"><i class="fa fa-tag"></i> Obsidian</a>
+              <a href="/tags/DeepSeek-Harness/" rel="tag"><i class="fa fa-tag"></i> DeepSeek Harness</a>
+              <a href="/tags/Agent/" rel="tag"><i class="fa fa-tag"></i> Agent</a>
+              <a href="/tags/Node-js/" rel="tag"><i class="fa fa-tag"></i> Node.js</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/IC%E6%9C%AF%E8%AF%AD%E9%80%9F%E6%9F%A5/" rel="prev" title="IC术语速查">
+                  <i class="fa fa-angle-left"></i> IC术语速查
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2025 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-blog"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ArvinHwO</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '24px',
+  right: '20px',
+  left: 'unset',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: true,
+  label: '🌓',
+  autoMatchOsTheme: true
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+</script>
+
+</body>
+</html>
